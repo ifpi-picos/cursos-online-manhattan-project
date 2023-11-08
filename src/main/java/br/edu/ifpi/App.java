@@ -16,7 +16,6 @@ public class App extends Application{
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/telaLogIn.fxml"));
         Scene scene = new Scene(root);
-        // scene.getStylesheets().add(getClass().getResource("css/styles.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
