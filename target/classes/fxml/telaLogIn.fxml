@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorTelaLogIn">
    <children>
@@ -10,6 +14,15 @@
             <ImageView fx:id="LogoManhattan" fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #B9C2C4;" />
+      <AnchorPane layoutX="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #B9C2C4;">
+         <children>
+            <TextField fx:id="inputUsuarioLogIn" layoutX="126.0" layoutY="300.0" promptText="Usuário" />
+            <Text fx:id="logInText" layoutX="170.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+               <font>
+                  <Font name="Baskerville Old Face" size="24.0" />
+               </font>
+            </Text>
+            <PasswordField fx:id="inputSenhaLogIn" layoutX="126.0" layoutY="386.0" promptText="Senha" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>

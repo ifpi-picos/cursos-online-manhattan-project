@@ -1,0 +1,8 @@
+.root {
+    -fx-font-family: 'Poppins';
+}
+
+@font-face {
+    src: url('fonts/Poppins-Regular.ttf');
+    -fx-font-family: 'Poppins';
+}
