@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorTelaLogIn">
+   <children>
+      <AnchorPane fx:id="BackgroundImg" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #3D3D3D;">
+         <children>
+            <ImageView fx:id="LogoManhattan" fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #B9C2C4;" />
+   </children>
+</AnchorPane>
