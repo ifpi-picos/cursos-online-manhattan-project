@@ -43,9 +43,7 @@ public class Professor {
     this.email = email;
   }
 
-  public int getId() {
-    return id;
-  }
+  //Não é necessário get e set para id, pois ele é gerado automaticamente pelo banco de dados.
 
   public List<Curso> getCursos() {
       return cursos;

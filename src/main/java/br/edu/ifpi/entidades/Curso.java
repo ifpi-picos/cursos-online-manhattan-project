@@ -33,13 +33,7 @@ public class Curso {
         this.nome = nome;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    //Não é necessário get e set para id, pois ele é gerado automaticamente pelo banco de dados.
 
     public boolean getStatus() {
         return status;

@@ -17,9 +17,7 @@ public class Turma {
     }
 
     // Getters e Setters
-    public int getId() {
-        return id;
-    }
+    // Não é necessário get e set para id, pois ele é gerado automaticamente pelo banco de dados.
 
     public String getNome() {
         return nome;

@@ -20,8 +20,8 @@ public class Aluno {
   
     // Construtor completo para manipulação no sistema
     public Aluno(String nome, int id, String email) {
-        this.nome = nome;
         this.id = id;
+        this.nome = nome;
         this.email = email;
         this.cursos = new ArrayList<>();
     }
@@ -35,13 +35,7 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    //Não é necessário get e set para id, pois ele é gerado automaticamente pelo banco de dados.
 
     public String getEmail() {
         return email;

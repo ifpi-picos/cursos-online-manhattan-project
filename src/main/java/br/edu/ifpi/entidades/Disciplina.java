@@ -24,9 +24,8 @@ public class Disciplina {
         this.nome = nome;
     }
 
-    public int getId() {
-        return id;
-    }
+    //Não é necessário get e set para id, pois ele é gerado automaticamente pelo banco de dados.
+
 
     public int getCargaHoraria() {
         return cargaHoraria;
