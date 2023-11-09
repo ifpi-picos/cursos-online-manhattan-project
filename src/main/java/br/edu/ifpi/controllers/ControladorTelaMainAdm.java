@@ -1,5 +1,5 @@
 package br.edu.ifpi.controllers;
 
-public class ControladorTelaCadastro {
+public class ControladorTelaMainAdm {
     
 }
