@@ -7,7 +7,17 @@ public class Turma {
     private String horario;
     private Professor professor;
 
-    // Construtor
+    // Construtores
+    
+    // Construtor sem id para facilitar a autenticação
+    public Turma(String nome, int periodo, String horario, Professor professor) {
+        this.nome = nome;
+        this.periodo = periodo;
+        this.horario = horario;
+        this.professor = professor;
+    }
+
+    // Construtor completo para manipulação no sistema
     public Turma(int id, String nome, int periodo, String horario, Professor professor) {
         this.id = id;
         this.nome = nome;

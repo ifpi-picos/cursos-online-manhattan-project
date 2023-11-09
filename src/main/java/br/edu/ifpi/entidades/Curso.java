@@ -12,8 +12,19 @@ public class Curso {
     private Professor professor;
     private List<Double> notas;
 
+    // Construtores
 
-    // Construtor
+    // Construtor sem id para facilitar a autenticação
+    public Curso(String nome, boolean status, int cargaHoraria, String descricao, Professor professor) {
+        this.nome = nome;
+        this.status = status;
+        this.descricao = descricao;
+        this.cargaHoraria = cargaHoraria;
+        this.professor = professor;
+        this.notas = new ArrayList<>();
+    }
+
+    // Construtor completo para manipulação no sistema
     public Curso(String nome, int id, boolean status, int cargaHoraria, String descricao, Professor professor) {
         this.nome = nome;
         this.id = id;

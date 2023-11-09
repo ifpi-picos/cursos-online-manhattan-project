@@ -7,7 +7,9 @@ public class Disciplina {
     private String ementa;
     private Professor professor;
 
-    // Construtor
+    // Construtores
+    
+    // Construtor sem id para facilitar a autenticação
     public Disciplina(String nome, int cargaHoraria, String ementa, Professor professor) {
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
@@ -15,6 +17,15 @@ public class Disciplina {
         this.professor = professor;
     }
 
+    // Construtor completo para manipulação no sistema
+    public Disciplina(String nome, int id, int cargaHoraria, String ementa, Professor professor) {
+        this.nome = nome;
+        this.id = id;
+        this.cargaHoraria = cargaHoraria;
+        this.ementa = ementa;
+        this.professor = professor;
+    }
+    
     // Getters e Setters
     public String getNome() {
         return nome;
@@ -50,4 +61,5 @@ public class Disciplina {
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
+
 }
