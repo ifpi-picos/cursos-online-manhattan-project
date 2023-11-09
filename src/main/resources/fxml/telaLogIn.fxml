@@ -8,12 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorTelaLogIn">
    <children>
       <AnchorPane fx:id="BackgroundImg" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1D7151;">
          <children>
-            <ImageView fx:id="LogoManhattan" fitHeight="301.0" fitWidth="301.0" layoutX="50.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="LogoManhattan" fitHeight="301.0" fitWidth="301.0" layoutX="50.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="149.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="150.0">
                <image>
                   <Image url="@../images/GC__1_-removebg-preview.png" />
                </image></ImageView>
@@ -21,24 +22,27 @@
       </AnchorPane>
       <AnchorPane layoutX="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #EDD947;">
          <children>
-            <TextField fx:id="inputUsuarioLogIn" layoutX="89.0" layoutY="300.0" promptText="Usuário" style="-fx-background-color: transparent; -fx-border-color: #1D7151; -fx-border-width: 0px 0px 2px 0px;">
+            <FontIcon iconLiteral="fas-users" iconSize="80" layoutX="150.0" layoutY="124.0" />
+            <TextField fx:id="inputUsuarioLogIn" layoutX="87.0" layoutY="280.0" promptText="Usuário" style="-fx-background-color: transparent; -fx-border-color: #1D7151; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font name="Poppins Light" size="18.0" />
                </font></TextField>
-            <Text fx:id="logInText" layoutX="132.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+            <Text fx:id="logInText" layoutX="146.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
                <font>
                   <Font name="Poppins Bold" size="36.0" />
                </font>
             </Text>
-            <PasswordField fx:id="inputSenhaLogIn" layoutX="89.0" layoutY="386.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: #1D7151; -fx-border-width: 0px 0px 2px 0px;">
+            <PasswordField fx:id="inputSenhaLogIn" layoutX="89.0" layoutY="385.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: #1D7151; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font name="Poppins Light" size="18.0" />
                </font></PasswordField>
-            <Button fx:id="botaoEntrar" layoutX="162.0" layoutY="479.0" mnemonicParsing="false" style="-fx-background-color: #2B46BD;" text="Entrar" textFill="#edd947">
+            <Button fx:id="botaoEntrar" layoutX="161.0" layoutY="497.0" mnemonicParsing="false" style="-fx-background-color: #2B46BD;" text="Entrar" textFill="#edd947">
                <font>
                   <Font name="Poppins Regular" size="18.0" />
                </font>
             </Button>
+            <FontIcon iconLiteral="fas-user" iconSize="30" layoutX="50.0" layoutY="316.0" />
+            <FontIcon iconLiteral="fas-key" iconSize="30" layoutX="50.0" layoutY="421.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>
