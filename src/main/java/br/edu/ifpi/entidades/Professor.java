@@ -1,0 +1,30 @@
+package br.edu.ifpi.entidades;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Professor {
+    private String nome;
+  private String email;
+  private int id;
+  
+
+  // Construtores
+
+  // Construtor sem id para facilitar a autenticação
+  public Professor(String nome, String email) {
+    this.nome = nome;
+    this.email = email;
+    
+  }
+
+  // Construtor completo para manipulação no sistema
+  public Professor(String nome, String email, int id) {
+    this.nome = nome;
+    this.email = email;
+    this.id = id;
+    
+  }
+
+  
+}
