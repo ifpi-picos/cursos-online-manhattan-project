@@ -1,8 +1,7 @@
 package br.edu.ifpi.controllers;
 
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -33,8 +32,14 @@ public class ControladorTelaLogIn {
     private Text logInText;
     
 
-    public void getInputEntrar (){
+    public void initialize() {
         botaoEntrar.setOnAction(e -> {
+            getInputEntrar();
+            System.out.println("Botão Entrar clicado!");
+        });
+    }
+
+    public void getInputEntrar (){
         String usuario = inputUsuarioLogIn.getText();
         String senha = inputSenhaLogIn.getText();
 
@@ -42,8 +47,20 @@ public class ControladorTelaLogIn {
         System.out.println("Password:" +senha);
 
         inputSenhaLogIn.setText(""); 
-       inputUsuarioLogIn.setText("");
-        });
+       inputUsuarioLogIn.setText("");                  
+
+        darFeedbackVisualBotao();
+    }
+
+    private void darFeedbackVisualBotao() {
+        // Mudar temporariamente a cor de fundo do botão ao ser clicado
+        PseudoClass pressed = PseudoClass.getPseudoClass("pressed");
+
+        // Aplica a pseudoclasse quando o botão é pressionado
+        botaoEntrar.pseudoClassStateChanged(pressed, true);
+
+        // Agendar a remoção da pseudoclasse após um intervalo de tempo
+        botaoEntrar.getScene().getWindow().getScene().getRoot().requestFocus();
     }
 }
 

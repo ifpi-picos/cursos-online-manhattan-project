@@ -1,0 +1,4 @@
+br\edu\ifpi\App.class
+br\edu\ifpi\controllers\ControladorTelaMainAdm.class
+br\edu\ifpi\enums\StatusCurso.class
+br\edu\ifpi\controllers\ControladorTelaLogIn.class
