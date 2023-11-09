@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Professor {
-    private String nome;
+  private String nome;
   private String email;
   private int id;
-  
+  private List<Curso> cursos; // Cursos que o professor ministra
 
   // Construtores
 
@@ -15,7 +15,7 @@ public class Professor {
   public Professor(String nome, String email) {
     this.nome = nome;
     this.email = email;
-    
+    this.cursos = new ArrayList<>();
   }
 
   // Construtor completo para manipulação no sistema
@@ -23,7 +23,7 @@ public class Professor {
     this.nome = nome;
     this.email = email;
     this.id = id;
-    
+    this.cursos = new ArrayList<>();
   }
 
   // Getters e Setters
@@ -45,5 +45,13 @@ public class Professor {
 
   public int getId() {
     return id;
+  }
+
+  public List<Curso> getCursos() {
+      return cursos;
+  }
+
+  public void setCursos(List<Curso> cursos) {
+      this.cursos = cursos;
   }
 }
