@@ -91,6 +91,9 @@ public class ControladorTelaCursosAdm implements Initializable{
         CadastrarCursoBotao.setOnAction(event -> trocarParaAdmCadastroCurso());
         voltarBotao.setOnAction(event -> voltarBotaoAction(event));     
         finalizarCadastro.setOnAction(event -> getNovoCurso());
+
+        // Inicializa carregando o AnchorPane AdmCursosInicial
+        trocarParaAdmCursosInicial();
     }
 
     private void trocarParaAdmCadastroCurso() {
@@ -110,7 +113,13 @@ public class ControladorTelaCursosAdm implements Initializable{
         AdmCursosInicial.setVisible(true);
     }
 
-    
+    private void trocarParaAdmCursosInicial() {
+        AdmCursosInicial.setDisable(false);
+        AdmCursosInicial.setVisible(true);
+
+        AdmCadastroCurso.setDisable(true);
+        AdmCadastroCurso.setVisible(false);
+    }
 
     private void getNovoCurso(){
         String nomeCurso = inputNomeCurso.getText();
