@@ -4,10 +4,11 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
-<AnchorPane fx:id="Background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="Background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorTelaMainAdm">
    <children>
       <SplitPane dividerPositions="0.3232" prefHeight="600.0" prefWidth="200.0">
         <items>
@@ -52,6 +53,22 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #1D7151;" visible="false" />
         </items>
       </SplitPane>
-      <AnchorPane layoutX="56.0" prefHeight="600.0" prefWidth="744.0" style="-fx-background-color: #EDD947;" />
+      <AnchorPane layoutX="56.0" prefHeight="600.0" prefWidth="744.0" style="-fx-background-color: #EDD947;">
+         <children>
+            <AnchorPane prefHeight="600.0" prefWidth="744.0" style="-fx-background-color: #EDD947;">
+               <children>
+                  <Text layoutX="101.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Olá! Seja bem vindo ao sistema Manhattan!">
+                     <font>
+                        <Font name="Poppins Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="172.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Use o menu a esquerda para navegar entre as páginas...">
+                     <font>
+                        <Font name="Poppins Regular" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

@@ -15,3 +15,14 @@
     /* Adicione aqui o estilo desejado para quando o botão estiver pressionado */
     -fx-background-color: #1D7151; /* por exemplo, para alterar a cor de fundo */
 }
+
+/* Adicione estilos para a ChoiceBox e suas opções */
+.choice-box {
+    background-color: #2B46BD;
+    -fx-background-color: #2B46BD; /* Cor de fundo da ChoiceBox */
+    -fx-text-fill: #EDD947; /* Cor do texto padrão */
+}
+
+.choice-box .menu-item {
+    -fx-text-fill: #EDD947; /* Cor do texto das opções */
+}
