@@ -36,7 +36,7 @@
                <font>
                   <Font name="Poppins Light" size="18.0" />
                </font></PasswordField>
-            <Button fx:id="botaoEntrar" layoutX="161.0" layoutY="497.0" mnemonicParsing="false" style="-fx-background-color: #2B46BD;" text="Entrar" textFill="#edd947">
+            <Button fx:id="botaoEntrar" layoutX="161.0" layoutY="497.0" mnemonicParsing="false" style="-fx-background-color: #2B46BD;" stylesheets="@../css/pressedButton.css" text="Entrar" textFill="#edd947">
                <font>
                   <Font name="Poppins Regular" size="18.0" />
                </font>

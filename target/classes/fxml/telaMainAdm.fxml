@@ -50,7 +50,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #1D7151;" visible="false" />
+          <AnchorPane disable="true" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #1D7151;" visible="false" />
         </items>
       </SplitPane>
       <AnchorPane layoutX="56.0" prefHeight="600.0" prefWidth="744.0" style="-fx-background-color: #EDD947;">

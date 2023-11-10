@@ -3,19 +3,6 @@
     -fx-font-family: 'Poppins',sans-serif;;
 }
 
-@font-face {
-    src: url('fonts/Poppins-Regular.ttf');
-    font-family: sans-serif;
-    -fx-font-family: 'Poppins', sans-serif;
-}
-
-
-.button:pressed {
-    background-color: #1D7151;
-    /* Adicione aqui o estilo desejado para quando o botão estiver pressionado */
-    -fx-background-color: #1D7151; /* por exemplo, para alterar a cor de fundo */
-}
-
 /* Adicione estilos para a ChoiceBox e suas opções */
 .choice-box {
     background-color: #2B46BD;
