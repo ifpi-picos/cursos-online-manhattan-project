@@ -42,7 +42,6 @@ public class DisciplinaDao implements Dao<Disciplina> {
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao consultar disciplinas", e);
         }
-
         return disciplinas;
     }
 
@@ -96,6 +95,28 @@ public class DisciplinaDao implements Dao<Disciplina> {
             return statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao remover disciplina", e);
+        }
+    }
+
+    // Método privado para obter um professor por ID
+    private Professor obterProfessorPorId(int professorId) {
+        String sql = "SELECT * FROM professores WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, professorId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String nome = resultSet.getString("nome");
+                    String email = resultSet.getString("email");
+
+                    return new Professor(professorId, nome, email);
+                } else {
+                    throw new RuntimeException("Professor não encontrado com o ID: " + professorId);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao obter professor por ID", e);
         }
     }
 }
