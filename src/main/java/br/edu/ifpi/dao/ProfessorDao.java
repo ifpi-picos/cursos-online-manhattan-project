@@ -88,4 +88,27 @@ public class ProfessorDao implements Dao<Professor> {
             throw new RuntimeException("Erro ao remover professor", e);
         }
     }
+
+    // Método para consultar um professor pelo id
+    public Professor obterProfessorPorId(int id) {
+        String sql = "SELECT * FROM professores WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String nome = resultSet.getString("nome");
+                    String email = resultSet.getString("email");
+
+                    return new Professor(id, nome, email);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao consultar professor", e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao consultar professor", e);
+        }
+        return null;
+    }
 }
