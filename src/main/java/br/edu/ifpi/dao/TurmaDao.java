@@ -48,4 +48,56 @@ public class TurmaDao implements Dao<Turma> {
         }
         return turmas;
     }
+
+    @Override
+    public int cadastrar(Turma turma) {
+        String sql = "INSERT INTO turmas (nome, periodo, horario, professor_id) VALUES (?, ?, ?, ?)";
+
+        try (Connection connection = Conexao.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, turma.getNome());
+            statement.setInt(2, turma.getPeriodo());
+            statement.setString(3, turma.getHorario());
+            statement.setInt(4, turma.getProfessor().getId());
+
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao cadastrar turma", e);
+        }
+    }
+
+    @Override
+    public int alterar(Turma turma) {
+        String sql = "UPDATE turmas SET nome = ?, periodo = ?, horario = ?, professor_id = ? WHERE id = ?";
+
+        try (Connection connection = Conexao.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, turma.getNome());
+            statement.setInt(2, turma.getPeriodo());
+            statement.setString(3, turma.getHorario());
+            statement.setInt(4, turma.getProfessor().getId());
+            statement.setInt(5, turma.getId());
+
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao alterar turma", e);
+        }
+    }
+
+    @Override
+    public int remover(Turma turma) {
+        String sql = "DELETE FROM turmas WHERE id = ?";
+
+        try (Connection connection = Conexao.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, turma.getId());
+
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao remover turma", e);
+        }
+    }
 }
