@@ -77,4 +77,37 @@ public class CursoDao implements Dao<Curso> {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<Curso> consultarTodos() {
+        String sql = "SELECT * FROM cursos";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+
+            List<Curso> cursos = new ArrayList<>();
+
+            // Cria uma instância de ProfessorDao usando a conexão existente
+            ProfessorDao professorDao = new ProfessorDao(connection);
+
+            while (rs.next()) {
+                String nome = rs.getString("nome");
+                boolean status = rs.getBoolean("status");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                String descricao = rs.getString("descricao");
+
+                // Recupera o professor associado ao curso
+                int professorId = rs.getInt("professor_id");
+                Professor professor = professorDao.obterProfessorPorId(professorId);
+
+                // Cria a instância de Curso com o professor recuperado
+                Curso curso = new Curso(nome, status, cargaHoraria, descricao, professor);
+                cursos.add(curso);
+            }
+
+            return cursos;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
