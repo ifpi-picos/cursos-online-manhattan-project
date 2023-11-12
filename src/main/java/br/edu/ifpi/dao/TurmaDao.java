@@ -100,4 +100,29 @@ public class TurmaDao implements Dao<Turma> {
             throw new RuntimeException("Erro ao remover turma", e);
         }
     }
+
+    // Método privado para obter um professor por ID
+    private Professor obterProfessorPorId(int professorId) {
+        String sql = "SELECT * FROM professores WHERE id = ?";
+    
+        try (Connection connection = Conexao.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+    
+            statement.setInt(1, professorId);
+    
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String nome = resultSet.getString("nome");
+                    String email = resultSet.getString("email");
+    
+                    // Instância de Professor com as informações obtidas do banco de dados
+                    return new Professor(professorId, nome, email);
+                } else {
+                    throw new RuntimeException("Professor não encontrado com o ID: " + professorId);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao obter professor por ID", e);
+        }
+    }
 }
