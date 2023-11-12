@@ -39,4 +39,46 @@ public class AlunoDao implements Dao<Aluno>{
         }
         return alunos;
     }
+
+    @Override
+    public int cadastrar(Aluno aluno) {
+        String sql = "INSERT INTO alunos (nome, email) VALUES (?, ?)";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, aluno.getNome());
+            statement.setString(2, aluno.getEmail());
+
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao cadastrar aluno", e);
+        }
+    }
+
+    @Override
+    public int alterar(Aluno aluno) {
+        String sql = "UPDATE alunos SET nome = ?, email = ? WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, aluno.getNome());
+            statement.setString(2, aluno.getEmail());
+            statement.setInt(3, aluno.getId());
+
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao alterar aluno", e);
+        }
+    }
+
+    @Override
+    public int remover(Aluno aluno) {
+        String sql = "DELETE FROM alunos WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, aluno.getId());
+
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao remover aluno", e);
+        }
+    }
 }
