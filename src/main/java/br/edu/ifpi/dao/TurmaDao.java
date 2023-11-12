@@ -2,8 +2,10 @@ package br.edu.ifpi.dao;
 
 import br.edu.ifpi.entidades.Turma;
 import br.edu.ifpi.entidades.Professor;
-import br.edu.ifpi.entidades.Aluno;
-import br.edu.ifpi.entidades.Curso;
+
+// Para eventuais mudanças:
+//import br.edu.ifpi.entidades.Aluno; 
+//import br.edu.ifpi.entidades.Curso;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,14 +28,14 @@ public class TurmaDao implements Dao<Turma> {
         try (Connection connection = Conexao.getConnection()) {
             String sql = "SELECT * FROM turmas";
 
-            try (PreparedStatement statement = connection.prepareStatement(sql);
-                 ResultSet resultSet = statement.executeQuery()) {
+            try (PreparedStatement statement = this.connection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery()) {
 
                 while (resultSet.next()) {
                     String nome = resultSet.getString("nome");
                     int periodo = resultSet.getInt("periodo");
                     String horario = resultSet.getString("horario");
-                    
+
                     int professorId = resultSet.getInt("professor_id");
                     Professor professor = obterProfessorPorId(professorId);
 
