@@ -60,4 +60,32 @@ public class ProfessorDao implements Dao<Professor> {
             throw new RuntimeException("Erro ao cadastrar professor", e);
         }
     }
+
+    @Override
+    public int alterar(Professor professor) {
+        String sql = "UPDATE professores SET nome = ?, email = ? WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, professor.getNome());
+            statement.setString(2, professor.getEmail());
+            statement.setInt(3, professor.getId());
+
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao alterar professor", e);
+        }
+    }
+
+    @Override
+    public int remover(Professor professor) {
+        String sql = "DELETE FROM professores WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, professor.getId());
+
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao remover professor", e);
+        }
+    }
 }
