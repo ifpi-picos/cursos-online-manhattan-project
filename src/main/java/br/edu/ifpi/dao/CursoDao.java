@@ -45,4 +45,36 @@ public class CursoDao implements Dao<Curso> {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public int remover(Curso curso) {
+        String sql = "DELETE FROM cursos WHERE id = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, curso.getId());
+            stmt.execute();
+            return curso.getId();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public int alterar(Curso curso) {
+        String sql = "UPDATE cursos SET nome = ?, status = ?, carga_horaria = ?, descricao = ?, professor_id = ? WHERE id = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, curso.getNome());
+            stmt.setBoolean(2, curso.getStatus());
+            stmt.setInt(3, curso.getCargaHoraria());
+            stmt.setString(4, curso.getDescricao());
+            stmt.setInt(5, curso.getProfessor().getId());
+            stmt.setInt(6, curso.getId());
+
+            stmt.execute();
+            return curso.getId();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
