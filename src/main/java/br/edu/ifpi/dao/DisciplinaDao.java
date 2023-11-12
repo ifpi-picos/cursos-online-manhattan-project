@@ -45,4 +45,27 @@ public class DisciplinaDao implements Dao<Disciplina> {
 
         return disciplinas;
     }
+
+    @Override
+    public int cadastrar(Disciplina disciplina) {
+        String sql = "INSERT INTO disciplinas (nome, carga_horaria, ementa, professor_id) VALUES (?, ?, ?, ?)";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, disciplina.getNome());
+            statement.setInt(2, disciplina.getCargaHoraria());
+            statement.setString(3, disciplina.getEmenta());
+            statement.setInt(4, disciplina.getProfessor().getId());
+
+            int rowsAffected = statement.executeUpdate();
+
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                disciplina.setId(rs.getInt(1));
+            }
+
+            return rowsAffected;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao cadastrar disciplina", e);
+        }
+    }
 }
