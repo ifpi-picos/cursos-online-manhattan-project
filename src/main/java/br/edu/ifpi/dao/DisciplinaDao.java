@@ -68,4 +68,34 @@ public class DisciplinaDao implements Dao<Disciplina> {
             throw new RuntimeException("Erro ao cadastrar disciplina", e);
         }
     }
+
+    @Override
+    public int alterar(Disciplina disciplina) {
+        String sql = "UPDATE disciplinas SET nome = ?, carga_horaria = ?, ementa = ?, professor_id = ? WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, disciplina.getNome());
+            statement.setInt(2, disciplina.getCargaHoraria());
+            statement.setString(3, disciplina.getEmenta());
+            statement.setInt(4, disciplina.getProfessor().getId());
+            statement.setInt(5, disciplina.getId());
+
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao alterar disciplina", e);
+        }
+    }
+
+    @Override
+    public int remover(Disciplina disciplina) {
+        String sql = "DELETE FROM disciplinas WHERE id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, disciplina.getId());
+
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao remover disciplina", e);
+        }
+    }
 }
