@@ -15,4 +15,28 @@ public class ProfessorDao implements Dao<Professor> {
     public ProfessorDao(Connection connection) {
         this.connection = connection;
     }
+
+    @Override
+    public List<Professor> consultarTodos() {
+        List<Professor> professores = new ArrayList<>();
+
+        String sql = "SELECT * FROM professores";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nome = resultSet.getString("nome");
+                String email = resultSet.getString("email");
+
+                Professor professor = new Professor(id, nome, email);
+                professores.add(professor);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao consultar professores", e);
+        }
+
+        return professores;
+    }
 }
