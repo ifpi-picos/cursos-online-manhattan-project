@@ -39,4 +39,25 @@ public class ProfessorDao implements Dao<Professor> {
 
         return professores;
     }
+
+    @Override
+    public int cadastrar(Professor professor) {
+        String sql = "INSERT INTO professores (nome, email) VALUES (?, ?)";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, professor.getNome());
+            statement.setString(2, professor.getEmail());
+
+            int rowsAffected = statement.executeUpdate();
+
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                professor.setId(rs.getInt(1));
+            }
+
+            return rowsAffected;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao cadastrar professor", e);
+        }
+    }
 }
