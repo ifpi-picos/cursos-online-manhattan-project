@@ -1,7 +1,15 @@
-/* @font-face {
-    font-family: 'Poppins';
-    src: url('fonts/Poppins-Regular.ttf');
-} */
+/* LOG IN TELA */
+#FormularioLogIn{   
+    -fx-effect: dropshadow(gaussian, #00000063, 10, 0, -5, 0);
+    -fx-effect-opacity: 0.2;
+}
+
+#BackgroundImg{
+    -fx-background-color:  #1D7151;
+}
+
+
+/* Configuração geral =================================================================*/
 
 .button {
     -fx-font-size: 18px;
@@ -16,11 +24,71 @@
 }
 
 .button:hover {
-    -fx-background-color: red;
+    fx-border-width: 3px 3px 6px 3px;
+    -fx-border-color: red;
 }
 
 .button:armed {
-    -fx-background-color: derive(#2B46BD, 20%);
+    -fx-background-color: red;
+    -fx-effect: dropshadow(three-pass-box, #666, 0, 0, 0, 10);
+    -fx-translate-y: 10;
+}
+
+#barraLateral{
+
+    -fx-translate-y: 50%;
+}
+
+.VBox {
+    -fx-min-width: 40px;
+    -fx-max-width: 40px;
+    -fx-overflow: hidden;
+    -fx-pref-height: 300;
+    -fx-background-color: transparent;
+    -fx-transition: width 1s;
+}
+
+/* Efeito hover para a barra lateral */
+.VBox:hover {
+    -fx-min-width: 200px;
+    -fx-max-width: 250px;
+}
+
+.VBox.button{
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-text-align: right;
+    -fx-text-fill: #EDD947;
+    -fx-padding: 2px;
+    -fx-border-color: black;
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-effect: dropshadow(three-pass-box, #999, 0, 0, 0, 0);
+}
+
+.btn-out{
+    -fx-min-width: 40px;
+    -fx-max-width: 50px;
+    -fx-overflow: hidden;
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-text-align: right;
+    -fx-text-fill: #EDD947;
+    -fx-padding: 5px;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-effect: dropshadow(three-pass-box, #999, 0, 0, 0, 0);
+}
+.btn-out:hover {
+    -fx-min-width: 200px;
+    -fx-max-width: 250px;
+}
+
+.btn-out:armed{
+    -fx-background-color: transparent;
     -fx-effect: dropshadow(three-pass-box, #666, 0, 0, 0, 10);
     -fx-translate-y: 10;
 }

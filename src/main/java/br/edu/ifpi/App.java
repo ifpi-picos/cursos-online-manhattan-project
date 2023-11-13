@@ -14,7 +14,7 @@ public class App extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/telaLogIn.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/teste.fxml"));
         String css = this.getClass().getResource("/css/styles.css").toExternalForm();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(css);

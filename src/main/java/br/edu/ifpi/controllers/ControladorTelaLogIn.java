@@ -2,6 +2,8 @@ package br.edu.ifpi.controllers;
 
 import java.io.IOException;
 
+import org.kordamp.ikonli.javafx.FontIcon;
+
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.css.PseudoClass;
@@ -25,6 +27,9 @@ public class ControladorTelaLogIn {
     private AnchorPane BackgroundImg;
 
     @FXML
+    private AnchorPane FormularioLogIn;
+
+    @FXML
     private ImageView LogoManhattan;
 
     @FXML
@@ -41,6 +46,9 @@ public class ControladorTelaLogIn {
 
     @FXML
     private Text logInText;
+
+    @FXML
+    private FontIcon icon;
     
 
     public void initialize() {
