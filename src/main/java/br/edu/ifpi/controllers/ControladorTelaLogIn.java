@@ -2,6 +2,8 @@ package br.edu.ifpi.controllers;
 
 import java.io.IOException;
 
+import javafx.animation.RotateTransition;
+import javafx.application.Platform;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +14,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 
 public class ControladorTelaLogIn {
     @FXML
@@ -40,8 +45,8 @@ public class ControladorTelaLogIn {
 
     public void initialize() {
         botaoEntrar.setOnAction(e -> {
-            getInputEntrar();
             System.out.println("Botão Entrar clicado!");
+            getInputEntrar();
         });
     }
 
@@ -57,20 +62,7 @@ public class ControladorTelaLogIn {
 
         if ("adm".equals(usuario) && "123".equals(senha)) {
             carregarTelaMainAdm();
-        } else {
-            darFeedbackVisualBotao();
-        }
-    }
-
-    private void darFeedbackVisualBotao() {
-        // Mudar temporariamente a cor de fundo do botão ao ser clicado
-        PseudoClass pressed = PseudoClass.getPseudoClass("pressed");
-
-        // Aplica a pseudoclasse quando o botão é pressionado
-        botaoEntrar.pseudoClassStateChanged(pressed, true);
-
-        // Agendar a remoção da pseudoclasse após um intervalo de tempo
-        botaoEntrar.getScene().getWindow().getScene().getRoot().requestFocus();
+        } 
     }
 
     private void carregarTelaMainAdm() {
@@ -94,4 +86,3 @@ public class ControladorTelaLogIn {
         }
     }
 }
-
