@@ -20,7 +20,7 @@
                </image></ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="FormularioLogIn" layoutX="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #EDD947;" stylesheets="@../css/styles.css">
+      <AnchorPane fx:id="FormularioLogIn" layoutX="400.0" prefHeight="600.0" prefWidth="400.0" stylesheets="@../css/styles.css">
          <children>
             <FontIcon fx:id="icon" iconLiteral="fas-users" iconSize="80" layoutX="150.0" layoutY="124.0" />
             <Text fx:id="logInText" layoutX="146.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
@@ -36,7 +36,7 @@
                <font>
                   <Font name="Poppins Light" size="18.0" />
                </font></PasswordField>
-            <Button fx:id="botaoEntrar" layoutX="161.0" layoutY="497.0" mnemonicParsing="false" text="Entrar" textFill="#edd947">
+            <Button fx:id="botaoEntrar" layoutX="150.0" layoutY="500.0" mnemonicParsing="false" styleClass="btn-LogIn" text="Entrar" textFill="#edd947">
                <font>
                   <Font name="Poppins Regular" size="18.0" />
                </font>

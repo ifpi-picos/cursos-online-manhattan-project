@@ -6,15 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * Hello world!
- *
- */
-public class App extends Application{
+public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/teste.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/telaCadastroCurso.fxml"));
         String css = this.getClass().getResource("/css/styles.css").toExternalForm();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(css);

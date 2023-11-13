@@ -2,16 +2,23 @@
 #FormularioLogIn{   
     -fx-effect: dropshadow(gaussian, #00000063, 10, 0, -5, 0);
     -fx-effect-opacity: 0.2;
+    -fx-background-color: #99B282;
 }
 
 #BackgroundImg{
-    -fx-background-color:  #1D7151;
+    -fx-background-color:  #BD4E2B;
+}
+
+/* Configuração geral */
+
+.btn-primary{
+
 }
 
 
-/* Configuração geral =================================================================*/
+/* Botão Log In =================================================================*/
 
-.button {
+.btn-LogIn {
     -fx-font-size: 18px;
     -fx-text-align: center;
     -fx-text-fill: #EDD947;
@@ -23,12 +30,12 @@
     -fx-effect: dropshadow(three-pass-box, #999, 0, 0, 0, 5);
 }
 
-.button:hover {
+.btn-LogIn:hover {
     fx-border-width: 3px 3px 6px 3px;
     -fx-border-color: red;
 }
 
-.button:armed {
+.btn-LogIn:armed {
     -fx-background-color: red;
     -fx-effect: dropshadow(three-pass-box, #666, 0, 0, 0, 10);
     -fx-translate-y: 10;
@@ -36,8 +43,8 @@
 
 /*=============== Configuração Menu lateral ===========*/
 .VBox {
-    -fx-min-width: 40px;
-    -fx-max-width: 40px;
+    -fx-min-width: 50px;
+    -fx-max-width: 50px;
     -fx-overflow: hidden;
     -fx-pref-height: 300;
     -fx-background-color: transparent;
@@ -49,28 +56,37 @@
     -fx-max-width: 250px;
 }
 
-.VBox.button{
+.button-vbox{
+    -fx-min-width: 50px;
+    -fx-max-width: 50px;
     -fx-background-color: transparent;
     -fx-font-size: 14px;
-    -fx-text-align: right;
+    -fx-text-align: center;
     -fx-text-fill: #EDD947;
-    -fx-padding: 2px;
+    -fx-padding: 8px;
     -fx-border-color: black;
     -fx-border-width: 0px 0px 3px 0px;
     -fx-border-radius: 0px;
     -fx-background-radius: 0px;
     -fx-effect: dropshadow(three-pass-box, #999, 0, 0, 0, 0);
+    -fx-overflow: hidden;
+}
+
+.button-vbox:hover{
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, #666, 0, 0, 0, 10);
+    -fx-translate-y: 10;
 }
 
 .btn-out{
-    -fx-min-width: 40px;
+    -fx-min-width: 50px;
     -fx-max-width: 50px;
     -fx-overflow: hidden;
     -fx-background-color: transparent;
     -fx-font-size: 14px;
     -fx-text-align: right;
     -fx-text-fill: #EDD947;
-    -fx-padding: 5px;
+    -fx-padding: 10px;
     -fx-border-color: transparent;
     -fx-border-width: 0px;
     -fx-border-radius: 0px;
@@ -88,3 +104,31 @@
     -fx-translate-y: 10;
 }
 
+#barraLateral{
+    -fx-effect: dropshadow(gaussian, #00000063, 10, 0, 5, 0);
+    -fx-effect-opacity: 0.2;
+}
+
+#Home{
+    -fx-border-color: black;
+    -fx-border-width: 0px 0px 3px 0px;
+}
+
+#Sair{
+    -fx-border-color: black;
+    -fx-border-width: 3px 0px 0px 0px;
+}
+
+/* FORMULARIOS */
+
+.formulario{
+    -fx-content: '';
+    -fx-background-color: linear-gradient(to bottom right, #ccc, #fff);
+    -fx-position: absolute;
+    -fx-top: 10; /* Ajuste conforme necessário */
+    -fx-left: 10; /* Ajuste conforme necessário */
+    -fx-right: 10; /* Ajuste conforme necessário */
+    -fx-bottom: 10; /* Ajuste conforme necessário */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 2, 2);
+    -fx-z-index: -1;
+}
