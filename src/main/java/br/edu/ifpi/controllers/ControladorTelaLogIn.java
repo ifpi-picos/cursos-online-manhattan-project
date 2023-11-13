@@ -4,9 +4,6 @@ import java.io.IOException;
 
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import javafx.animation.RotateTransition;
-import javafx.application.Platform;
-import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,10 +13,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 
 public class ControladorTelaLogIn {
