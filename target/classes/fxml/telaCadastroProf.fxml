@@ -10,6 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.29292929292929293" prefHeight="600.0" prefWidth="200.0">
@@ -62,12 +63,12 @@
                   <Font name="Poppins Regular" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="210.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciamento Professores">
+            <Text layoutX="206.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciamento Professores">
                <font>
                   <Font name="Poppins Regular" size="24.0" />
                </font>
             </Text>
-            <AnchorPane layoutX="106.0" layoutY="169.0" prefHeight="360.0" prefWidth="540.0" style="-fx-border-color: black;">
+            <AnchorPane layoutX="106.0" layoutY="169.0" prefHeight="382.0" prefWidth="532.0" style="-fx-border-color: black;">
                <children>
                   <TextField layoutX="99.0" layoutY="25.0" prefHeight="39.0" prefWidth="367.0" promptText="Digite o nome do professor...">
                      <font>
@@ -79,29 +80,25 @@
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="22.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+                  <Text layoutX="22.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="99.0" layoutY="110.0" prefHeight="39.0" prefWidth="367.0">
+                  <TextField layoutX="99.0" layoutY="121.0" prefHeight="39.0" prefWidth="367.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="22.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos ministrados:">
+                  <Text layoutX="22.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos ministrados:">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <ListView layoutX="101.0" layoutY="210.0" prefHeight="118.0" prefWidth="367.0" />
+                  <ListView layoutX="101.0" layoutY="220.0" prefHeight="118.0" prefWidth="367.0" />
+                  <Button layoutX="400.0" layoutY="350.0" mnemonicParsing="false" style="-fx-background-color: #2B46BD#2B46BD;" text="adicionar " textFill="#edd947" />
                </children>
             </AnchorPane>
-            <Button layoutX="327.0" layoutY="542.0" mnemonicParsing="false" style="-fx-background-color: #2B46BD#2B46BD;" text="Cadastrar" textFill="#edd947">
-               <font>
-                  <Font name="Poppins Regular" size="14.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </children>
