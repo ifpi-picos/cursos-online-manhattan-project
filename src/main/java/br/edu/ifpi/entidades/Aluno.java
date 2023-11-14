@@ -14,17 +14,19 @@ public class Aluno {
     // Construtores
 
     // Construtor sem id para facilitar a autenticação
-    public Aluno(String nome, String email) {
-      this.nome = nome;
-      this.email = email;
-      this.cursos = new ArrayList<>();
+    public Aluno(String nome, String email, StatusAluno status) {
+        this.nome = nome;
+        this.email = email;
+        this.status = status;
+        this.cursos = new ArrayList<>();
     }
   
     // Construtor completo para manipulação no sistema
-    public Aluno(int id, String nome, String email) {
+    public Aluno(int id, String nome, String email, StatusAluno status) {
         this.id = id;
         this.nome = nome;
         this.email = email;
+        this.status = status;
         this.cursos = new ArrayList<>();
     }
 
