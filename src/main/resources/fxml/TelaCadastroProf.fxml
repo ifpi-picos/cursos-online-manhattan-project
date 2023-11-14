@@ -79,7 +79,7 @@
                         <FontIcon iconLiteral="fas-book" iconSize="30" />
                      </graphic>
                   </Button>
-                  <Button fx:id="Professores" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" styleClass="button-vbox" text="Professores">
+                  <Button fx:id="Professores" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: #82361F;" styleClass="button-vbox" text="Professores">
                      <graphic>
                         <FontIcon iconLiteral="fas-chalkboard-teacher" iconSize="30" />
                      </graphic>

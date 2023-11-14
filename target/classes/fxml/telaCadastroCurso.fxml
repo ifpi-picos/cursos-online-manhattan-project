@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="AdmCadastroCurso" layoutX="50.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #99B282;">
@@ -85,7 +84,7 @@
             </Button>
             <VBox alignment="BOTTOM_LEFT" layoutY="150.0" maxWidth="109.0" minWidth="56.0" prefHeight="501.0" prefWidth="50.0" styleClass="VBox">
                <children>
-                  <Button fx:id="Cursos" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" styleClass="button-vbox" text="Cursos">
+                  <Button fx:id="Cursos" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: #82361F;" styleClass="button-vbox" text="Cursos">
                      <graphic>
                         <FontIcon iconLiteral="fas-book" iconSize="30" />
                      </graphic>

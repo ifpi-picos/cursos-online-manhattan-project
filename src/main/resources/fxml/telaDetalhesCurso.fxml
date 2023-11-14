@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -11,121 +10,123 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #EDD947;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorTelaDetalhesCurso">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorTelaDetalhesCurso">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="200.0">
-         <items>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <VBox alignment="CENTER" layoutX="-5.0" layoutY="-2.0" prefHeight="600.0" prefWidth="61.0" style="-fx-background-color: #1D7151;">
-                     <children>
-                        <Button fx:id="homeBotao" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: #2B46BD; -fx-border-width: 0px 0px 4px 0px;">
-                           <graphic>
-                              <FontIcon iconLiteral="bi-house-door-fill" iconSize="30" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="cursosBotao" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: #2B46BD; -fx-border-width: 0px 0px 4px 0px;">
-                           <graphic>
-                              <FontIcon iconLiteral="fas-book" iconSize="30" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="professoresBotao" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: #2B46BD; -fx-border-width: 0px 0px 4px 0px;">
-                           <graphic>
-                              <FontIcon iconLiteral="fas-chalkboard-teacher" iconSize="30" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="alunosBotao" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: #2B46BD; -fx-border-width: 0px 0px 4px 0px;">
-                           <graphic>
-                              <FontIcon iconLiteral="bi-people-fill" iconSize="30" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="permissoesContasbotao" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: #2B46BD; -fx-border-width: 0px 0px 4px 0px;">
-                           <graphic>
-                              <FontIcon iconLiteral="bi-wrench" iconSize="30" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="configuracoesBotao" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: #2B46BD; -fx-border-width: 0px 0px 0px 0px;">
-                           <graphic>
-                              <FontIcon iconLiteral="bi-gear-fill" iconSize="30" />
-                           </graphic>
-                        </Button>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" visible="false" />
-         </items>
-      </SplitPane>
-      <AnchorPane layoutX="56.0" prefHeight="600.0" prefWidth="744.0" style="-fx-background-color: #EDD947;">
+      <AnchorPane layoutX="50.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #99B282;">
          <children>
             <Text layoutX="213.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciamento de cursos">
                <font>
                   <Font name="Poppins Bold" size="24.0" />
                </font>
             </Text>
-            <AnchorPane fx:id="formulario1" layoutX="84.0" layoutY="103.0" prefHeight="483.0" prefWidth="587.0" style="-fx-border-color: black;">
+            <AnchorPane fx:id="formulario1" layoutX="82.0" layoutY="70.0" prefHeight="483.0" prefWidth="587.0" style="-fx-border-color: black;" styleClass="formulario">
                <children>
-                  <TextField fx:id="detalhesNomeCurso" layoutX="80.0" layoutY="12.0" promptText="Nome do curso..." style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
+                  <TextField fx:id="detalhesNomeCurso" layoutX="90.0" layoutY="22.0" promptText="Nome do curso..." style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="22.0">
                      <font>
                         <Font name="Poppins Light" size="18.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="20.100000381469727">
+                  <Text layoutX="23.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="29.100000381469727">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="13.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" AnchorPane.leftAnchor="13.0">
+                  <Text layoutX="24.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" AnchorPane.leftAnchor="24.0">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <ChoiceBox fx:id="detalhesstatusCurso" layoutX="83.0" layoutY="93.0" prefHeight="25.0" prefWidth="167.0" style="-fx-background-color: #2B46BD;" stylesheets="@../css/styles.css" AnchorPane.leftAnchor="82.0" />
-                  <Text layoutX="14.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga Horária:" AnchorPane.leftAnchor="14.0">
+                  <ChoiceBox fx:id="detalhesstatusCurso" layoutX="93.0" layoutY="92.0" prefHeight="25.0" prefWidth="167.0" stylesheets="@../css/styles.css" AnchorPane.leftAnchor="93.0" />
+                  <Text layoutX="24.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga Horária:" AnchorPane.leftAnchor="24.0">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="detalhesCargaHoraria" alignment="CENTER" layoutX="158.0" layoutY="138.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="41.0" prefWidth="56.0" promptText="60" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="158.0">
+                  <TextField fx:id="detalhesCargaHoraria" alignment="CENTER" layoutX="164.0" layoutY="139.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="41.0" prefWidth="56.0" promptText="60" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="164.0">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="216.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horas" AnchorPane.leftAnchor="216.0">
+                  <Text layoutX="226.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horas" AnchorPane.leftAnchor="226.0">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="15.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor Responsável:">
+                  <Text layoutX="25.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor Responsável:">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="15.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alunos matriculados:">
+                  <Text layoutX="25.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alunos matriculados:">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="detalhesProfNome" layoutX="227.0" layoutY="196.0" promptText="Irineu da Silva" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
+                  <TextField fx:id="detalhesProfNome" layoutX="230.0" layoutY="195.0" promptText="Irineu da Silva" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </TextField>
-                  <ListView fx:id="listaAlunos" editable="true" layoutX="33.0" layoutY="283.0" prefHeight="150.0" prefWidth="500.0" />
-                  <Button fx:id="detalhesAlunos" disable="true" layoutX="314.0" layoutY="461.0" mnemonicParsing="false" text="Detalhes" AnchorPane.bottomAnchor="15.0">
+                  <ListView fx:id="listaAlunos" editable="true" layoutX="33.0" layoutY="275.0" prefHeight="150.0" prefWidth="500.0" />
+                  <Button fx:id="detalhesAlunos" layoutX="303.0" layoutY="435.0" mnemonicParsing="false" text="Detalhes" AnchorPane.bottomAnchor="23.0">
                      <font>
                         <Font name="Poppins Regular" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="removerAlunos" disable="true" layoutX="390.0" layoutY="461.0" mnemonicParsing="false" text="Remover" AnchorPane.bottomAnchor="15.0">
+                  <Button fx:id="removerAlunos" layoutX="380.0" layoutY="435.0" mnemonicParsing="false" text="Remover" AnchorPane.bottomAnchor="23.0">
                      <font>
                         <Font name="Poppins Regular" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="adicionarAlunos" disable="true" layoutX="466.0" layoutY="461.0" mnemonicParsing="false" text="Adicionar" AnchorPane.bottomAnchor="14.0" />
+                  <Button fx:id="adicionarAlunos" layoutX="459.0" layoutY="434.0" mnemonicParsing="false" text="Adicionar" AnchorPane.bottomAnchor="24.0">
+                     <font>
+                        <Font name="Poppins Regular" size="12.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
+            <Button layoutX="605.0" layoutY="556.0" mnemonicParsing="false" text="Voltar">
+               <font>
+                  <Font name="Poppins Regular" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="barraLateral" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="50.0" style="-fx-background-color: #BD4E2B;" stylesheets="@../css/styles.css">
+         <children>
+            <Button fx:id="Sair" layoutY="536.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" styleClass="btn-out" stylesheets="@../css/styles.css" text="SAIR">
+               <graphic>
+                  <FontIcon iconLiteral="fas-sign-out-alt" iconSize="30" />
+               </graphic>
+            </Button>
+            <Button fx:id="Home" alignment="CENTER" layoutY="14.0" maxWidth="97.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" styleClass="btn-out" stylesheets="@../css/styles.css" text="HOME">
+               <graphic>
+                  <FontIcon iconLiteral="bi-house-door-fill" iconSize="30" />
+               </graphic>
+            </Button>
+            <VBox alignment="BOTTOM_LEFT" layoutY="150.0" maxWidth="109.0" minWidth="56.0" prefHeight="501.0" prefWidth="50.0" styleClass="VBox">
+               <children>
+                  <Button fx:id="Cursos" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: #82361F;" styleClass="button-vbox" text="Cursos">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-book" iconSize="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="Professores" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" styleClass="button-vbox" text="Professores">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-chalkboard-teacher" iconSize="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="Alunos" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" styleClass="button-vbox" text="Alunos">
+                     <graphic>
+                        <FontIcon iconLiteral="bi-people-fill" iconSize="30" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="Configuracao" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" styleClass="button-vbox" text="Permissões">
+                     <graphic>
+                        <FontIcon iconLiteral="bi-gear-fill" iconSize="30" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>

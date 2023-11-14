@@ -19,7 +19,7 @@
                         <Font name="Poppins Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Text layoutX="14.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos cadastrados:">
+                  <Text layoutX="72.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos cadastrados:">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
@@ -46,7 +46,7 @@
             </Button>
             <VBox alignment="BOTTOM_LEFT" layoutY="150.0" maxWidth="109.0" minWidth="56.0" prefHeight="501.0" prefWidth="50.0" styleClass="VBox">
                <children>
-                  <Button fx:id="Cursos" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" styleClass="button-vbox" text="Cursos">
+                  <Button fx:id="Cursos" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: #82361F;" styleClass="button-vbox" text="Cursos">
                      <graphic>
                         <FontIcon iconLiteral="fas-book" iconSize="30" />
                      </graphic>

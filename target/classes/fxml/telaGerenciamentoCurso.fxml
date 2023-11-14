@@ -2,64 +2,36 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="Background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorTelaCursosAdm">
    <children>
       <AnchorPane layoutX="50.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #99B282;">
          <children>
-            <Text layoutX="106.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar professor:">
-               <font>
-                  <Font name="Poppins Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="210.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciamento Professores">
-               <font>
-                  <Font name="Poppins Regular" size="24.0" />
-               </font>
-            </Text>
-            <AnchorPane layoutX="106.0" layoutY="169.0" prefHeight="360.0" prefWidth="540.0" style="-fx-border-color: black;" styleClass="formulario">
+            <AnchorPane fx:id="AdmCursosInicial" prefHeight="600.0" prefWidth="744.0">
                <children>
-                  <TextField layoutX="99.0" layoutY="25.0" prefHeight="39.0" prefWidth="367.0" promptText="Digite o nome do professor...">
+                  <Text layoutX="213.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciamento de cursos">
                      <font>
-                        <Font name="Poppins Regular" size="18.0" />
+                        <Font name="Poppins Bold" size="24.0" />
                      </font>
-                  </TextField>
-                  <Text layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:">
+                  </Text>
+                  <Text layoutX="72.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos cadastrados:">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="22.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
-                     <font>
-                        <Font name="Poppins Regular" size="18.0" />
-                     </font>
-                  </Text>
-                  <TextField layoutX="99.0" layoutY="110.0" prefHeight="39.0" prefWidth="367.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <Text layoutX="22.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos ministrados:">
-                     <font>
-                        <Font name="Poppins Regular" size="18.0" />
-                     </font>
-                  </Text>
-                  <ListView layoutX="101.0" layoutY="210.0" prefHeight="118.0" prefWidth="367.0" />
+                  <ListView layoutX="72.0" layoutY="140.0" prefHeight="400.0" prefWidth="600.0" styleClass="formulario" />
+                  <Button fx:id="CadastrarCursoBotao" layoutX="573.0" layoutY="107.0" mnemonicParsing="false" text="Cadastrar curso" />
+                  <Button fx:id="excluirCursoBotao" layoutX="620.0" layoutY="554.0" mnemonicParsing="false" text="Excluir" />
+                  <Button fx:id="editarCursoBotao" layoutX="564.0" layoutY="554.0" mnemonicParsing="false" text="Editar" />
+                  <Button fx:id="detalhesCurso" layoutX="493.0" layoutY="554.0" mnemonicParsing="false" text="Detalhes" />
                </children>
             </AnchorPane>
-            <Button layoutX="327.0" layoutY="542.0" mnemonicParsing="false" text="Cadastrar">
-               <font>
-                  <Font name="Poppins Regular" size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
+         </children></AnchorPane>
       <AnchorPane fx:id="barraLateral" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="50.0" style="-fx-background-color: #BD4E2B;" stylesheets="@../css/styles.css">
          <children>
             <Button fx:id="Sair" layoutY="536.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" styleClass="btn-out" stylesheets="@../css/styles.css" text="SAIR">
@@ -74,12 +46,12 @@
             </Button>
             <VBox alignment="BOTTOM_LEFT" layoutY="150.0" maxWidth="109.0" minWidth="56.0" prefHeight="501.0" prefWidth="50.0" styleClass="VBox">
                <children>
-                  <Button fx:id="Cursos" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" styleClass="button-vbox" text="Cursos">
+                  <Button fx:id="Cursos" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: #82361F;" styleClass="button-vbox" text="Cursos">
                      <graphic>
                         <FontIcon iconLiteral="fas-book" iconSize="30" />
                      </graphic>
                   </Button>
-                  <Button fx:id="Professores" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: #82361F;" styleClass="button-vbox" text="Professores">
+                  <Button fx:id="Professores" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" styleClass="button-vbox" text="Professores">
                      <graphic>
                         <FontIcon iconLiteral="fas-chalkboard-teacher" iconSize="30" />
                      </graphic>
