@@ -31,7 +31,7 @@ public class AlunoDao implements Dao<Aluno>{
                 String nome = resultSet.getString("nome");
                 String email = resultSet.getString("email");
 
-                Aluno aluno = new Aluno(nome, id, email);
+                Aluno aluno = new Aluno(id, nome, email);
                 alunos.add(aluno);
             }
         } catch (SQLException e) {
