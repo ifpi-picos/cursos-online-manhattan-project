@@ -1,6 +1,7 @@
 package br.edu.ifpi.dao;
 
 import br.edu.ifpi.entidades.Aluno;
+import br.edu.ifpi.enums.StatusAluno;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,7 +32,7 @@ public class AlunoDao implements Dao<Aluno>{
                 String nome = resultSet.getString("nome");
                 String email = resultSet.getString("email");
 
-                Aluno aluno = new Aluno(id, nome, email);
+                Aluno aluno = new Aluno(id, nome, email, StatusAluno.ATIVO);
                 alunos.add(aluno);
             }
         } catch (SQLException e) {
