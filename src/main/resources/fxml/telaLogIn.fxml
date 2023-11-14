@@ -14,7 +14,7 @@
    <children>
       <AnchorPane fx:id="BackgroundImg" prefHeight="600.0" prefWidth="410.0">
          <children>
-            <ImageView fx:id="LogoManhattan" fitHeight="301.0" fitWidth="301.0" layoutX="50.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="149.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="150.0">
+            <ImageView fitHeight="301.0" fitWidth="301.0" layoutX="50.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="149.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="150.0">
                <image>
                   <Image url="@../images/GC__1_-removebg-preview.png" />
                </image></ImageView>
@@ -22,8 +22,8 @@
       </AnchorPane>
       <AnchorPane fx:id="FormularioLogIn" layoutX="400.0" prefHeight="600.0" prefWidth="400.0" stylesheets="@../css/styles.css">
          <children>
-            <FontIcon fx:id="icon" iconLiteral="fas-users" iconSize="80" layoutX="150.0" layoutY="124.0" />
-            <Text fx:id="logInText" layoutX="146.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+            <FontIcon iconLiteral="fas-users" iconSize="80" layoutX="150.0" layoutY="124.0" />
+            <Text layoutX="146.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
                <font>
                   <Font name="Poppins Bold" size="36.0" />
                </font>
