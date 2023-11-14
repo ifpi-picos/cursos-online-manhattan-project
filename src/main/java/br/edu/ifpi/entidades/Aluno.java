@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno {
-    private String nome;
     private int id;
+    private String nome;
     private String email;
     private List<Curso> cursos; // Cursos que o aluno está matriculado
     
@@ -19,9 +19,9 @@ public class Aluno {
     }
   
     // Construtor completo para manipulação no sistema
-    public Aluno(String nome, int id, String email) {
-        this.nome = nome;
+    public Aluno(int id, String nome, String email) {
         this.id = id;
+        this.nome = nome;
         this.email = email;
         this.cursos = new ArrayList<>();
     }
