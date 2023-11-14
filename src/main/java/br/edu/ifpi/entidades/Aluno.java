@@ -2,11 +2,13 @@ package br.edu.ifpi.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
+import br.edu.ifpi.enums.StatusAluno;
 
 public class Aluno {
     private int id;
     private String nome;
     private String email;
+    private StatusAluno status;
     private List<Curso> cursos; // Cursos que o aluno está matriculado
     
     // Construtores
