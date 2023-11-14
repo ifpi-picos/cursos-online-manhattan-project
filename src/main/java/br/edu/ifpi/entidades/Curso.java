@@ -3,10 +3,12 @@ package br.edu.ifpi.entidades;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ifpi.enums.StatusCurso;
+
 public class Curso {
     private int id;
     private String nome;
-    private boolean status;
+    private StatusCurso status;
     private int cargaHoraria;
     private String descricao;
     private Professor professor;
@@ -14,7 +16,7 @@ public class Curso {
 
 
     // Construtor
-    public Curso(String nome, boolean status, int cargaHoraria, String descricao, Professor professor) {
+    public Curso(String nome, StatusCurso status, int cargaHoraria, String descricao, Professor professor) {
         this.nome = nome;
         this.status = status;
         this.descricao = descricao;
@@ -40,11 +42,11 @@ public class Curso {
         this.nome = nome;
     }
 
-    public boolean getStatus() {
+    public StatusCurso getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(StatusCurso status) {
         this.status = status;
     }
 
