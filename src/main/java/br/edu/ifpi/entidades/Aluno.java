@@ -55,6 +55,14 @@ public class Aluno {
         this.email = email;
     }
 
+    public StatusAluno getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAluno status) {
+        this.status = status;
+    }
+
     public List<Curso> getCursos() {
         return cursos;
     }
@@ -62,4 +70,5 @@ public class Aluno {
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
+
 }
