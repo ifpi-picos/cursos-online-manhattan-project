@@ -11,9 +11,9 @@
 
 /* Configuração geral */
 
-.btn-primary{
+/* .btn-primary{
 
-}
+} */
 
 
 /* Botão Log In =================================================================*/
@@ -73,6 +73,11 @@
 }
 
 .button-vbox:hover{
+    -fx-min-width: 200px;
+    -fx-max-width: 250px;
+}
+
+.button-vbox:armed {
     -fx-background-color: transparent;
     -fx-effect: dropshadow(three-pass-box, #666, 0, 0, 0, 10);
     -fx-translate-y: 10;
