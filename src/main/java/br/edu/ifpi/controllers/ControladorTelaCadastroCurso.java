@@ -5,26 +5,26 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 
 import br.edu.ifpi.sistema;
-import br.edu.ifpi.entidades.Curso;
 
-public class ControladorTelaCursosAdm implements Initializable{
+public class ControladorTelaCadastroCurso implements Initializable {
 
     @FXML
-    private AnchorPane AdmCursosInicial;
+    private AnchorPane AdmCadastroCurso;
 
     @FXML
     private Button Alunos;
 
     @FXML
-    private AnchorPane Background;
-
-    @FXML
-    private Button CadastrarCursoBotao;
+    private TextField CargaHoraria;
 
     @FXML
     private Button Configuracao;
@@ -36,7 +36,7 @@ public class ControladorTelaCursosAdm implements Initializable{
     private Button Home;
 
     @FXML
-    private ListView<Curso> ListaCursos;
+    private TextField NomeCurso;
 
     @FXML
     private Button Professores;
@@ -45,19 +45,29 @@ public class ControladorTelaCursosAdm implements Initializable{
     private Button Sair;
 
     @FXML
+    private RadioButton aberto;
+
+    @FXML
     private AnchorPane barraLateral;
 
     @FXML
-    private Button detalhesCurso;
+    private Button btnCadastrar;
 
     @FXML
-    private Button editarCursoBotao;
+    private Button btnVoltar;
 
     @FXML
-    private Button excluirCursoBotao;
+    private RadioButton fechado;
+
+    @FXML
+    private AnchorPane formulario;
+
+    @FXML
+    private ToggleGroup status;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Configura ações para os botões da barra lateral
         Home.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Home));
         Cursos.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoCurso.fxml", Cursos));
         Professores.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoProf.fxml", Professores));
@@ -65,10 +75,19 @@ public class ControladorTelaCursosAdm implements Initializable{
         Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
         Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml",Sair));
 
-        CadastrarCursoBotao.setOnAction(event -> sistema.trocarCena("/fxml/telaCadastroCurso.fxml", CadastrarCursoBotao));
-        
-        detalhesCurso.setOnAction(event -> sistema.trocarCena("/fxml/telaDetalhesCurso.fxml", detalhesCurso));
+        //configurando botões de interação da pagina de cadastro
+        btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoCurso.fxml", btnVoltar));
 
+        btnCadastrar.setOnAction(event -> exibirPopupErro());
     }
+
+    private void exibirPopupErro() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText(null);
+        alert.setContentText("NÃO TA PRONTO MEU CHAPA");
+        alert.showAndWait();
+    }
+    
 
 }

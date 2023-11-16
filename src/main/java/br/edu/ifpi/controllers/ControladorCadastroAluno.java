@@ -86,13 +86,12 @@ public class ControladorCadastroAluno implements Initializable {
         // });
 
         cadastrar.setOnAction(e -> {
-            Aluno alunoGerado = gerarAluno();
-            alunoGerado.exibirAluno();
+            gerarAluno();
         });
 
     }
 
-    public Aluno gerarAluno() {
+    public void gerarAluno() {
         StatusAluno status;
         String nome = nomeAluno.getText();
         String email = campoEmail.getText();
@@ -101,7 +100,6 @@ public class ControladorCadastroAluno implements Initializable {
             System.out.println("E-mail válido");
         } else {
             exibirPopupErro(); ///emite mensagem de erro caso email seja invalido
-            return null;
         }
 
         // Verifica diretamente qual RadioButton está selecionado
@@ -112,11 +110,14 @@ public class ControladorCadastroAluno implements Initializable {
         }
         //verifica se os campos foram preenchidos
         if (nome != null && !nome.isEmpty() && email != null && !email.isEmpty()) {
+            nomeAluno.clear();
+            campoEmail.clear();
             Aluno aluno = new Aluno(nome, email, status);
-            return aluno;
+            aluno.exibirAluno();
         } else {
+            nomeAluno.clear();
+            campoEmail.clear();
             exibirPopupErro(); ///emite mensagem de erro caso exista um campo vazio
-            return null; 
         }
     }
 

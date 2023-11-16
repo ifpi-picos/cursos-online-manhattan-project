@@ -12,6 +12,7 @@ br\edu\ifpi\controllers\ControladorCadastroAluno.class
 br\edu\ifpi\sistema.class
 br\edu\ifpi\controllers\ControladorCadastroProfessor.class
 br\edu\ifpi\entidades\Professor.class
+br\edu\ifpi\controllers\ControladorTelaCadastroCurso.class
 br\edu\ifpi\controllers\controladorTelaGerenciamentoProf.class
 br\edu\ifpi\dao\AlunoDao.class
 br\edu\ifpi\dao\TurmaDao.class

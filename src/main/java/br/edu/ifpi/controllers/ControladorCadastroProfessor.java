@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.sistema;
-import br.edu.ifpi.entidades.Aluno;
+import br.edu.ifpi.entidades.Curso;
 
 public class ControladorCadastroProfessor implements Initializable{
 
@@ -30,7 +30,7 @@ public class ControladorCadastroProfessor implements Initializable{
     private Button Home;
 
     @FXML
-    private ListView<?> ListaCursos;
+    private ListView<Curso> ListaCursos;
 
     @FXML
     private Button Professores;
