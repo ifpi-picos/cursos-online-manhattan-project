@@ -6,8 +6,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class sistema {
+
+    private static final String EMAIL_REGEX =
+            "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+    private static final Pattern pattern = Pattern.compile(EMAIL_REGEX);
 
     public static void trocarCena(String caminhoFXML, Button botao) {
         try {
@@ -25,5 +32,10 @@ public class sistema {
         } catch (IOException e) {
             e.printStackTrace(); // Lida com exceções ao carregar o FXML
         }
+    }
+
+    public static boolean validarEmail(String email) {
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

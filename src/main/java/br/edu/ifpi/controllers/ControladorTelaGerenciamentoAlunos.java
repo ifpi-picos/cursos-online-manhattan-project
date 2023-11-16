@@ -55,7 +55,7 @@ public class ControladorTelaGerenciamentoAlunos implements Initializable{
         Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
         Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml",Sair));
         
-        // CadastrarAluno.setOnAction(event -> sistema.trocarCena("/fxml/telaCadastroAluno", CadastrarAluno));
+        CadastrarAluno.setOnAction(event -> sistema.trocarCena("/fxml/telaCadastroAluno.fxml", CadastrarAluno));
 
         ObservableList<Aluno> alunos = FXCollections.observableArrayList();
         ListaAlunos.setItems(alunos);

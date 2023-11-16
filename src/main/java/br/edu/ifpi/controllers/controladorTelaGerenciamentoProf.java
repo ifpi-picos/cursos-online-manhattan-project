@@ -6,9 +6,12 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
 import br.edu.ifpi.sistema;
+import br.edu.ifpi.entidades.Professor;
+
 
 public class controladorTelaGerenciamentoProf implements Initializable{
 
@@ -25,6 +28,9 @@ public class controladorTelaGerenciamentoProf implements Initializable{
     private Button Home;
 
     @FXML
+    private ListView<Professor> ListaProf;
+
+    @FXML
     private Button Professores;
 
     @FXML
@@ -32,6 +38,12 @@ public class controladorTelaGerenciamentoProf implements Initializable{
 
     @FXML
     private AnchorPane barraLateral;
+
+    @FXML
+    private Button btnCadastrar;
+
+    @FXML
+    private Button btnEditar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,6 +54,9 @@ public class controladorTelaGerenciamentoProf implements Initializable{
         Alunos.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoAlunos.fxml", Alunos));
         Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
         Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml",Sair));
+
+        btnCadastrar.setOnAction(event -> sistema.trocarCena("/fxml/TelaCadastroProf.fxml",btnCadastrar));
+        
     }
 
 }

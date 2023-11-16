@@ -10,6 +10,7 @@ br\edu\ifpi\enums\StatusCurso.class
 br\edu\ifpi\dao\CursoDao.class
 br\edu\ifpi\controllers\ControladorCadastroAluno.class
 br\edu\ifpi\sistema.class
+br\edu\ifpi\controllers\ControladorCadastroProfessor.class
 br\edu\ifpi\entidades\Professor.class
 br\edu\ifpi\controllers\controladorTelaGerenciamentoProf.class
 br\edu\ifpi\dao\AlunoDao.class

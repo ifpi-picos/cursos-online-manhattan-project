@@ -22,13 +22,13 @@
                   <Font name="Poppins Regular" size="18.0" />
                </font>
             </Text>
-            <ListView layoutX="72.0" layoutY="124.0" prefHeight="400.0" prefWidth="600.0" styleClass="formulario" />
-            <Button layoutX="468.0" layoutY="539.0" mnemonicParsing="false" text="Cadastrar Professor">
+            <ListView fx:id="ListaProf" layoutX="72.0" layoutY="124.0" prefHeight="400.0" prefWidth="600.0" styleClass="formulario" />
+            <Button fx:id="btnCadastrar" layoutX="468.0" layoutY="539.0" mnemonicParsing="false" text="Cadastrar Professor">
                <font>
                   <Font name="Poppins Regular" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="372.0" layoutY="539.0" mnemonicParsing="false" text="Editar">
+            <Button fx:id="btnEditar" layoutX="372.0" layoutY="539.0" mnemonicParsing="false" text="Editar">
                <font>
                   <Font name="Poppins Regular" size="14.0" />
                </font>

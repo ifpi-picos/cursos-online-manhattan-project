@@ -61,7 +61,7 @@ public class ControladorCadastroAluno implements Initializable {
     @FXML
     private Button voltar;
 
-    private String selectedValue;
+    // private String selectedValue;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,16 +72,18 @@ public class ControladorCadastroAluno implements Initializable {
         Alunos.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoAlunos.fxml", Alunos));
         Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
         Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml",Sair));
+        voltar.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoAlunos.fxml", voltar));
 
-
+        //Inicia o radioButton como statusAluno.ATIVO
+        ativo.fire();
         //Atualiza a opção selecionada no radioButton e recebe em uma variável
-        Status.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                // O código a ser executado quando uma opção é selecionada
-                RadioButton selectedRadioButton = (RadioButton) newValue;
-                selectedValue = selectedRadioButton.getText();
-            }
-        });
+        // Status.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+        //     if (newValue != null) {
+        //         // O código a ser executado quando uma opção é selecionada
+        //         RadioButton selectedRadioButton = (RadioButton) newValue;
+        //         selectedValue = selectedRadioButton.getText();
+        //     }
+        // });
 
         cadastrar.setOnAction(e -> {
             Aluno alunoGerado = gerarAluno();
@@ -94,8 +96,16 @@ public class ControladorCadastroAluno implements Initializable {
         StatusAluno status;
         String nome = nomeAluno.getText();
         String email = campoEmail.getText();
-    
-        if ("ATIVO".equals(selectedValue)) {
+        
+        if (sistema.validarEmail(email)) {
+            System.out.println("E-mail válido");
+        } else {
+            exibirPopupErro(); ///emite mensagem de erro caso email seja invalido
+            return null;
+        }
+
+        // Verifica diretamente qual RadioButton está selecionado
+        if (ativo.isSelected()) {
             status = StatusAluno.ATIVO;
         } else {
             status = StatusAluno.INATIVO;
