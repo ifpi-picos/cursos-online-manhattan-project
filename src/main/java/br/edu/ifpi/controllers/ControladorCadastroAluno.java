@@ -73,6 +73,8 @@ public class ControladorCadastroAluno implements Initializable {
         Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
         Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml",Sair));
 
+
+        //Atualiza a opção selecionada no radioButton e recebe em uma variável
         Status.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 // O código a ser executado quando uma opção é selecionada
@@ -81,6 +83,10 @@ public class ControladorCadastroAluno implements Initializable {
             }
         });
 
+        cadastrar.setOnAction(e -> {
+            Aluno alunoGerado = gerarAluno();
+            alunoGerado.exibirAluno();
+        });
 
     }
 
@@ -94,13 +100,13 @@ public class ControladorCadastroAluno implements Initializable {
         } else {
             status = StatusAluno.INATIVO;
         }
-    
+        //verifica se os campos foram preenchidos
         if (nome != null && !nome.isEmpty() && email != null && !email.isEmpty()) {
             Aluno aluno = new Aluno(nome, email, status);
             return aluno;
         } else {
-            exibirPopupErro();
-            return null; // Adicionado para indicar que a criação do aluno falhou
+            exibirPopupErro(); ///emite mensagem de erro caso exista um campo vazio
+            return null; 
         }
     }
 
@@ -109,7 +115,7 @@ public class ControladorCadastroAluno implements Initializable {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erro");
         alert.setHeaderText(null);
-        alert.setContentText("Campos precisam ser preenchidos");
+        alert.setContentText("Dados não preenchidos ou inválidos");
         alert.showAndWait();
     }
 }
