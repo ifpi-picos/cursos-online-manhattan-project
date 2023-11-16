@@ -41,7 +41,7 @@ public class controladorTelaGerenciamentoProf implements Initializable{
         Professores.setOnAction(event -> System.trocarCena("/fxml/telaGerenciamentoProf.fxml", Professores));
         Alunos.setOnAction(event -> System.trocarCena("/fxml/telaGerenciamentoAlunos.fxml", Alunos));
         Configuracao.setOnAction(event -> System.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
-        Sair.setOnAction(event -> System.trocarCena("/fxml/telaLogInS.fxml",Sair));
+        Sair.setOnAction(event -> System.trocarCena("/fxml/telaLogIn.fxml",Sair));
     }
 
 }
