@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorCadastroAluno">
    <children>
       <AnchorPane layoutX="50.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #99B282;">
          <children>
@@ -23,37 +24,54 @@
                   <Font name="Poppins Regular" size="24.0" />
                </font>
             </Text>
-            <AnchorPane layoutX="106.0" layoutY="169.0" prefHeight="360.0" prefWidth="540.0" style="-fx-border-color: black;" styleClass="formulario">
+            <AnchorPane layoutX="105.0" layoutY="178.0" prefHeight="245.0" prefWidth="540.0" style="-fx-border-color: black;" styleClass="cadastro">
                <children>
                   <Text layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="99.0" layoutY="25.0" prefHeight="39.0" prefWidth="367.0" promptText="Digite o nome do professor...">
+                  <TextField fx:id="nomeAluno" layoutX="99.0" layoutY="25.0" prefHeight="39.0" prefWidth="367.0" promptText="Digite o nome do aluno...">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="22.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+                  <Text layoutX="22.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="99.0" layoutY="109.0" prefHeight="39.0" prefWidth="367.0">
+                  <TextField fx:id="campoEmail" layoutX="99.0" layoutY="103.0" prefHeight="39.0" prefWidth="367.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="22.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos matriculado:">
+                  <Text layoutX="22.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <ListView layoutX="101.0" layoutY="208.0" prefHeight="118.0" prefWidth="367.0" />
+                  <RadioButton fx:id="ativo" layoutX="119.0" layoutY="173.0" mnemonicParsing="false" selected="true" text="ATIVO">
+                     <font>
+                        <Font name="Poppins Regular" size="16.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Status" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="inativo" layoutX="214.0" layoutY="173.0" mnemonicParsing="false" text="INATIVO" toggleGroup="$Status">
+                     <font>
+                        <Font name="Poppins Regular" size="16.0" />
+                     </font>
+                  </RadioButton>
                </children>
             </AnchorPane>
-            <Button layoutX="327.0" layoutY="542.0" mnemonicParsing="false" text="Cadastrar">
+            <Button fx:id="cadastrar" layoutX="385.0" layoutY="491.0" mnemonicParsing="false" text="Cadastrar">
+               <font>
+                  <Font name="Poppins Regular" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="voltar" layoutX="303.0" layoutY="491.0" mnemonicParsing="false" text="Voltar">
                <font>
                   <Font name="Poppins Regular" size="14.0" />
                </font>

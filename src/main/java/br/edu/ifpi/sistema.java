@@ -7,12 +7,12 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class System {
+public class sistema {
 
     public static void trocarCena(String caminhoFXML, Button botao) {
         try {
             // Carrega o arquivo FXML
-            FXMLLoader loader = new FXMLLoader(System.class.getResource(caminhoFXML));
+            FXMLLoader loader = new FXMLLoader(sistema.class.getResource(caminhoFXML));
             Parent novaCena = loader.load();
 
             // Obtém o palco principal a partir do botão clicado

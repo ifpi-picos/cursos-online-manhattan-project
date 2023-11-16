@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
-import br.edu.ifpi.System;
+import br.edu.ifpi.sistema;
 import br.edu.ifpi.entidades.Curso;
 
 public class ControladorTelaCursosAdm implements Initializable{
@@ -58,12 +58,12 @@ public class ControladorTelaCursosAdm implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Home.setOnAction(event -> System.trocarCena("/fxml/telaMainAdm.fxml", Home));
-        Cursos.setOnAction(event -> System.trocarCena("/fxml/telaGerenciamentoCurso.fxml", Cursos));
-        Professores.setOnAction(event -> System.trocarCena("/fxml/telaGerenciamentoProf.fxml", Professores));
-        Alunos.setOnAction(event -> System.trocarCena("/fxml/telaGerenciamentoAlunos.fxml", Alunos));
-        Configuracao.setOnAction(event -> System.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
-        Sair.setOnAction(event -> System.trocarCena("/fxml/telaLogIn.fxml",Sair));
+        Home.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Home));
+        Cursos.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoCurso.fxml", Cursos));
+        Professores.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoProf.fxml", Professores));
+        Alunos.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoAlunos.fxml", Alunos));
+        Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
+        Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml",Sair));
     }
 
 }

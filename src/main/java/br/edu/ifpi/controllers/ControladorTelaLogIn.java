@@ -39,6 +39,8 @@ public class ControladorTelaLogIn implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        inputSenhaLogIn.clear();
+        inputUsuarioLogIn.clear();
         botaoEntrar.setOnAction(event -> acessarApp());
     }
 

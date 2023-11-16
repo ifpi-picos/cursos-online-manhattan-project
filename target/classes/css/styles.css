@@ -137,3 +137,16 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 2, 2);
     -fx-z-index: -1;
 }
+
+
+.cadastro{
+    -fx-content: '';
+    -fx-background-color: #72BD2B;
+    -fx-position: absolute;
+    -fx-top: 10; /* Ajuste conforme necessário */
+    -fx-left: 10; /* Ajuste conforme necessário */
+    -fx-right: 10; /* Ajuste conforme necessário */
+    -fx-bottom: 10; /* Ajuste conforme necessário */
+    fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 2, 2);
+    -fx-z-index: -1;
+}
