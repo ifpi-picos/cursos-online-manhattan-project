@@ -10,18 +10,15 @@ public class Curso {
     private String nome;
     private StatusCurso status;
     private int cargaHoraria;
-    private String descricao;
     private Professor professor;
     private List<Double> notas;
 
 
     // Construtor
-    public Curso(String nome, StatusCurso status, int cargaHoraria, String descricao, Professor professor) {
+    public Curso(String nome, StatusCurso status, int cargaHoraria) {
         this.nome = nome;
         this.status = status;
-        this.descricao = descricao;
         this.cargaHoraria = cargaHoraria;
-        this.professor = professor;
         this.notas = new ArrayList<>();
     }
 
@@ -48,14 +45,6 @@ public class Curso {
 
     public void setStatus(StatusCurso status) {
         this.status = status;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public int getCargaHoraria() {

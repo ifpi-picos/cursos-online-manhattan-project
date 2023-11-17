@@ -24,7 +24,6 @@ public class CursoDao implements Dao<Curso> {
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, curso.getNome());
-            stmt.setString(2, curso.getDescricao());
 
             stmt.execute();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -59,7 +58,6 @@ public class CursoDao implements Dao<Curso> {
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, curso.getNome());
-            stmt.setString(2, curso.getDescricao());
             stmt.setLong(3, curso.getId());
 
             stmt.execute();
@@ -87,7 +85,7 @@ public class CursoDao implements Dao<Curso> {
                 String descricao = rs.getString("descricao");
                 Professor professor = (new ProfessorDao(connection)).obterProfessorPorId(rs.getInt("professor_id"));
 
-                Curso curso = new Curso(nome, null, cargaHoraria, descricao, professor);
+                Curso curso = new Curso(nome, null, cargaHoraria);
                 curso.setId(id);
 
                 cursos.add(curso);

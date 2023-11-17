@@ -55,7 +55,7 @@ public class Professor {
       return cursos;
   }
 
-  public void setCursos(List<Curso> cursos) {
-      this.cursos = cursos;
+  public void setCursos(Curso curso) {
+      this.cursos.add(curso) ;
   }
 }
