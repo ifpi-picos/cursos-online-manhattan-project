@@ -10,21 +10,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
 import br.edu.ifpi.sistema;
-import br.edu.ifpi.entidades.Curso;
+import br.edu.ifpi.entidades.Professor;
 
-public class ControladorTelaCursosAdm implements Initializable{
 
-    @FXML
-    private AnchorPane AdmCursosInicial;
+public class controladorTelaGerenciamentoProf implements Initializable{
 
     @FXML
     private Button Alunos;
-
-    @FXML
-    private AnchorPane Background;
-
-    @FXML
-    private Button CadastrarCursoBotao;
 
     @FXML
     private Button Configuracao;
@@ -36,7 +28,7 @@ public class ControladorTelaCursosAdm implements Initializable{
     private Button Home;
 
     @FXML
-    private ListView<Curso> ListaCursos;
+    private ListView<Professor> ListaProf;
 
     @FXML
     private Button Professores;
@@ -48,16 +40,14 @@ public class ControladorTelaCursosAdm implements Initializable{
     private AnchorPane barraLateral;
 
     @FXML
-    private Button detalhesCurso;
+    private Button btnCadastrar;
 
     @FXML
-    private Button editarCursoBotao;
-
-    @FXML
-    private Button excluirCursoBotao;
+    private Button btnEditar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Configura ações para os botões
         Home.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Home));
         Cursos.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoCurso.fxml", Cursos));
         Professores.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoProf.fxml", Professores));
@@ -65,10 +55,8 @@ public class ControladorTelaCursosAdm implements Initializable{
         Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
         Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml",Sair));
 
-        CadastrarCursoBotao.setOnAction(event -> sistema.trocarCena("/fxml/telaCadastroCurso.fxml", CadastrarCursoBotao));
+        btnCadastrar.setOnAction(event -> sistema.trocarCena("/fxml/TelaCadastroProf.fxml",btnCadastrar));
         
-        detalhesCurso.setOnAction(event -> sistema.trocarCena("/fxml/telaDetalhesCurso.fxml", detalhesCurso));
-
     }
 
 }

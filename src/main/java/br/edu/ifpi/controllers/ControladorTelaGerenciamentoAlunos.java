@@ -3,6 +3,8 @@ package br.edu.ifpi.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -10,21 +12,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
 import br.edu.ifpi.sistema;
-import br.edu.ifpi.entidades.Curso;
-
-public class ControladorTelaCursosAdm implements Initializable{
-
-    @FXML
-    private AnchorPane AdmCursosInicial;
+import br.edu.ifpi.entidades.Aluno;
+public class ControladorTelaGerenciamentoAlunos implements Initializable{
 
     @FXML
     private Button Alunos;
 
     @FXML
-    private AnchorPane Background;
-
-    @FXML
-    private Button CadastrarCursoBotao;
+    private Button CadastrarAluno;
 
     @FXML
     private Button Configuracao;
@@ -33,10 +28,13 @@ public class ControladorTelaCursosAdm implements Initializable{
     private Button Cursos;
 
     @FXML
+    private Button EditarAlunos;
+
+    @FXML
     private Button Home;
 
     @FXML
-    private ListView<Curso> ListaCursos;
+    private ListView<Aluno> ListaAlunos;
 
     @FXML
     private Button Professores;
@@ -47,28 +45,22 @@ public class ControladorTelaCursosAdm implements Initializable{
     @FXML
     private AnchorPane barraLateral;
 
-    @FXML
-    private Button detalhesCurso;
-
-    @FXML
-    private Button editarCursoBotao;
-
-    @FXML
-    private Button excluirCursoBotao;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Configura ações para os botões
         Home.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Home));
         Cursos.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoCurso.fxml", Cursos));
         Professores.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoProf.fxml", Professores));
         Alunos.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoAlunos.fxml", Alunos));
         Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
         Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml",Sair));
-
-        CadastrarCursoBotao.setOnAction(event -> sistema.trocarCena("/fxml/telaCadastroCurso.fxml", CadastrarCursoBotao));
         
-        detalhesCurso.setOnAction(event -> sistema.trocarCena("/fxml/telaDetalhesCurso.fxml", detalhesCurso));
+        CadastrarAluno.setOnAction(event -> sistema.trocarCena("/fxml/telaCadastroAluno.fxml", CadastrarAluno));
 
+        ObservableList<Aluno> alunos = FXCollections.observableArrayList();
+        ListaAlunos.setItems(alunos);
     }
+
+
 
 }

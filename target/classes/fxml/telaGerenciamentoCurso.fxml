@@ -8,33 +8,30 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorTelaGerenciamentoProf">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorTelaCursosAdm">
    <children>
       <AnchorPane layoutX="50.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #99B282;">
          <children>
-            <Text layoutX="206.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciamento Professores">
-               <font>
-                  <Font name="Poppins Regular" size="24.0" />
-               </font>
-            </Text>
-            <Text layoutX="72.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professores Cadastrados:">
-               <font>
-                  <Font name="Poppins Regular" size="18.0" />
-               </font>
-            </Text>
-            <ListView fx:id="ListaProf" layoutX="72.0" layoutY="124.0" prefHeight="400.0" prefWidth="600.0" styleClass="formulario" />
-            <Button fx:id="btnCadastrar" layoutX="468.0" layoutY="539.0" mnemonicParsing="false" text="Cadastrar Professor">
-               <font>
-                  <Font name="Poppins Regular" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnEditar" layoutX="372.0" layoutY="539.0" mnemonicParsing="false" text="Editar">
-               <font>
-                  <Font name="Poppins Regular" size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
+            <AnchorPane fx:id="AdmCursosInicial" prefHeight="600.0" prefWidth="750.0">
+               <children>
+                  <Text layoutX="213.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciamento de cursos">
+                     <font>
+                        <Font name="Poppins Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="72.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos cadastrados:">
+                     <font>
+                        <Font name="Poppins Regular" size="18.0" />
+                     </font>
+                  </Text>
+                  <ListView layoutX="72.0" layoutY="140.0" prefHeight="400.0" prefWidth="600.0" styleClass="formulario" />
+                  <Button fx:id="CadastrarCursoBotao" layoutX="573.0" layoutY="107.0" mnemonicParsing="false" text="Cadastrar curso" />
+                  <Button fx:id="excluirCursoBotao" layoutX="620.0" layoutY="554.0" mnemonicParsing="false" text="Excluir" />
+                  <Button fx:id="editarCursoBotao" layoutX="564.0" layoutY="554.0" mnemonicParsing="false" text="Editar" />
+                  <Button fx:id="detalhesCurso" layoutX="493.0" layoutY="554.0" mnemonicParsing="false" text="Detalhes" />
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
       <AnchorPane fx:id="barraLateral" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="50.0" style="-fx-background-color: #BD4E2B;" stylesheets="@../css/styles.css">
          <children>
             <Button fx:id="Sair" layoutY="536.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" styleClass="btn-out" stylesheets="@../css/styles.css" text="SAIR">
@@ -49,12 +46,12 @@
             </Button>
             <VBox alignment="BOTTOM_LEFT" layoutY="150.0" maxWidth="109.0" minWidth="56.0" prefHeight="501.0" prefWidth="50.0" styleClass="VBox">
                <children>
-                  <Button fx:id="Cursos" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" styleClass="button-vbox" text="Cursos">
+                  <Button fx:id="Cursos" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: #82361F;" styleClass="button-vbox" text="Cursos">
                      <graphic>
                         <FontIcon iconLiteral="fas-book" iconSize="30" />
                      </graphic>
                   </Button>
-                  <Button fx:id="Professores" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" style="-fx-background-color: #82361F;" styleClass="button-vbox" text="Professores">
+                  <Button fx:id="Professores" mnemonicParsing="false" prefHeight="100.0" prefWidth="58.0" styleClass="button-vbox" text="Professores">
                      <graphic>
                         <FontIcon iconLiteral="fas-chalkboard-teacher" iconSize="30" />
                      </graphic>

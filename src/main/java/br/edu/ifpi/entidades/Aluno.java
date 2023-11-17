@@ -71,4 +71,9 @@ public class Aluno {
         this.cursos = cursos;
     }
 
+    public void exibirAluno(){
+        System.out.println(getNome());
+        System.out.println(getEmail());
+        System.out.println(getStatus());
+    }
 }
