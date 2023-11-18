@@ -19,7 +19,7 @@
                   <Font name="Poppins Bold" size="24.0" />
                </font>
             </Text>
-            <AnchorPane fx:id="formulario" layoutX="106.0" layoutY="171.0" prefHeight="259.0" prefWidth="454.0" style="-fx-border-color: black;" styleClass="formulario" stylesheets="@../css/styles.css">
+            <AnchorPane fx:id="formulario" layoutX="106.0" layoutY="171.0" prefHeight="259.0" prefWidth="454.0" style="-fx-border-color: black;" styleClass="cadastro" stylesheets="@../css/styles.css">
                <children>
                   <TextField fx:id="NomeCurso" layoutX="95.0" layoutY="24.0" promptText="Nome do curso..." style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="24.0">
                      <font>

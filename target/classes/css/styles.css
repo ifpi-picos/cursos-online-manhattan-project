@@ -150,3 +150,44 @@
     fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 2, 2);
     -fx-z-index: -1;
 }
+
+
+/* Personalização das tabelas */
+
+.table-view {
+    -fx-table-cell-border-color: derive(-fx-base, 20%);
+}
+
+.table-row-cell {
+    -fx-background-color: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+    -fx-padding: 5;
+    -fx-border-color: derive(-fx-base, 20%);
+}
+
+.table-row-cell:selected {
+    -fx-background-color: linear-gradient(to bottom, #cce8ff, #99c2ff);
+}
+
+.table-column {
+    -fx-alignment: center-left;
+}
+
+.label {
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 14px;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: #e0e0e0;
+}
+
+.table-view .column-header {
+    -fx-padding: 5;
+}
+
+.table-view .column-header .label {
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}

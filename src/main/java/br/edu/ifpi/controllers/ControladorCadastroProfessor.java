@@ -1,19 +1,21 @@
 package br.edu.ifpi.controllers;
 
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import br.edu.ifpi.sistema;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.ProfessorDao;
+import br.edu.ifpi.entidades.Professor;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import br.edu.ifpi.sistema;
-import br.edu.ifpi.entidades.Curso;
 
 public class ControladorCadastroProfessor implements Initializable{
 
@@ -28,9 +30,6 @@ public class ControladorCadastroProfessor implements Initializable{
 
     @FXML
     private Button Home;
-
-    @FXML
-    private ListView<Curso> ListaCursos;
 
     @FXML
     private Button Professores;
@@ -53,6 +52,8 @@ public class ControladorCadastroProfessor implements Initializable{
     @FXML
     private Button voltar;
 
+    ProfessorDao BDprof;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Configura ações para os botões da barra lateral
@@ -70,6 +71,14 @@ public class ControladorCadastroProfessor implements Initializable{
     }
 
     public void gerarProfessor(){
+
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Trate a exceção conforme necessário
+        }
+        BDprof = new ProfessorDao(conexao);
         String nomeProf = nome.getText();
         String emailProf = email.getText();
 
@@ -80,9 +89,14 @@ public class ControladorCadastroProfessor implements Initializable{
         }
 
         if (nomeProf != null && !nomeProf.isEmpty()) {
-            System.out.println("Nome do professor:" + nomeProf);
-            System.out.println("Email: "+ emailProf);
+            nome.clear();
+            email.clear();
+            Professor professor = new Professor(nomeProf, emailProf);
+            BDprof.cadastrar(professor);
+
         } else {
+            nome.clear();
+            email.clear();
             exibirPopupErro(); ///emite mensagem de erro caso exista um campo vazio
         }
 

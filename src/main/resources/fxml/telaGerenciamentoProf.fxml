@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -22,7 +23,6 @@
                   <Font name="Poppins Regular" size="18.0" />
                </font>
             </Text>
-            <ListView fx:id="ListaProf" layoutX="72.0" layoutY="124.0" prefHeight="400.0" prefWidth="600.0" styleClass="formulario" />
             <Button fx:id="btnCadastrar" layoutX="468.0" layoutY="539.0" mnemonicParsing="false" text="Cadastrar Professor">
                <font>
                   <Font name="Poppins Regular" size="14.0" />
@@ -33,6 +33,13 @@
                   <Font name="Poppins Regular" size="14.0" />
                </font>
             </Button>
+            <TableView fx:id="tabelaProfessores" layoutX="122.0" layoutY="128.0" prefHeight="400.0" prefWidth="500.0">
+              <columns>
+                <TableColumn fx:id="colunaNome" prefWidth="200.0" text="Nome" />
+                  <TableColumn fx:id="colunaEmail" prefWidth="223.0" text="email" />
+                <TableColumn fx:id="colunaID" prefWidth="75.0" text="id" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="barraLateral" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="50.0" style="-fx-background-color: #BD4E2B;" stylesheets="@../css/styles.css">

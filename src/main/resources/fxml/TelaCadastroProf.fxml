@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -13,7 +12,7 @@
    <children>
       <AnchorPane layoutX="50.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #99B282;">
          <children>
-            <Text layoutX="106.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar professor:">
+            <Text layoutX="106.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar professor:">
                <font>
                   <Font name="Poppins Regular" size="18.0" />
                </font>
@@ -23,7 +22,7 @@
                   <Font name="Poppins Regular" size="24.0" />
                </font>
             </Text>
-            <AnchorPane layoutX="106.0" layoutY="169.0" prefHeight="360.0" prefWidth="540.0" style="-fx-border-color: black;" styleClass="cadastro" stylesheets="@../css/styles.css">
+            <AnchorPane layoutX="105.0" layoutY="216.0" prefHeight="191.0" prefWidth="540.0" style="-fx-border-color: black;" styleClass="cadastro" stylesheets="@../css/styles.css">
                <children>
                   <TextField fx:id="nome" layoutX="99.0" layoutY="25.0" prefHeight="39.0" prefWidth="367.0" promptText="Digite o nome do professor...">
                      <font>
@@ -40,25 +39,19 @@
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="email" layoutX="99.0" layoutY="110.0" prefHeight="39.0" prefWidth="367.0">
+                  <TextField fx:id="email" layoutX="99.0" layoutY="110.0" prefHeight="39.0" prefWidth="367.0" promptText="email@email.com">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="22.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos ministrados:">
-                     <font>
-                        <Font name="Poppins Regular" size="18.0" />
-                     </font>
-                  </Text>
-                  <ListView fx:id="ListaCursos" layoutX="101.0" layoutY="210.0" prefHeight="118.0" prefWidth="367.0" />
                </children>
             </AnchorPane>
-            <Button fx:id="cadastrar" layoutX="453.0" layoutY="542.0" mnemonicParsing="false" text="Cadastrar">
+            <Button fx:id="cadastrar" layoutX="555.0" layoutY="449.0" mnemonicParsing="false" text="Cadastrar">
                <font>
                   <Font name="Poppins Regular" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="voltar" layoutX="210.0" layoutY="542.0" mnemonicParsing="false" text="Voltar">
+            <Button fx:id="voltar" layoutX="483.0" layoutY="449.0" mnemonicParsing="false" text="Voltar">
                <font>
                   <Font name="Poppins Regular" size="14.0" />
                </font>
