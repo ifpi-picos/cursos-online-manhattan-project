@@ -1,6 +1,8 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -14,6 +16,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 
 import br.edu.ifpi.sistema;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.CursoDao;
+import br.edu.ifpi.entidades.Curso;
+import br.edu.ifpi.enums.StatusCurso;
 
 public class ControladorTelaCadastroCurso implements Initializable {
 
@@ -65,6 +71,8 @@ public class ControladorTelaCadastroCurso implements Initializable {
     @FXML
     private ToggleGroup status;
 
+    CursoDao BDCurso;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Configura ações para os botões da barra lateral
@@ -77,8 +85,42 @@ public class ControladorTelaCadastroCurso implements Initializable {
 
         //configurando botões de interação da pagina de cadastro
         btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoCurso.fxml", btnVoltar));
+        
+        btnCadastrar.setOnAction(event -> cadastrarCurso());
+    }
 
-        btnCadastrar.setOnAction(event -> exibirPopupErro());
+    private void cadastrarCurso(){
+        // Criar uma instância de Connection usando a classe Conexao
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Trate a exceção conforme necessário
+        }
+        // Chame o construtor de CursoDao passando a conexão como argumento
+        BDCurso = new CursoDao(conexao);
+        
+        String nome = NomeCurso.getText();
+        String cargaHoraria = CargaHoraria.getText();
+        StatusCurso status;
+
+        if(aberto.isSelected()){ 
+            status = StatusCurso.ABERTO;
+        }else{
+            status = StatusCurso.FECHADO;
+        }
+
+        if (nome != null && !nome.isEmpty() && cargaHoraria != null && !cargaHoraria.isEmpty()) {
+            CargaHoraria.clear();
+            NomeCurso.clear();
+            Curso curso = new Curso(nome, status, cargaHoraria);
+            BDCurso.cadastrar(curso);
+        } else {
+            CargaHoraria.clear();
+            NomeCurso.clear();
+            exibirPopupErro(); ///emite mensagem de erro caso exista um campo vazio
+        }
+
     }
 
     private void exibirPopupErro() {

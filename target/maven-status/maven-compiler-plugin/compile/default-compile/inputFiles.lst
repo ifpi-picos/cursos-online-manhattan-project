@@ -3,7 +3,6 @@ C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entidades\Aluno.java
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\CursoDao.java
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorTelaCursosAdm.java
-C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entidades\Turma.java
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorTelaGerenciamentoAlunos.java
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\ProfessorDao.java
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\controladorTelaGerenciamentoProf.java
@@ -17,6 +16,5 @@ C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorTelaLogIn.java
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorCadastroProfessor.java
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\AlunoDao.java
-C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\TurmaDao.java
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\sistema.java
 C:\Marcos\program\LanguageJava\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entidades\Curso.java

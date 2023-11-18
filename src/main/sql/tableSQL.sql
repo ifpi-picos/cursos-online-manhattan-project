@@ -10,7 +10,7 @@ CREATE TABLE Cursos (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     StatusCurso VARCHAR(255) NOT NULL,
-    carga_Horaria INT NOT NULL,
+    carga_Horaria VARCHAR(255) NOT NULL
 );
 
 -- Tabela Alunos
@@ -32,7 +32,7 @@ CREATE TABLE Professor_Curso (
 CREATE TABLE Aluno_Curso (
     aluno_id INT REFERENCES Alunos(id),
     curso_id INT REFERENCES Cursos(id),
-    nota Array PRECISION,    
+    nota double precision[] NOT NULL,   
     PRIMARY KEY (aluno_id, curso_id)
 );
 

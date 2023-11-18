@@ -9,7 +9,6 @@ import java.util.List;
 
 import br.edu.ifpi.entidades.Curso;
 import br.edu.ifpi.enums.StatusCurso;
-import br.edu.ifpi.entidades.Professor;
 
 public class CursoDao implements Dao<Curso> {
     private Connection connection;
@@ -20,10 +19,11 @@ public class CursoDao implements Dao<Curso> {
 
     @Override
     public int cadastrar(Curso curso) {
-        String sql = "INSERT INTO curso (nome, descricao) VALUES (?, ?)";
-
+        String sql = "INSERT INTO cursos (nome, statuscurso, carga_horaria) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, curso.getNome());
+            stmt.setString(2, curso.getStatus().toString());  // Assuming StatusCurso.toString() returns "ABERTO" or "FECHADO"
+            stmt.setString(3, curso.getCargaHoraria());
 
             stmt.execute();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -39,7 +39,7 @@ public class CursoDao implements Dao<Curso> {
 
     @Override
     public int remover(Curso curso) {
-        String sql = "DELETE FROM curso WHERE id = ?";
+        String sql = "DELETE FROM cursos WHERE id = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setLong(1, curso.getId());
@@ -54,7 +54,7 @@ public class CursoDao implements Dao<Curso> {
 
     @Override
     public int alterar(Curso curso) {
-        String sql = "UPDATE curso SET nome = ?, descricao = ? WHERE id = ?";
+        String sql = "UPDATE cursos SET nome = ? WHERE id = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, curso.getNome());
@@ -69,7 +69,8 @@ public class CursoDao implements Dao<Curso> {
 
     @Override
     public List<Curso> consultarTodos() {
-        String sql = "SELECT * FROM curso";
+        String sql = "SELECT * FROM cursos";
+        
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
@@ -77,17 +78,21 @@ public class CursoDao implements Dao<Curso> {
             List<Curso> cursos = new ArrayList<>();
 
             while (rs.next()) {
-                
                 String nome = rs.getString("nome");
                 int id = rs.getInt("id");
-                String status = rs.getString("status");
-                int cargaHoraria =  rs.getInt("carga_horaria");
-                String descricao = rs.getString("descricao");
-                Professor professor = (new ProfessorDao(connection)).obterProfessorPorId(rs.getInt("professor_id"));
-
-                Curso curso = new Curso(nome, null, cargaHoraria);
+                String status = rs.getString("statuscurso"); // Make sure the column name is correct
+                String cargaHoraria = rs.getString("carga_horaria");
+            
+                StatusCurso statusCurso;
+                if ("ABERTO".equals(status)) {
+                    statusCurso = StatusCurso.ABERTO;
+                } else {
+                    statusCurso = StatusCurso.FECHADO;
+                }
+            
+                Curso curso = new Curso(nome, statusCurso, cargaHoraria);
                 curso.setId(id);
-
+            
                 cursos.add(curso);
             }
 

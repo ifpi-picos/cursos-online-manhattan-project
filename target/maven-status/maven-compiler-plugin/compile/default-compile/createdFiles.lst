@@ -2,7 +2,6 @@ br\edu\ifpi\controllers\ControladorTelaMain.class
 br\edu\ifpi\entidades\Curso.class
 br\edu\ifpi\dao\ProfessorDao.class
 br\edu\ifpi\entidades\Aluno.class
-br\edu\ifpi\entidades\Turma.class
 br\edu\ifpi\App.class
 br\edu\ifpi\controllers\ControladorTelaCursosAdm.class
 br\edu\ifpi\dao\Dao.class
@@ -15,7 +14,6 @@ br\edu\ifpi\entidades\Professor.class
 br\edu\ifpi\controllers\ControladorTelaCadastroCurso.class
 br\edu\ifpi\controllers\controladorTelaGerenciamentoProf.class
 br\edu\ifpi\dao\AlunoDao.class
-br\edu\ifpi\dao\TurmaDao.class
 br\edu\ifpi\dao\Conexao.class
 br\edu\ifpi\enums\StatusAluno.class
 br\edu\ifpi\controllers\ControladorTelaLogIn.class
