@@ -24,15 +24,18 @@ public class AlunoDao implements Dao<Aluno>{
         String sql = "SELECT * FROM alunos";
 
         try (Connection connection = Conexao.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery()) {
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String nome = resultSet.getString("nome");
                 String email = resultSet.getString("email");
+                String statusString = resultSet.getString("status");
 
-                Aluno aluno = new Aluno(id, nome, email, StatusAluno.ATIVO);
+                StatusAluno statusAluno = StatusAluno.valueOf(statusString); // Converte a String para o enum
+
+                Aluno aluno = new Aluno(id, nome, email, statusAluno);
                 alunos.add(aluno);
             }
         } catch (SQLException e) {
@@ -43,11 +46,12 @@ public class AlunoDao implements Dao<Aluno>{
 
     @Override
     public int cadastrar(Aluno aluno) {
-        String sql = "INSERT INTO alunos (nome, email) VALUES (?, ?)";
+        String sql = "INSERT INTO alunos (nome, email, status) VALUES (?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, aluno.getNome());
             statement.setString(2, aluno.getEmail());
+            statement.setString(3, aluno.getStatus().name()); // Converte o enum para String
 
             return statement.executeUpdate();
         } catch (SQLException e) {

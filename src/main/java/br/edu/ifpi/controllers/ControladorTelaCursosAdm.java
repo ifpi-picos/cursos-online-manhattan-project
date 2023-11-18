@@ -93,7 +93,6 @@ public class ControladorTelaCursosAdm implements Initializable {
             BDCurso = new CursoDao(conexao);
             // Obter a lista de cursos do banco de dados
             List<Curso> cursosDoBanco = BDCurso.consultarTodos();
-
             // Criar uma ObservableList a partir da lista de cursos
             ObservableList<Curso> observableCursos = FXCollections.observableArrayList(cursosDoBanco);
 
