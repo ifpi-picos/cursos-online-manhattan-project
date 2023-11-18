@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Conexao {
-    private static final String URL = "jdbc:postgresql://isabelle.db.elephantsql.com:5432/jvbamwlf";  
-    private static final String USUARIO = "jvbamwlf";
-    private static final String SENHA = "8w9doiYjroMsj7-f2smcWCl3rywvMv8f";
+    private static final String URL = "jdbc:postgresql://db.ijhnuifhmrhpcwvnlezj.supabase.co:5432/postgres?sslmode=require";  
+    private static final String USUARIO = "postgres";
+    private static final String SENHA = "ifpi_bd2023";
 
     // private static final String URL = "jdbc:postgresql://localhost:5432/ManhattanBD";  
     // private static final String USUARIO = "postgres";

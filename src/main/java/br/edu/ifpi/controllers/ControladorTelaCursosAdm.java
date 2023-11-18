@@ -6,21 +6,21 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifpi.sistema;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.CursoDao;
+import br.edu.ifpi.entidades.Curso;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-import br.edu.ifpi.sistema;
-import br.edu.ifpi.dao.Conexao;
-import br.edu.ifpi.dao.CursoDao;
-import br.edu.ifpi.entidades.Curso;
-
-public class ControladorTelaCursosAdm implements Initializable{
+public class ControladorTelaCursosAdm implements Initializable {
 
     @FXML
     private AnchorPane AdmCursosInicial;
@@ -29,10 +29,19 @@ public class ControladorTelaCursosAdm implements Initializable{
     private Button Alunos;
 
     @FXML
-    private AnchorPane Background;
+    private Button CadastrarCursoBotao;
 
     @FXML
-    private Button CadastrarCursoBotao;
+    private TableColumn<Curso, String> ColunaNome;
+
+    @FXML
+    private TableColumn<Curso, Integer> ColunaID;
+
+    @FXML
+    private TableColumn<Curso, String> ColunaStatus;
+
+    @FXML
+    private TableColumn<Curso, String> ColunaCargaHoraria;
 
     @FXML
     private Button Configuracao;
@@ -42,9 +51,6 @@ public class ControladorTelaCursosAdm implements Initializable{
 
     @FXML
     private Button Home;
-
-    @FXML
-    private ListView<Curso> ListaCursos = new ListView<>();
 
     @FXML
     private Button Professores;
@@ -64,6 +70,9 @@ public class ControladorTelaCursosAdm implements Initializable{
     @FXML
     private Button excluirCursoBotao;
 
+    @FXML
+    private TableView<Curso> tabelaCursos;
+
     CursoDao BDCurso;
 
     @Override
@@ -73,39 +82,43 @@ public class ControladorTelaCursosAdm implements Initializable{
         Professores.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoProf.fxml", Professores));
         Alunos.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoAlunos.fxml", Alunos));
         Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
-        Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml",Sair));
-        
-        // Criar uma instância de Connection usando a classe Conexao
+        Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml", Sair));
+
         Connection conexao = null;
         try {
             conexao = Conexao.getConnection();
+
+            // Chama o construtor de CursoDao passando a conexão como argumento
+            BDCurso = new CursoDao(conexao);
+            // Obter a lista de cursos do banco de dados
+            List<Curso> cursosDoBanco = BDCurso.consultarTodos();
+
+            // Criar uma ObservableList a partir da lista de cursos
+            ObservableList<Curso> observableCursos = FXCollections.observableArrayList(cursosDoBanco);
+
+            // Configurar o TableView e as colunas
+            ColunaID.setCellValueFactory(new PropertyValueFactory<>("id"));
+            ColunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            ColunaStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+            ColunaCargaHoraria.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
+
+            // Configurar a TableView para exibir a lista de cursos
+            tabelaCursos.setItems(observableCursos);
+
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            // Certifique-se de fechar a conexão no bloco finally
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
-        // Chama o construtor de CursoDao passando a conexão como argumento
-        BDCurso = new CursoDao(conexao);
-        // Obter a lista de cursos do banco de dados
-        List<Curso> cursosDoBanco = BDCurso.consultarTodos();
-        
-        // Criar uma ObservableList a partir da lista de cursos
-        ObservableList<Curso> observableCursos = FXCollections.observableArrayList(cursosDoBanco);
-        
-        // Configurar o ListView para exibir a lista de cursos
-        ListaCursos.setItems(observableCursos);
-        
-        // Verificar se a lista de cursos está vazia e exibir uma mensagem se necessário
-        if (observableCursos.isEmpty()) {
-            ListaCursos.setPlaceholder(new Label("Nenhum curso disponível."));
-        }
-        
-
-        
 
         CadastrarCursoBotao.setOnAction(event -> sistema.trocarCena("/fxml/telaCadastroCurso.fxml", CadastrarCursoBotao));
-        
         detalhesCurso.setOnAction(event -> sistema.trocarCena("/fxml/telaDetalhesCurso.fxml", detalhesCurso));
-
     }
-
 }
