@@ -127,7 +127,7 @@ public class ControladorTelaCadastroCurso implements Initializable {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erro");
         alert.setHeaderText(null);
-        alert.setContentText("NÃO TA PRONTO MEU CHAPA");
+        alert.setContentText("Campo vazio ou dados inválidos.");
         alert.showAndWait();
     }
     

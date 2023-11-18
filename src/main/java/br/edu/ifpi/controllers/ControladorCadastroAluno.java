@@ -11,9 +11,13 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.sistema;
+import br.edu.ifpi.dao.AlunoDao;
+import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.entidades.Aluno;
 import br.edu.ifpi.enums.StatusAluno;
 
@@ -61,7 +65,7 @@ public class ControladorCadastroAluno implements Initializable {
     @FXML
     private Button voltar;
 
-    // private String selectedValue;
+    AlunoDao BDAluno;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,18 +77,9 @@ public class ControladorCadastroAluno implements Initializable {
         Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
         Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml",Sair));
         voltar.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoAlunos.fxml", voltar));
-
         //Inicia o radioButton como statusAluno.ATIVO
         ativo.fire();
-        //Atualiza a opção selecionada no radioButton e recebe em uma variável
-        // Status.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-        //     if (newValue != null) {
-        //         // O código a ser executado quando uma opção é selecionada
-        //         RadioButton selectedRadioButton = (RadioButton) newValue;
-        //         selectedValue = selectedRadioButton.getText();
-        //     }
-        // });
-
+        //
         cadastrar.setOnAction(e -> {
             gerarAluno();
         });
@@ -92,6 +87,15 @@ public class ControladorCadastroAluno implements Initializable {
     }
 
     public void gerarAluno() {
+
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Trate a exceção conforme necessário
+        }
+        BDAluno = new AlunoDao(conexao);
+
         StatusAluno status;
         String nome = nomeAluno.getText();
         String email = campoEmail.getText();
@@ -113,7 +117,7 @@ public class ControladorCadastroAluno implements Initializable {
             nomeAluno.clear();
             campoEmail.clear();
             Aluno aluno = new Aluno(nome, email, status);
-            aluno.exibirAluno();
+            BDAluno.cadastrar(aluno);
         } else {
             nomeAluno.clear();
             campoEmail.clear();

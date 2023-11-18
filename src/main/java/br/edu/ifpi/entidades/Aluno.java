@@ -71,9 +71,14 @@ public class Aluno {
         this.cursos = cursos;
     }
 
-    public void exibirAluno(){
-        System.out.println(getNome());
-        System.out.println(getEmail());
-        System.out.println(getStatus());
+    // Método toString
+    @Override
+    public String toString() {
+        return "Aluno{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

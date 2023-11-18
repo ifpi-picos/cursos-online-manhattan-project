@@ -84,7 +84,7 @@ public class ControladorTelaCursosAdm implements Initializable {
         Alunos.setOnAction(event -> sistema.trocarCena("/fxml/telaGerenciamentoAlunos.fxml", Alunos));
         Configuracao.setOnAction(event -> sistema.trocarCena("/fxml/telaMainAdm.fxml", Configuracao));
         Sair.setOnAction(event -> sistema.trocarCena("/fxml/telaLogIn.fxml", Sair));
-
+        //Fazendo conexão com o banco de dados para carregar os arquivos na página
         Connection conexao = null;
         try {
             conexao = Conexao.getConnection();
@@ -108,15 +108,6 @@ public class ControladorTelaCursosAdm implements Initializable {
 
             // Configurar seleção única
             tabelaCursos.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
-            // // Adicionar listener para detectar a seleção da linha
-            // tabelaCursos.getSelectionModel().selectedItemProperty().addListener((obs, antigo, novo) -> {
-            //     // 'novo' contém o item (curso) selecionado na tabela
-            //     if (novo != null) {
-            //         //acompanhamento para saber se a seleção está sendo válida 
-            //         System.out.println("Linha selecionada: " + novo.toString());
-            //     }
-            // });
 
         } catch (SQLException e) {
             e.printStackTrace();
