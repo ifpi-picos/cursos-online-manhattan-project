@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -105,6 +106,18 @@ public class ControladorTelaCursosAdm implements Initializable {
             // Configurar a TableView para exibir a lista de cursos
             tabelaCursos.setItems(observableCursos);
 
+            // Configurar seleção única
+            tabelaCursos.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+            // // Adicionar listener para detectar a seleção da linha
+            // tabelaCursos.getSelectionModel().selectedItemProperty().addListener((obs, antigo, novo) -> {
+            //     // 'novo' contém o item (curso) selecionado na tabela
+            //     if (novo != null) {
+            //         //acompanhamento para saber se a seleção está sendo válida 
+            //         System.out.println("Linha selecionada: " + novo.toString());
+            //     }
+            // });
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -121,4 +134,35 @@ public class ControladorTelaCursosAdm implements Initializable {
         CadastrarCursoBotao.setOnAction(event -> sistema.trocarCena("/fxml/telaCadastroCurso.fxml", CadastrarCursoBotao));
         detalhesCurso.setOnAction(event -> sistema.trocarCena("/fxml/telaDetalhesCurso.fxml", detalhesCurso));
     }
+
+    // // Método para lidar com o botão "Editar"
+    // @FXML
+    // private void handleEditarCurso() {
+    //     Curso cursoSelecionado = tabelaCursos.getSelectionModel().getSelectedItem();
+    //     if (cursoSelecionado != null) {
+    //         // Chamar a função para editar o curso
+    //         System.out.println("Editar curso: " + cursoSelecionado);
+    //     }
+    // }
+
+    // // Método para lidar com o botão "Excluir"
+    // @FXML
+    // private void handleExcluirCurso() {
+    //     Curso cursoSelecionado = tabelaCursos.getSelectionModel().getSelectedItem();
+    //     if (cursoSelecionado != null) {
+    //         // Chamar a função para excluir o curso
+    //         System.out.println("Excluir curso: " + cursoSelecionado);
+    //     }
+    // }
+
+    // // Método para lidar com o botão "Detalhes"
+    // @FXML
+    // private void handleDetalhesCurso() {
+    //     Curso cursoSelecionado = tabelaCursos.getSelectionModel().getSelectedItem();
+    //     if (cursoSelecionado != null) {
+    //         // Chamar a função para exibir detalhes do curso
+    //         System.out.println("Detalhes do curso: " + cursoSelecionado);
+    //     }
+    // }
 }
+
