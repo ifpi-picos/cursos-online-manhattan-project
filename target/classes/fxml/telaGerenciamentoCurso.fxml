@@ -27,8 +27,7 @@
                   </Text>
                   <Button fx:id="CadastrarCursoBotao" layoutX="573.0" layoutY="107.0" mnemonicParsing="false" text="Cadastrar curso" />
                   <Button fx:id="excluirCursoBotao" layoutX="569.0" layoutY="554.0" mnemonicParsing="false" text="Excluir" />
-                  <Button fx:id="editarCursoBotao" layoutX="513.0" layoutY="554.0" mnemonicParsing="false" text="Editar" />
-                  <Button fx:id="detalhesCurso" layoutX="442.0" layoutY="554.0" mnemonicParsing="false" text="Detalhes" />
+                  <Button fx:id="detalhesCurso" layoutX="498.0" layoutY="554.0" mnemonicParsing="false" text="Detalhes" />
                   <TableView fx:id="tabelaCursos" layoutX="122.0" layoutY="146.0" prefHeight="400.0" prefWidth="500.0" styleClass="formulario">
                     <columns>
                       <TableColumn fx:id="ColunaNome" prefWidth="200.0" text="Nome" />

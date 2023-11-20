@@ -98,6 +98,7 @@
     -fx-background-radius: 0px;
     -fx-effect: dropshadow(three-pass-box, #999, 0, 0, 0, 0);
 }
+
 .btn-out:hover {
     -fx-min-width: 200px;
     -fx-max-width: 250px;
@@ -191,3 +192,10 @@
     -fx-font-size: 14px;
     -fx-text-fill: #333333;
 }
+
+/* MODAL====================================================================================== */
+
+.modal-background {
+    -fx-background-color: rgba(0, 0, 0, 0.5); /* Cor preta com 50% de opacidade */
+}
+
