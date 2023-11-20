@@ -12,7 +12,7 @@ public class Conexao {
 
     // private static final String URL = "jdbc:postgresql://localhost:5432/ManhattanBD";  
     // private static final String USUARIO = "postgres";
-    // private static final String SENHA   = "oppai69";
+    // private static final String SENHA   = 
 
     
 

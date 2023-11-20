@@ -122,7 +122,7 @@ public class ControladorTelaCursosAdm implements Initializable {
         }
 
         CadastrarCursoBotao.setOnAction(event -> sistema.trocarCena("/fxml/telaCadastroCurso.fxml", CadastrarCursoBotao));
-        detalhesCurso.setOnAction(event -> sistema.trocarCena("/fxml/telaDetalhesCurso.fxml", detalhesCurso));
+        // detalhesCurso.setOnAction(event -> );
     }
 
     // // Método para lidar com o botão "Editar"
