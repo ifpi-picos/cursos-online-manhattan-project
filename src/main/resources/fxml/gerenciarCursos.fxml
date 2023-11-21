@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="675.0" prefWidth="250.0" stylesheets="@../css/style.css">
@@ -67,12 +66,12 @@
                   <TableColumn fx:id="colunaCargaHoraria" maxWidth="100.0" prefWidth="100.0" text="Carga Horaria" />
                </columns>
             </TableView>
-            <Button layoutX="328.0" layoutY="618.0" mnemonicParsing="false" text="Adicionar">
+            <Button fx:id="btnAdicionar" layoutX="328.0" layoutY="618.0" mnemonicParsing="false" text="Adicionar">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button layoutX="458.0" layoutY="618.0" mnemonicParsing="false" text="Remover">
+            <Button fx:id="btnRemover" layoutX="458.0" layoutY="618.0" mnemonicParsing="false" text="Remover">
                <font>
                   <Font size="14.0" />
                </font>
