@@ -43,4 +43,12 @@ public class Professor {
     public void setId(int id) {
       this.id = id;
     }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(Curso curso) {
+        this.cursos.add(curso) ;
+    }
 }
