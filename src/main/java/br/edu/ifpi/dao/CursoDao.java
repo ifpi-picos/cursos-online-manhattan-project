@@ -150,4 +150,34 @@ public class CursoDao implements Dao<Curso>{
         }
         return cursos;
     }
+
+    // Consultar cursoos com status aberto
+    public List<Curso> consultarAbertos() {
+        List<Curso> cursos = new ArrayList<>();
+
+        String sql = "SELECT * FROM cursos WHERE status = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, StatusCurso.ABERTO.toString());
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                int idProfessor = rs.getInt("id_professor");
+                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
+
+                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
+
+                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
+                cursos.add(curso);
+            }
+            
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
+        }
+        return cursos;
+    }
 }
