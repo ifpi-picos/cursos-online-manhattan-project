@@ -1,0 +1,9 @@
+.background-secundario{
+    -fx-background-color: #808080;
+}
+
+#formsLogIn {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, -5, 5);
+    -fx-background-insets: 10; /* Ajuste conforme necessário */
+}
+

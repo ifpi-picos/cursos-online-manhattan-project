@@ -15,12 +15,11 @@ public class Conexao {
 
     public static void closeConnection(Connection connection) throws SQLException {
         try {
-            if (connection != null) {
+            if (connection != null && !connection.isClosed()) {
                 connection.close();
             }
         } catch (Exception e) {
             throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
         }
-        connection.close();
     }
 }
