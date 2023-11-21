@@ -42,41 +42,44 @@ public class controladorLogin implements Initializable {
         String nome = inputNome.getText();
         String email = inputEmail.getText();
     
-        // Estabelecer conexão com o banco de dados
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-    
-        try {
-            conn = DriverManager.getConnection("jdbc:postgresql://db.ijhnuifhmrhpcwvnlezj.supabase.co:5432/postgres?sslmode=require",
-            "postgres", "ifpi_bd2023");
-    
-            // Consulta SQL para verificar os dados na tabela de alunos
-            String sqlAlunos = "SELECT * FROM alunos WHERE nome = ? AND email = ?";
-            stmt = conn.prepareStatement(sqlAlunos);
+        // Substitua as informações do banco de dados conforme necessário
+        String url = "jdbc:postgresql://db.ijhnuifhmrhpcwvnlezj.supabase.co:5432/postgres?sslmode=require";
+        String usuarioBanco = "postgres";
+        String senhaBanco = "ifpi_bd2023";
+
+        // SQL para consultar se o aluno existe
+        String sql = "SELECT nome, email FROM alunos WHERE nome = ? AND email = ?";
+
+        try (
+            // Criação da conexão com o banco de dados
+            Connection conexao = DriverManager.getConnection(url, usuarioBanco, senhaBanco);
+            
+            // Preparação da consulta SQL
+            PreparedStatement stmt = conexao.prepareStatement(sql)
+        ) {
+            // Define os parâmetros da consulta
             stmt.setString(1, nome);
             stmt.setString(2, email);
-    
-            rs = stmt.executeQuery();
-    
-            // Se a consulta retornar um resultado, o usuário é autenticado como aluno
-            if (rs.next()) {
-                sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnEntrar);
+
+            // Executa a consulta
+            ResultSet resultado = stmt.executeQuery();
+
+            // Verifica se o aluno foi autenticado
+            if (resultado.next()) {
+                // Aluno autenticado
+                String nomeAutenticado = resultado.getString("nome");
+                String emailAutenticado = resultado.getString("email");
+
+                System.out.println("Aluno autenticado:");
+                System.out.println("Nome: " + nomeAutenticado);
+                System.out.println("Email: " + emailAutenticado);
             } else {
-                // Caso contrário, mostrar uma mensagem de erro
-                System.out.println("Nome de usuário ou email incorretos");
+                // Aluno não autenticado
+                System.out.println("Aluno não autenticado");
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            // Fechar recursos
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }  
 }
