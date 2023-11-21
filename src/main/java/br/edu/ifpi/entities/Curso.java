@@ -18,4 +18,16 @@ public class Curso {
         this.status = StatusCurso.ATIVO;
         this.notas = new ArrayList<>();
     }
+
+    // Construtor completo para manipulação no sistema
+    public Curso(int id, String nome, StatusCurso status, int cargaHoraria, Professor professor) {
+        this.id = id;
+        this.nome = nome;
+        this.status = status;
+        this.cargaHoraria = cargaHoraria;
+        this.professor = professor;
+        this.notas = new ArrayList<>();
+    }
+
+    // Getters e Setters
 }
