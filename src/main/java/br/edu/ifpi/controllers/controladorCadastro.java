@@ -73,10 +73,12 @@ public class controladorCadastro implements Initializable {
             System.out.println("Email válido");
         }else{
             exibirPopupErro();
+            return;
         }
 
         if(email == null || email.isEmpty() || nome == null || nome.isEmpty()){
             exibirPopupErro();
+            return;
         }
 
         if (radioAluno.isSelected()) {
