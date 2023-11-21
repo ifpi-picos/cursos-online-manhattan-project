@@ -1,5 +1,13 @@
 package br.edu.ifpi.dao;
 
-public class dao {
-    
+import java.util.List;
+
+public interface dao {
+    public int cadastrar(T entidade);
+
+    public List<T> consultarTodos();
+
+    public int alterar(T entidade);
+
+    public int remover(T entidade);
 }
