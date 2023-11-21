@@ -7,14 +7,14 @@ public class Aluno {
     private List<Curso> cursos; // Cursos que o aluno está matriculado
 
     // Construtores
-    public Aluno(int id, String nome, String email, List<Curso> cursos) {
+    public Aluno(int id, String nome, String email) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cursos = cursos;
     }
 
-    public Aluno(String nome, String email, List<Curso> cursos) {
+    public Aluno(String nome, String email) {
         this.nome = nome;
         this.email = email;
         this.cursos = cursos;
