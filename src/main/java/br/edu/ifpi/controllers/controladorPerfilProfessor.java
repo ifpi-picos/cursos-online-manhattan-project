@@ -1,6 +1,9 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -10,6 +13,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import br.edu.ifpi.sistema;
+import br.edu.ifpi.dao.CursoDao;
+import br.edu.ifpi.entities.Curso;
+import br.edu.ifpi.dao.Conexao;
 
 public class controladorPerfilProfessor implements Initializable {
 
@@ -53,6 +59,23 @@ public class controladorPerfilProfessor implements Initializable {
         btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialprof.fxml", btnCursos));
 
         
+    }
+
+    // Carregar dados do professor que está logado
+    public void carregarDadosProfessor(String nome, String email) {
+        carregarNome.setText(nome);
+        carregarEmail.setText(email);
+
+        try (Connection conexao = Conexao.getConnection()) {
+            // Carregar cursos que o professor ministra
+            CursoDao cursoDao = new CursoDao(conexao);
+                List<Curso> cursos = cursoDao.buscarPorNomeEmail(nome, email);
+                cursos.forEach(curso -> {
+                    System.out.println(curso.getNome());
+                });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
