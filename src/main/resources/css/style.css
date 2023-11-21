@@ -1,0 +1,58 @@
+
+.background-secundario{
+    -fx-background-color: gray;
+}
+
+.background-primario{
+    -fx-background-color: snow;
+}
+
+#formsLogIn {
+    -fx-background-color: snow;
+    -fx-border-width: 0 0 0 5px; 
+    -fx-border-color: rgba(0, 0, 0, 0.8); 
+}
+
+.VBox {
+    -fx-background-color: silver;
+    -fx-min-width: 60px;
+    -fx-max-width: 60px;
+    -fx-spacing: 75;
+    -fx-overflow: hidden;
+    -fx-pref-height: 675px;
+    -fx-transition: width 1s;
+}
+
+.VBox:hover {
+    -fx-min-width: 200px;
+    -fx-max-width: 250px;
+}
+
+.btn-lateral{
+    -fx-min-width: 60px;
+    -fx-max-width: 60px;
+    -fx-overflow: hidden;
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-text-align: right;
+    -fx-text-fill: #000000;
+    -fx-padding: 10px;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-effect: dropshadow(three-pass-box, #999, 0, 0, 0, 0);
+    -fx-transition: width 1s;
+}
+
+.btn-lateral:hover {
+    -fx-min-width: 200px;
+    -fx-max-width: 250px;
+    -fx-background-color: gray;
+}
+
+.btn-lateral:armed{
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, #666, 0, 0, 0, 10);
+    -fx-translate-y: 10;
+}

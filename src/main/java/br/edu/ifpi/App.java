@@ -19,16 +19,8 @@ public class App extends Application{
     @Override
     public void start(Stage stage) throws Exception {
 
-        // Criar um layout simples usando um StackPane
-        StackPane root = new StackPane();
-
-        // Configurar a cena
-        Scene scene = new Scene(root, 600, 400);
-        URL resourceUrl = getClass().getResource("/fxml/login.fxml");
-        System.out.println("Resource URL: " + resourceUrl);
-
-        // Parent root = FXMLLoader.load(resourceUrl);
-        // Scene scene = new Scene(root);
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
