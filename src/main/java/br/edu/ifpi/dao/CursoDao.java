@@ -47,7 +47,7 @@ public class CursoDao implements Dao<Curso>{
             while(rs.next()) {
                 String nome = rs.getString("nome");
                 int cargaHoraria = rs.getInt("cargaHoraria");
-                Professor nomeProfessor = Profesrs.getString("professor");
+                int idProfessor = rs.getInt("id_professor");
                 StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
 
                 Curso curso = new Curso(nome, cargaHoraria, professor, status);
