@@ -103,4 +103,33 @@ public class ProfessorDao implements Dao<Professor> {
             }
         }
     }
+
+    // Buscar professor por id
+    public Professor buscarPorId(int id) {
+        String sql = "SELECT * FROM professores WHERE id = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+
+                Professor professor = new Professor(nome, email);
+                return professor;
+            }
+            
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar professor no banco de dados: " + e.getMessage());
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
+            }
+        }
+        return null;
+    }
 }
