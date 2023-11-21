@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
@@ -15,8 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import br.edu.ifpi.sistema;
 import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.CursoDao;
 import br.edu.ifpi.dao.ProfessorDao;
+import br.edu.ifpi.entities.Curso;
 import br.edu.ifpi.entities.Professor;
+import br.edu.ifpi.enums.StatusCurso;
 
 public class controladorCadastroCurso implements Initializable {
 
@@ -62,13 +67,66 @@ public class controladorCadastroCurso implements Initializable {
         btnHome.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialProf.fxml", btnHome));
         btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilProfessor.fxml", btnPerfil));
         btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
-
-        btnCadastrar.setOnAction(null);
+        carregarProfessores();
+        statusAberto.fire();
+        btnCadastrar.setOnAction(event -> cadastrarCurso());
     }
 
 
     public void cadastrarCurso(){
         String nome = inputNome.getText();
+        String cargaHorariaTexto = inputHoras.getText();
+        StatusCurso status;
+        Professor professor;
+
+        if (statusAberto.isSelected()) {
+            status = StatusCurso.ABERTO;
+        } else {
+            status = StatusCurso.FECHADO;
+        }
+
+        if (selectProfessor != null) {
+            professor = selectProfessor.getValue();
+        } else {
+            exibirPopupErro();
+            return;
+        }
+
+        Connection connection = null;
+        try {
+            connection = Conexao.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        CursoDao BDCurso = new CursoDao(connection);
+
+        if (nome == null || nome.isEmpty() || cargaHorariaTexto == null || cargaHorariaTexto.isEmpty()) {
+            exibirPopupErro();
+            return;
+        }
+
+        int cargaHoraria;
+        try {
+            cargaHoraria = Integer.parseInt(cargaHorariaTexto);
+        } catch (NumberFormatException e) {
+            exibirPopupErro();
+            return;
+        }
+
+        if (statusAberto.isSelected()) {
+            status = StatusCurso.ABERTO;
+            limparCampos();
+            Curso curso = new Curso(nome, cargaHoraria, professor, status);
+            BDCurso.cadastrar(curso);
+        } else{
+            status = StatusCurso.FECHADO;
+            limparCampos();
+            Curso curso = new Curso(nome, cargaHoraria, professor, status);
+            BDCurso.cadastrar(curso);
+        }
+
+
     }
 
     // Função para carregar uma lista de professores
@@ -84,6 +142,23 @@ public class controladorCadastroCurso implements Initializable {
         ProfessorDao professorDao = new ProfessorDao(conexao);
         List<Professor> professores = professorDao.consultarTodos();
 
+        // Configurar o ChoiceBox com a lista de professores
+        selectProfessor.getItems().addAll(professores);
         
+    }
+
+    private void exibirPopupErro() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText(null);
+        alert.setContentText("Dados não preenchidos ou inválidos");
+        alert.showAndWait();
+    }
+
+    public void limparCampos() {
+        inputNome.clear();
+        inputHoras.clear();
+        statusAberto.setSelected(false);
+        statusFechado.setSelected(false);
     }
 }
