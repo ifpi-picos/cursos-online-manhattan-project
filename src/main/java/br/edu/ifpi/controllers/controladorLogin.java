@@ -13,7 +13,9 @@ import java.util.ResourceBundle;
 import br.edu.ifpi.sistema;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.dao.ProfessorDao;
+import br.edu.ifpi.dao.AlunoDao;
 import br.edu.ifpi.entities.Professor;
+import br.edu.ifpi.entities.Aluno;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -41,6 +43,7 @@ public class controladorLogin implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         List<Professor> professores = carregarProfessor();
+        List<Aluno> alunos = carregarAluno();
         btnCadastrar.setOnAction(event -> sistema.trocarCena("/fxml/cadastro.fxml", btnCadastrar));
 
     }
@@ -71,4 +74,19 @@ public class controladorLogin implements Initializable {
         return professores;
     }
     
+    //Carregar aluno
+    public List<Aluno> carregarAluno (){
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Trate a exceção conforme necessário
+        }
+
+        AlunoDao alunoDao = new AlunoDao(conexao);
+
+        List<Aluno> alunos = alunoDao.consultarTodos();
+
+        return alunos;
+    }
 }
