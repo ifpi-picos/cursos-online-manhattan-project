@@ -91,4 +91,63 @@ public class CursoDao implements Dao<Curso>{
             throw new RuntimeException("Erro ao remover curso no banco de dados: " + e.getMessage());
         }
     }
+
+    // Selecionar curso pela id do professor
+    public List<Curso> buscarPorId(int idProfessor) {
+        List<Curso> cursos = new ArrayList<>();
+
+        String sql = "SELECT * FROM cursos WHERE id_professor = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idProfessor);
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
+
+                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
+
+                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
+                cursos.add(curso);
+            }
+            
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
+        }
+        return cursos;
+    }
+
+    // Selecionar curso pelo nome e email do professor
+    public List<Curso> buscarPorNomeEmail(String nome, String email) {
+        List<Curso> cursos = new ArrayList<>();
+
+        String sql = "SELECT * FROM cursos WHERE nome = ? AND email = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, nome);
+            stmt.setString(2, email);
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String nomeCurso = rs.getString("nome");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
+
+                Professor professor = new ProfessorDao(connection).buscarPorNomeEmail(nome, email);
+
+                Curso curso = new Curso(id, nomeCurso, cargaHoraria, professor, status);
+                cursos.add(curso);
+            }
+            
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
+        }
+        return cursos;
+    }
 }
