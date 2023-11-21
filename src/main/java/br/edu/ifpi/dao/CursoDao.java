@@ -78,4 +78,18 @@ public class CursoDao implements Dao<Curso>{
             throw new RuntimeException("Erro ao alterar curso no banco de dados: " + e.getMessage());
         }
     }
+
+    @Override
+    public int remover(Curso curso) {
+        String sql = "DELETE FROM cursos WHERE id = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, curso.getId());
+
+            return stmt.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao remover curso no banco de dados: " + e.getMessage());
+        }
+    }
 }
