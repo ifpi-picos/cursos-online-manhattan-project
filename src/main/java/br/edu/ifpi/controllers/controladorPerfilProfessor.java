@@ -3,6 +3,7 @@ package br.edu.ifpi.controllers;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -15,6 +16,7 @@ import javafx.scene.control.TextField;
 import br.edu.ifpi.sistema;
 import br.edu.ifpi.dao.CursoDao;
 import br.edu.ifpi.entities.Curso;
+import br.edu.ifpi.entities.Professor;
 import br.edu.ifpi.dao.Conexao;
 
 public class controladorPerfilProfessor implements Initializable {
@@ -62,20 +64,25 @@ public class controladorPerfilProfessor implements Initializable {
     }
 
     // Carregar dados do professor que está logado
-    public void carregarDadosProfessor(String nome, String email) {
-        carregarNome.setText(nome);
-        carregarEmail.setText(email);
+    public List<Professor> carregarDadosProfessor(String nome, String email) {
+    List<Professor> professores = new ArrayList<>();
 
-        try (Connection conexao = Conexao.getConnection()) {
-            // Carregar cursos que o professor ministra
-            CursoDao cursoDao = new CursoDao(conexao);
-                List<Curso> cursos = cursoDao.buscarPorNomeEmail(nome, email);
-                cursos.forEach(curso -> {
-                    System.out.println(curso.getNome());
-                });
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    try (Connection conexao = Conexao.getConnection()) {
+        // Carregar cursos que o professor ministra
+        CursoDao cursoDao = new CursoDao(conexao);
+        List<Curso> cursos = cursoDao.buscarPorNomeEmail(nome, email);
+
+        Professor professor = new Professor();
+        professor.setNome(nome);
+        professor.setEmail(email);
+        professor.setCursos(cursos);
+
+        professores.add(professor);
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+
+    return professores;
+}
 
 }
