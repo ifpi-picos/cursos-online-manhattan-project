@@ -62,6 +62,7 @@ public class controladorGerenciarCursos implements Initializable {
         btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
 
         btnAdicionar.setOnAction(event -> sistema.trocarCena("/fxml/cadastroCurso.fxml", btnAdicionar));
+        btnRemover.setOnAction(event -> removerCurso());
 
         Connection conexao = null;
         try {
@@ -98,8 +99,47 @@ public class controladorGerenciarCursos implements Initializable {
                 }
             }
         }
-
-
     }
 
+    // Função para remover um curso
+    public void removerCurso() {
+        sistema sistema = new sistema();
+
+        // Obter o curso selecionado
+        Curso cursoSelecionado = tabelaCursos.getSelectionModel().getSelectedItem();
+
+        // Se nenhum curso foi selecionado, exibir mensagem de erro
+        if (cursoSelecionado == null) {
+            sistema.exibirPopupErro("Nenhum curso selecionado!");
+            return;
+        }
+
+        // Obter a conexão com o banco de dados
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConnection();
+
+            // Chamar o método de remoção do curso
+            CursoDao BDCurso = new CursoDao(conexao);
+            BDCurso.remover(cursoSelecionado);
+
+            // Remover o curso da tabela
+            tabelaCursos.getItems().remove(cursoSelecionado);
+
+            // Exibir mensagem de sucesso
+            sistema.exibirPopupSucesso("Curso removido com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            sistema.exibirPopupErro("Erro ao remover curso!");
+        } finally {
+            // Certifique-se de fechar a conexão no bloco finally
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
