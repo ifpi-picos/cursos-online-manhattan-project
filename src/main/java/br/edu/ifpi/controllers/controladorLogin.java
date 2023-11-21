@@ -55,7 +55,18 @@ public class controladorLogin implements Initializable {
         String nome = inputNome.getText();
         String email = inputEmail.getText();
     
+        for (Professor professor : professores) {
+            if (professor.getNome().equals(nome) && professor.getEmail().equals(email)) {
+                System.out.println("Professor encontrado");
         
+                System.out.println("Nome: " + professor.getNome());
+                System.out.println("Email: " + professor.getEmail());
+
+                sistema.trocarCena("/fxml/telaInicial.fxml", btnEntrar);
+            } else {
+                System.out.println("Professor não encontrado");
+            }
+        }
     }
     
     //Carregar professor
