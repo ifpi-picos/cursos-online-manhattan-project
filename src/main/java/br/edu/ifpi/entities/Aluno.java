@@ -58,4 +58,12 @@ public class Aluno {
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
+
+    public StatusAluno getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAluno status) {
+        this.status = status;
+    }
 }
