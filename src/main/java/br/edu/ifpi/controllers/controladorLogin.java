@@ -49,22 +49,7 @@ public class controladorLogin implements Initializable {
     
         try {
             conn = DriverManager.getConnection("jdbc:postgresql://db.ijhnuifhmrhpcwvnlezj.supabase.co:5432/postgres?sslmode=require", "postgres", "ifpi_bd2023");
-    
-            // Consulta SQL para verificar os dados na tabela de professores
-            String sqlProfessores = "SELECT * FROM professores WHERE nome = ? AND email = ?";
-            stmt = conn.prepareStatement(sqlProfessores);
-            stmt.setString(1, nome);
-            stmt.setString(2, email);
-    
-            rs = stmt.executeQuery();
-    
-            // Se a consulta retornar um resultado, o usuário é autenticado como professor
-            if (rs.next()) {
-                sistema.trocarCena("/fxml/homeProfessor.fxml", btnEntrar);
-            } else {
-                // Se não, tentar autenticar como aluno
-                stmt.close();
-                rs.close();
+            
     
                 String sqlAlunos = "SELECT * FROM alunos WHERE nome = ? AND email = ?";
                 stmt = conn.prepareStatement(sqlAlunos);
@@ -80,8 +65,8 @@ public class controladorLogin implements Initializable {
                     // Caso contrário, mostrar uma mensagem de erro
                     System.out.println("Nome de usuário ou email incorretos");
                 }
-            }
-        } catch (SQLException e) {
+            } catch (SQLException e) {
+                System.out.println("Erro ao consultar o banco de dados: " + e.getMessage());
             e.printStackTrace();
         } finally {
             // Fechar recursos
@@ -93,5 +78,5 @@ public class controladorLogin implements Initializable {
                 e.printStackTrace();
             }
         }
-    }
+    }  
 }
