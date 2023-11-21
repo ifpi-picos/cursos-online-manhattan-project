@@ -18,4 +18,5 @@ br\edu\ifpi\enums\StatusAluno.class
 br\edu\ifpi\controllers\controladorCadastro.class
 br\edu\ifpi\controllers\controladorInicialAluno.class
 br\edu\ifpi\controllers\controladorLogin.class
+br\edu\ifpi\SessaoUsuario.class
 br\edu\ifpi\controllers\controladorInicialProf.class

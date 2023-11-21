@@ -3,7 +3,6 @@ package br.edu.ifpi.controllers;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -12,9 +11,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
+import br.edu.ifpi.SessaoUsuario;
 import br.edu.ifpi.sistema;
 import br.edu.ifpi.dao.CursoDao;
+import br.edu.ifpi.dao.ProfessorDao;
 import br.edu.ifpi.entities.Curso;
 import br.edu.ifpi.entities.Professor;
 import br.edu.ifpi.dao.Conexao;
@@ -23,9 +25,6 @@ public class controladorPerfilProfessor implements Initializable {
 
     @FXML
     private Button btnCursos;
-
-    @FXML
-    private Button btnDetalhes;
 
     @FXML
     private Button btnHome;
@@ -40,49 +39,44 @@ public class controladorPerfilProfessor implements Initializable {
     private Button btnVoltar;
 
     @FXML
-    private TextField carregarEmail;
+    private Text carregarEmail;
 
     @FXML
-    private TextField carregarNome;
+    private Text carregarNome;
 
     @FXML
-    private TableColumn<?, ?> colunaNomeCursos;
+    private TableColumn<Curso, String> colunaNomeCursos;
 
     @FXML
-    private TableView<?> cursosCadastrado;
+    private TableView<Curso> cursosCadastrado;
+
+    @FXML
+    private Button inserirNota;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        btnCursos.setOnAction(event -> sistema.trocarCena("/fxml/gerenciarCursos.fxml",btnCursos));
+        colunaNomeCursos.setCellValueFactory(new PropertyValueFactory<>("nome"));
+
+        carregarNome.setText(SessaoUsuario.getNomeUsuario());
+        carregarEmail.setText(SessaoUsuario.getEmailUsuario());
+
+        try (Connection connection = Conexao.getConnection()) {
+            CursoDao cursoDao = new CursoDao(connection);
+            ProfessorDao professorDao = new ProfessorDao(connection);
+
+            Professor professor = professorDao.buscarPorNomeEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
+            List<Curso> listaCursos = cursoDao.buscarPorId(professor.getId());
+
+            // Configurar a lista de cursos na tabela
+            cursosCadastrado.getItems().setAll(listaCursos);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        btnCursos.setOnAction(event -> sistema.trocarCena("/fxml/gerenciarCursos.fxml", btnCursos));
         btnHome.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialProf.fxml", btnHome));
         btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilProfessor.fxml", btnPerfil));
         btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
-
-        btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialprof.fxml", btnCursos));
-
-        
+        btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialprof.fxml", btnVoltar));
     }
-
-    // Carregar dados do professor que está logado
-    public List<Professor> carregarDadosProfessor(String nome, String email) {
-    List<Professor> professores = new ArrayList<>();
-
-    try (Connection conexao = Conexao.getConnection()) {
-        // Carregar cursos que o professor ministra
-        CursoDao cursoDao = new CursoDao(conexao);
-        List<Curso> cursos = cursoDao.buscarPorNomeEmail(nome, email);
-
-        Professor professor = new Professor(email, email);
-        professor.setNome(nome);
-        professor.setEmail(email);
-        professor.setCursos(cursos);
-
-        professores.add(professor);
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-
-    return professores;
-}
-
 }

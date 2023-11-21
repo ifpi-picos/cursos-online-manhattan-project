@@ -3,6 +3,8 @@ package br.edu.ifpi;
 public class SessaoUsuario {
     private static String nomeUsuario;
     public static String emailUsuario;
+    private static String tipoUsuario; // Pode ser 'Aluno' ou 'Professor'
+    
     
     public static String getEmailUsuario() {
         return emailUsuario;
@@ -11,8 +13,6 @@ public class SessaoUsuario {
     public static void setEmailUsuario(String emailUsuario) {
         SessaoUsuario.emailUsuario = emailUsuario;
     }
-
-    private static String tipoUsuario; // Pode ser 'Aluno' ou 'Professor'
 
     public static String getNomeUsuario() {
         return nomeUsuario;
