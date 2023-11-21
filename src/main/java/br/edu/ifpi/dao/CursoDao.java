@@ -1,15 +1,13 @@
 package br.edu.ifpi.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifpi.entities.Curso;
 import br.edu.ifpi.entities.Professor;
 import br.edu.ifpi.enums.StatusCurso;
-
-import java.util.ArrayList;
-import java.sql.ResultSet;
 
 public class CursoDao implements Dao<Curso>{
     private Connection connection;

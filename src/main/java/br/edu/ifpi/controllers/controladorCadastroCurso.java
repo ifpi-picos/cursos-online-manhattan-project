@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.util.StringConverter;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
@@ -70,6 +71,7 @@ public class controladorCadastroCurso implements Initializable {
         carregarProfessores();
         statusAberto.fire();
         btnCadastrar.setOnAction(event -> cadastrarCurso());
+        btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/gerenciarCursos", btnVoltar));
     }
 
 
@@ -142,7 +144,6 @@ public class controladorCadastroCurso implements Initializable {
         ProfessorDao professorDao = new ProfessorDao(conexao);
         List<Professor> professores = professorDao.consultarTodos();
 
-        // Configurar o ChoiceBox com a lista de professores
         selectProfessor.getItems().addAll(professores);
         
     }

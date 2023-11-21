@@ -54,4 +54,9 @@ public class Professor {
     public void setCursos(Curso curso) {
         this.cursos.add(curso) ;
     }
+
+    @Override
+        public String toString() {
+            return nome;
+        }
 }
