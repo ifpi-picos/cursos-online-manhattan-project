@@ -3,6 +3,9 @@ import br.edu.ifpi.entities.Professor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
+import java.sql.ResultSet;
 
 public class ProfessorDao implements Dao<Professor> {
     private Connection connection;
@@ -23,12 +26,45 @@ public class ProfessorDao implements Dao<Professor> {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao inserir professor no banco de dados: " + e.getMessage());
         } finally {
-            connection.close();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
+            }
         }
     }
 
     @Override
-    public int atualizar(Professor professor) {
+    public List<Professor> consultarTodos() {
+        List<Professor> professores = new ArrayList<>();
+
+        String sql = "SELECT * FROM professores";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+
+                Professor professor = new Professor(nome, email);
+                professores.add(professor);
+            }
+            
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar professores no banco de dados: " + e.getMessage());
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
+            }
+        }
+        return professores;
+    }
+
+    @Override
+    public int alterar(Professor professor) {
         String sql = "UPDATE professores SET nome = ?, email = ? WHERE id = ?";
 
         try {
@@ -38,7 +74,7 @@ public class ProfessorDao implements Dao<Professor> {
             stmt.setInt(3, professor.getId());
             return stmt.executeUpdate();
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao atualizar professor no banco de dados: " + e.getMessage());
+            throw new RuntimeException("Erro ao alterar professor no banco de dados: " + e.getMessage());
         } finally {
             try {
                 connection.close();
@@ -49,15 +85,16 @@ public class ProfessorDao implements Dao<Professor> {
     }
 
     @Override
-    public int deletar(Professor professor) {
+    public int remover(Professor professor) {
         String sql = "DELETE FROM professores WHERE id = ?";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, professor.getId());
+
             return stmt.executeUpdate();
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao deletar professor no banco de dados: " + e.getMessage());
+            throw new RuntimeException("Erro ao remover professor no banco de dados: " + e.getMessage());
         } finally {
             try {
                 connection.close();
