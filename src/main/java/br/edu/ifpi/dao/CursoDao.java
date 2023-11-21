@@ -50,6 +50,8 @@ public class CursoDao implements Dao<Curso>{
                 int idProfessor = rs.getInt("id_professor");
                 StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
 
+                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
+
                 Curso curso = new Curso(nome, cargaHoraria, professor, status);
                 cursos.add(curso);
             }
