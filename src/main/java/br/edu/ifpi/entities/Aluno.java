@@ -11,14 +11,14 @@ public class Aluno {
     private StatusAluno status;
 
     // Construtores
-    public Aluno(String nome, String email, List<Curso> cursos, StatusAluno status) {
+    public Aluno(String nome, String email, StatusAluno status) {
         this.nome = nome;
         this.email = email;
         this.cursos = cursos;
         this.status = status;
     }
 
-    public Aluno(int id, String nome, String email, List<Curso> cursos, StatusAluno status) {
+    public Aluno(int id, String nome, String email, StatusAluno status) {
         this.id = id;
         this.nome = nome;
         this.email = email;
