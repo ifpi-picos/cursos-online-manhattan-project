@@ -36,7 +36,7 @@ public class controladorLogin implements Initializable {
     public void autenticar(){
         String nome = inputNome.getText();
         String email = inputEmail.getText();
-        
+
 
     }
 

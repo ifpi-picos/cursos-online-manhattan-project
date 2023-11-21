@@ -11,6 +11,8 @@ import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.dao.ProfessorDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -72,5 +74,13 @@ public class controladorCadastro implements Initializable {
             
         }
 
+    }
+
+    private void exibirPopupErro() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText(null);
+        alert.setContentText("Dados não preenchidos ou inválidos");
+        alert.showAndWait();
     }
 }
