@@ -9,7 +9,7 @@ import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.enums.StatusAluno;
 
 public class AlunoDao implements Dao<Aluno>{
-    private Connection  connection;
+    private Connection connection;
 
     public AlunoDao(Connection connection) {
         this.connection = connection;
