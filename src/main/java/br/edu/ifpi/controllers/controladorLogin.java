@@ -67,6 +67,7 @@ public class controladorLogin implements Initializable {
             // Verifica se o aluno foi autenticado
             if (resultado.next()) {
                 // Aluno autenticado
+                sistema.trocarCena("/fxml/telaInicial.fxml", btnEntrar);
                 String nomeAutenticado = resultado.getString("nome");
                 String emailAutenticado = resultado.getString("email");
 
