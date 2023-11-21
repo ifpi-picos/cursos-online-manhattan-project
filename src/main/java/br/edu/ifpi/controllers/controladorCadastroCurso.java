@@ -1,6 +1,9 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -11,6 +14,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import br.edu.ifpi.sistema;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.ProfessorDao;
 import br.edu.ifpi.entities.Professor;
 
 public class controladorCadastroCurso implements Initializable {
@@ -64,5 +69,21 @@ public class controladorCadastroCurso implements Initializable {
 
     public void cadastrarCurso(){
         String nome = inputNome.getText();
+    }
+
+    // Função para carregar uma lista de professores
+    public void carregarProfessores(){
+
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+
+        ProfessorDao professorDao = new ProfessorDao(conexao);
+        List<Professor> professores = professorDao.consultarTodos();
+
+        
     }
 }
