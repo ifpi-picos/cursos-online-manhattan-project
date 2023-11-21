@@ -57,13 +57,58 @@
     -fx-translate-y: 10;
 }
 
-.tabela {
-    -fx-border-color: black; /* define a cor da borda */
-    -fx-border-width: 1px; /* define a largura da borda */
-    -fx-padding: 10px;
-    -fx-alignment: center;
+/* Personalização de tabelas */
+
+.table-view {
+    -fx-font-size: 14px;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
-.tabela th {
-    -fx-background-color: lightgray;
+.table-row-cell {
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: #ddd; 
+    -fx-border-width: 0 0 2 0; 
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f4f4f4; 
+}
+
+/* .table-view .column-header {
+    -fx-padding: 5 5 5 5;
+} */
+
+.table-view .column-header .label {
+    -fx-font-size: 15px;
+}
+
+.table-cell {
+    -fx-padding: 5 5 5 5;
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #e2e2e2; 
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgb(16, 174, 226); 
+}
+
+.table-view .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-scaling: 0; 
+}
+
+.table-view .column-header-background {
+    -fx-background-radius: 10px 10px 0 0; /* Top corners rounded */
+}
+
+.table-view .column-header:first-child .label {
+    -fx-background-radius: 10px 0 0 0; /* Top-left corner rounded */
+}
+
+.table-view .column-header:last-child .label {
+    -fx-background-radius: 0 10px 0 0; /* Top-right corner rounded */
 }

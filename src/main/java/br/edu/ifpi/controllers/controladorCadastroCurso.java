@@ -6,16 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.util.StringConverter;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import br.edu.ifpi.sistema;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.dao.CursoDao;
@@ -23,6 +13,15 @@ import br.edu.ifpi.dao.ProfessorDao;
 import br.edu.ifpi.entities.Curso;
 import br.edu.ifpi.entities.Professor;
 import br.edu.ifpi.enums.StatusCurso;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 public class controladorCadastroCurso implements Initializable {
 
