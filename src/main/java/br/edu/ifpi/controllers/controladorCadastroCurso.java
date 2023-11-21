@@ -120,6 +120,7 @@ public class controladorCadastroCurso implements Initializable {
             status = StatusCurso.ABERTO;
             limparCampos();
             Curso curso = new Curso(nome, cargaHoraria, professor, status);
+            //System.out.println(curso.getNome() + " "+curso.getCargaHoraria() + " "+curso.getProfessor().getId() + " " + curso.getProfessor().getNome() + " "+ curso.getStatus());
             BDCurso.cadastrar(curso);
         } else{
             status = StatusCurso.FECHADO;
