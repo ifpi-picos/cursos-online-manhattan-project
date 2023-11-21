@@ -56,3 +56,14 @@
     -fx-effect: dropshadow(three-pass-box, #666, 0, 0, 0, 10);
     -fx-translate-y: 10;
 }
+
+.tabela {
+    -fx-border-color: black; /* define a cor da borda */
+    -fx-border-width: 1px; /* define a largura da borda */
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+.tabela th {
+    -fx-background-color: lightgray;
+}
