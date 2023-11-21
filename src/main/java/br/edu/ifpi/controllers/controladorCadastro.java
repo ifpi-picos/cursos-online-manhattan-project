@@ -12,6 +12,9 @@ public class controladorCadastro {
     private Button btnCadastrar;
 
     @FXML
+    private Button btnVoltar;
+
+    @FXML
     private ToggleGroup escolha;
 
     @FXML
