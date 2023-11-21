@@ -44,10 +44,11 @@ public class ProfessorDao implements Dao<Professor> {
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()) {
+                int id = rs.getInt("id");
                 String nome = rs.getString("nome");
                 String email = rs.getString("email");
 
-                Professor professor = new Professor(nome, email);
+                Professor professor = new Professor(id, nome, email);
                 professores.add(professor);
             }
             
