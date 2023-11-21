@@ -1,6 +1,8 @@
 package br.edu.ifpi.entities;
 
 import br.edu.ifpi.enums.StatusCurso;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Curso {
     private int id;
@@ -11,11 +13,11 @@ public class Curso {
     private List<Double> notas;
 
     // Construtores
-    public Curso(String nome, int cargaHoraria, Professor professor) {
+    public Curso(String nome, int cargaHoraria, Professor professor, StatusCurso StatusCurso) {
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
         this.professor = professor;
-        this.status = StatusCurso.ATIVO;
+        this.status = StatusCurso;
         this.notas = new ArrayList<>();
     }
 
