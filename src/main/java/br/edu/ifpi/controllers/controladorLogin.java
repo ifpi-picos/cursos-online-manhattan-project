@@ -55,8 +55,8 @@ public class controladorLogin implements Initializable {
         String nome = inputNome.getText();
         String email = inputEmail.getText();
 
-        System.out.println("Nome" + nome);
-        System.out.println("Email" + email);
+        // System.out.println("Nome" + nome);
+        // System.out.println("Email" + email);
         
         if(verificarProfessor(nome, email) == true){
             // Carregar o FXML da nova cena
