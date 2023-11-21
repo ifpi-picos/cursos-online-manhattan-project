@@ -161,5 +161,6 @@ public class controladorCadastroCurso implements Initializable {
         inputHoras.clear();
         statusAberto.setSelected(false);
         statusFechado.setSelected(false);
+        selectProfessor.getSelectionModel().clearSelection();
     }
 }
