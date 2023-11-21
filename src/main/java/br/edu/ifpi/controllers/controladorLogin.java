@@ -6,9 +6,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.sistema;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.ProfessorDao;
+import br.edu.ifpi.entities.Professor;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -32,51 +37,38 @@ public class controladorLogin implements Initializable {
     @FXML
     private TextField inputNome;
 
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        List<Professor> professores = carregarProfessor();
         btnCadastrar.setOnAction(event -> sistema.trocarCena("/fxml/cadastro.fxml", btnCadastrar));
 
     }
 
-    public void autenticar(){
+    // Função para carregar uma lista de professores
+
+
+    public void autenticar(List<Professor> professores, List<Aluno> alunos){
         String nome = inputNome.getText();
         String email = inputEmail.getText();
     
-        // Estabelecer conexão com o banco de dados
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        
+    }
     
+    //Carregar professor
+    public List<Professor> carregarProfessor (){
+        Connection conexao = null;
         try {
-            conn = DriverManager.getConnection("jdbc:postgresql://db.ijhnuifhmrhpcwvnlezj.supabase.co:5432/postgres?sslmode=require",
-            "postgres", "ifpi_bd2023");
-    
-            // Consulta SQL para verificar os dados na tabela de alunos
-            String sqlAlunos = "SELECT * FROM alunos WHERE nome = ? AND email = ?";
-            stmt = conn.prepareStatement(sqlAlunos);
-            stmt.setString(1, nome);
-            stmt.setString(2, email);
-    
-            rs = stmt.executeQuery();
-    
-            // Se a consulta retornar um resultado, o usuário é autenticado como aluno
-            if (rs.next()) {
-                sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnEntrar);
-            } else {
-                // Caso contrário, mostrar uma mensagem de erro
-                System.out.println("Nome de usuário ou email incorretos");
-            }
+            conexao = Conexao.getConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Fechar recursos
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            e.printStackTrace(); // Trate a exceção conforme necessário
         }
-    }  
+
+        ProfessorDao professorDao = new ProfessorDao(conexao);
+
+        List<Professor> professores = professorDao.consultarTodos();
+
+        return professores;
+    }
+    
 }
