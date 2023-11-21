@@ -72,7 +72,7 @@ public class controladorPerfilProfessor implements Initializable {
         CursoDao cursoDao = new CursoDao(conexao);
         List<Curso> cursos = cursoDao.buscarPorNomeEmail(nome, email);
 
-        Professor professor = new Professor();
+        Professor professor = new Professor(email, email);
         professor.setNome(nome);
         professor.setEmail(email);
         professor.setCursos(cursos);
