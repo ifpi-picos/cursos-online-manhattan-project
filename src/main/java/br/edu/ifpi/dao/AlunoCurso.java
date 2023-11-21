@@ -14,7 +14,6 @@ public class AlunoCurso{
         this.connection = connection;
     }
 
-    @Override
     public int cadastrar(Aluno aluno, Curso curso) {
         String sql = "INSERT INTO Aluno_Curso (id_aluno, id_curso) VALUES (?, ?)"; 
 
@@ -25,12 +24,6 @@ public class AlunoCurso{
             return stmt.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao inserir Aluno_Curso no banco de dados: " + e.getMessage());
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
-            }
         }
     }
 }
