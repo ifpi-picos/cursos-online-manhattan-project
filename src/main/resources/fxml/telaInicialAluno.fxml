@@ -15,7 +15,7 @@
          <children>
             <VBox alignment="BASELINE_LEFT" prefHeight="675.0" prefWidth="250.0" styleClass="VBox">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: Gray;" styleClass="btn-lateral" text="HOME">
+                  <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: Gray;" styleClass="btn-lateral" text="HOME">
                      <graphic>
                         <FontIcon iconLiteral="fas-home" iconSize="35" text="" />
                      </graphic>
@@ -23,7 +23,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="CURSOS">
+                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="CURSOS">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -31,7 +31,7 @@
                         <FontIcon iconLiteral="fas-book" iconSize="35" />
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="PERFIL">
+                  <Button fx:id="btnPerfil" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="PERFIL">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -39,7 +39,7 @@
                         <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">
+                  <Button fx:id="btnSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
