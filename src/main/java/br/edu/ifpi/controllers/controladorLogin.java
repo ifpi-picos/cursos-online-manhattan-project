@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifpi.SessaoUsuario;
 import br.edu.ifpi.sistema;
 import br.edu.ifpi.dao.AlunoDao;
 import br.edu.ifpi.dao.Conexao;
@@ -55,6 +56,17 @@ public class controladorLogin implements Initializable {
         String nome = inputNome.getText();
         String email = inputEmail.getText();
 
+        if (verificarProfessor(nome, email)) {
+        SessaoUsuario.setNomeUsuario(nome);
+        SessaoUsuario.setEmailUsuario(email);
+        SessaoUsuario.setTipoUsuario("Professor");
+        // Restante do código...
+        } else if (verificarAluno(nome, email)) {
+            SessaoUsuario.setNomeUsuario(nome);
+            SessaoUsuario.setTipoUsuario("Aluno");
+            SessaoUsuario.setEmailUsuario(email);
+            // Restante do código...
+        }
         // System.out.println("Nome" + nome);
         // System.out.println("Email" + email);
         

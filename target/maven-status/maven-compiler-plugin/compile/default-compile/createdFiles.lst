@@ -1,5 +1,8 @@
 br\edu\ifpi\dao\ProfessorDao.class
+br\edu\ifpi\controllers\controladorPerfilProfessor.class
+br\edu\ifpi\controllers\controladorCursosAluno.class
 br\edu\ifpi\entities\Professor.class
+br\edu\ifpi\controllers\controladorPerfilAluno.class
 br\edu\ifpi\App.class
 br\edu\ifpi\dao\Dao.class
 br\edu\ifpi\enums\StatusCurso.class
