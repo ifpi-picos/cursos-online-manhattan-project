@@ -2,7 +2,7 @@ package br.edu.ifpi.dao;
 
 import java.util.List;
 
-public interface dao {
+public interface Dao {
     public int cadastrar(T entidade);
 
     public List<T> consultarTodos();
