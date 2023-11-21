@@ -9,6 +9,9 @@ import br.edu.ifpi.sistema;
 import br.edu.ifpi.dao.AlunoDao;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.dao.ProfessorDao;
+import br.edu.ifpi.entities.Aluno;
+import br.edu.ifpi.entities.Professor;
+import br.edu.ifpi.enums.StatusAluno;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -17,8 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-
-import br.edu.ifpi.sistema;
 
 public class controladorCadastro implements Initializable {
 
@@ -71,7 +72,27 @@ public class controladorCadastro implements Initializable {
         if (sistema.validarEmail(email)){
             System.out.println("Email válido");
         }else{
-            
+            exibirPopupErro();
+        }
+
+        if(email == null || email.isEmpty() || nome == null || nome.isEmpty()){
+            exibirPopupErro();
+        }
+
+        if (radioAluno.isSelected()) {
+            limparCampos();
+            Aluno aluno = new Aluno(nome, email, StatusAluno.ATIVO);
+            BDAluno.cadastrar(aluno);
+        }else if(radioProfessor.isSelected()){
+            limparCampos();
+            Professor professor = new Professor(nome, email);
+            BDProfessor.cadastrar(professor);
+        }else{
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText(null);
+            alert.setContentText("Seleção de cadastro inválida!");
+            alert.showAndWait();
         }
 
     }
@@ -82,5 +103,12 @@ public class controladorCadastro implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Dados não preenchidos ou inválidos");
         alert.showAndWait();
+    }
+
+    public void limparCampos() {
+        inputNome.clear();
+        inputEmail.clear();
+        radioAluno.setSelected(false);
+        radioProfessor.setSelected(false);
     }
 }
