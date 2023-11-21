@@ -44,7 +44,7 @@ public class CursoDao implements Dao<Curso>{
 
             while(rs.next()) {
                 String nome = rs.getString("nome");
-                int cargaHoraria = rs.getInt("cargaHoraria");
+                int cargaHoraria = rs.getInt("carga_horaria");
                 int idProfessor = rs.getInt("id_professor");
                 StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
 
@@ -62,7 +62,7 @@ public class CursoDao implements Dao<Curso>{
 
     @Override
     public int alterar(Curso curso){
-        String sql = "UPDATE cursos SET nome = ?, cargaHoraria = ?, professor = ?, status = ? WHERE id = ?";
+        String sql = "UPDATE cursos SET nome = ?, carga_horaria = ?, professor = ?, status = ? WHERE id = ?";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
