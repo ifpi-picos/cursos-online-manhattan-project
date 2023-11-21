@@ -45,6 +45,7 @@ public class controladorLogin implements Initializable {
         List<Professor> professores = carregarProfessor();
         List<Aluno> alunos = carregarAluno();
         btnCadastrar.setOnAction(event -> sistema.trocarCena("/fxml/cadastro.fxml", btnCadastrar));
+        btnEntrar.setOnAction(event -> autenticar(professores, alunos));
 
     }
 
@@ -62,11 +63,12 @@ public class controladorLogin implements Initializable {
                 System.out.println("Nome: " + professor.getNome());
                 System.out.println("Email: " + professor.getEmail());
 
-                sistema.trocarCena("/fxml/telaInicial.fxml", btnEntrar);
+                sistema.trocarCena("/fxml/telaInicialProf.fxml", btnEntrar);
             } else {
                 System.out.println("Professor não encontrado");
             }
         }
+
     }
     
     //Carregar professor
