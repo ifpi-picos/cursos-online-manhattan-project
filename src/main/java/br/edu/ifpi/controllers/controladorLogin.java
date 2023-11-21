@@ -48,7 +48,7 @@ public class controladorLogin implements Initializable {
         ResultSet rs = null;
     
         try {
-            conn = DriverManager.getConnection("", "", "");
+            conn = DriverManager.getConnection("jdbc:postgresql://db.ijhnuifhmrhpcwvnlezj.supabase.co:5432/postgres?sslmode=require", "postgres", "ifpi_bd2023");
     
             // Consulta SQL para verificar os dados na tabela de professores
             String sqlProfessores = "SELECT * FROM professores WHERE nome = ? AND email = ?";
