@@ -2,20 +2,16 @@ package br.edu.ifpi.controllers;
 
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.sistema;
+import br.edu.ifpi.dao.AlunoDao;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.dao.ProfessorDao;
-import br.edu.ifpi.dao.AlunoDao;
-import br.edu.ifpi.entities.Professor;
 import br.edu.ifpi.entities.Aluno;
+import br.edu.ifpi.entities.Professor;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
