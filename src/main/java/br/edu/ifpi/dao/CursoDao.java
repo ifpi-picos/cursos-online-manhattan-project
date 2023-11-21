@@ -43,6 +43,7 @@ public class CursoDao implements Dao<Curso>{
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()) {
+                int id = rs.getInt("id");
                 String nome = rs.getString("nome");
                 int cargaHoraria = rs.getInt("carga_horaria");
                 int idProfessor = rs.getInt("id_professor");
@@ -50,7 +51,7 @@ public class CursoDao implements Dao<Curso>{
 
                 Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
 
-                Curso curso = new Curso(nome, cargaHoraria, professor, status);
+                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
                 cursos.add(curso);
             }
             

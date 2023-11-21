@@ -22,7 +22,7 @@ public class Curso {
     }
 
     // Construtor completo para manipulação no sistema
-    public Curso(int id, String nome, StatusCurso status, int cargaHoraria, Professor professor) {
+    public Curso(int id, String nome,  int cargaHoraria, Professor professor, StatusCurso status) {
         this.id = id;
         this.nome = nome;
         this.status = status;
