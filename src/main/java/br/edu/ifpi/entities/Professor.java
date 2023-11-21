@@ -12,4 +12,5 @@ public class Professor {
         this.email = email;
         this.cursos = new ArrayList<>();
     }
+    // Construtor completo para manipulação no sistema
 }
