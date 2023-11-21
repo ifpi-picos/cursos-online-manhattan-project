@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="675.0" prefWidth="250.0" stylesheets="@../css/style.css">
+         <children>
+            <VBox alignment="BASELINE_LEFT" prefHeight="675.0" prefWidth="250.0" styleClass="VBox">
+               <children>
+                  <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="HOME">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-home" iconSize="35" text="" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="CURSOS">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-book" iconSize="35" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnPerfil" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="PERFIL">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-sign-out-alt" iconSize="35" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0">
+         <children>
+            <Text layoutX="367.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <FontIcon iconLiteral="fas-book-reader" iconSize="75" layoutX="383.0" layoutY="87.0" />
+            <TableView fx:id="tabelaCursos" layoutX="120.0" layoutY="178.0" prefHeight="400.0" prefWidth="600.0">
+               <columns>
+                  <TableColumn fx:id="colunaNome" maxWidth="249.0" prefWidth="249.0" text="Nome" />
+                  <TableColumn fx:id="colunaProfessor" maxWidth="249.0" prefWidth="249.0" text="Professor" />
+                  <TableColumn fx:id="colunaCargaHoraria" maxWidth="100.0" prefWidth="100.0" text="Carga Horaria" />
+               </columns>
+            </TableView>
+            <Button layoutX="328.0" layoutY="618.0" mnemonicParsing="false" text="Adicionar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="458.0" layoutY="618.0" mnemonicParsing="false" text="Remover">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
