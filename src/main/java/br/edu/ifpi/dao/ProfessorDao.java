@@ -54,13 +54,7 @@ public class ProfessorDao implements Dao<Professor> {
             
         } catch (Exception e) {
             throw new RuntimeException("Erro ao consultar professores no banco de dados: " + e.getMessage());
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
-            }
-        }
+        } 
         return professores;
     }
 
@@ -124,13 +118,7 @@ public class ProfessorDao implements Dao<Professor> {
             
         } catch (Exception e) {
             throw new RuntimeException("Erro ao consultar professor no banco de dados: " + e.getMessage());
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
-            }
-        }
+        } 
         return null;
     }
 }
