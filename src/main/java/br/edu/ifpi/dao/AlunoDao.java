@@ -1,6 +1,5 @@
 package br.edu.ifpi.dao;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -29,8 +28,6 @@ public class AlunoDao implements Dao<Aluno>{
             return stmt.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao inserir aluno no banco de dados: " + e.getMessage());
-        } finally {
-            connection.close();
         }
     }
 
@@ -55,8 +52,6 @@ public class AlunoDao implements Dao<Aluno>{
             
         } catch (Exception e) {
             throw new RuntimeException("Erro ao consultar alunos no banco de dados: " + e.getMessage());
-        } finally {
-            connection.close();
         }
         return alunos;
     }
@@ -74,8 +69,6 @@ public class AlunoDao implements Dao<Aluno>{
             return stmt.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao alterar aluno no banco de dados: " + e.getMessage());
-        } finally {
-            connection.close();
         }
     }
 
@@ -90,8 +83,6 @@ public class AlunoDao implements Dao<Aluno>{
             return stmt.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao remover aluno no banco de dados: " + e.getMessage());
-        } finally {
-            connection.close();
         }
     }
 }
