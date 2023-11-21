@@ -1,5 +1,6 @@
 package br.edu.ifpi.dao;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -8,8 +9,10 @@ import java.util.List;
 import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.enums.StatusAluno;
 
+
 public class AlunoDao implements Dao<Aluno>{
-    private Connection  connection;
+
+    private Connection connection;
 
     public AlunoDao(Connection connection) {
         this.connection = connection;
@@ -71,6 +74,22 @@ public class AlunoDao implements Dao<Aluno>{
             return stmt.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao alterar aluno no banco de dados: " + e.getMessage());
+        } finally {
+            connection.close();
+        }
+    }
+
+    @Override
+    public int remover(Aluno aluno) {
+        String sql = "DELETE FROM alunos WHERE id = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, aluno.getId());
+
+            return stmt.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao remover aluno no banco de dados: " + e.getMessage());
         } finally {
             connection.close();
         }
