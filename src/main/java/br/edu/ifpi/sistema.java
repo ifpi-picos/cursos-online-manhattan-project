@@ -3,6 +3,8 @@ package br.edu.ifpi;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -37,5 +39,21 @@ public class sistema {
     public static boolean validarEmail(String email) {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+
+    public void exibirPopupErro(String mensagemErro) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText(null);
+        alert.setContentText(mensagemErro);
+        alert.showAndWait();
+    }
+
+    public void exibirPopupSucesso(String mensagemSucesso) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Sucesso");
+        alert.setHeaderText(null);
+        alert.setContentText(mensagemSucesso);
+        alert.showAndWait();
     }
 }
