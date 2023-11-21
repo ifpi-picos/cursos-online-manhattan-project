@@ -1,5 +1,8 @@
 package br.edu.ifpi.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Professor {
     private int id;
     private String nome;

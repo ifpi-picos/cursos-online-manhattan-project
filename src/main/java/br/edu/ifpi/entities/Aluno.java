@@ -1,23 +1,29 @@
 package br.edu.ifpi.entities;
 
+import br.edu.ifpi.enums.StatusAluno;
+import java.util.List;
+
 public class Aluno {
     private int id;
     private String nome;
     private String email;
     private List<Curso> cursos; // Cursos que o aluno está matriculado
+    private StatusAluno status;
 
     // Construtores
-    public Aluno(int id, String nome, String email) {
+    public Aluno(String nome, String email, StatusAluno status) {
+        this.nome = nome;
+        this.email = email;
+        this.cursos = cursos;
+        this.status = status;
+    }
+
+    public Aluno(int id, String nome, String email, StatusAluno status) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cursos = cursos;
-    }
-
-    public Aluno(String nome, String email) {
-        this.nome = nome;
-        this.email = email;
-        this.cursos = cursos;
+        this.status = status;
     }
 
     // Getters e Setters
@@ -51,5 +57,13 @@ public class Aluno {
 
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
+    }
+
+    public StatusAluno getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAluno status) {
+        this.status = status;
     }
 }

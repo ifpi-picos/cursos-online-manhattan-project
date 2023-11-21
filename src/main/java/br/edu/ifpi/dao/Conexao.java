@@ -12,4 +12,14 @@ public class Conexao {
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
+
+    public static void closeConnection(Connection connection) throws SQLException {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
+        }
+    }
 }
