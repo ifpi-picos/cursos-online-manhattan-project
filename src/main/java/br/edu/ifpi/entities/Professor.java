@@ -55,6 +55,10 @@ public class Professor {
         this.cursos.add(curso) ;
     }
 
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+
     @Override
         public String toString() {
             return nome;
