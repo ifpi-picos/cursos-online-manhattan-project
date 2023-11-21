@@ -48,25 +48,25 @@ public class controladorLogin implements Initializable {
         ResultSet rs = null;
     
         try {
-            conn = DriverManager.getConnection("jdbc:postgresql://db.ijhnuifhmrhpcwvnlezj.supabase.co:5432/postgres?sslmode=require", "postgres", "ifpi_bd2023");
-            
+            conn = DriverManager.getConnection("jdbc:postgresql://db.ijhnuifhmrhpcwvnlezj.supabase.co:5432/postgres?sslmode=require",
+            "postgres", "ifpi_bd2023");
     
-                String sqlAlunos = "SELECT * FROM alunos WHERE nome = ? AND email = ?";
-                stmt = conn.prepareStatement(sqlAlunos);
-                stmt.setString(1, nome);
-                stmt.setString(2, email);
+            // Consulta SQL para verificar os dados na tabela de alunos
+            String sqlAlunos = "SELECT * FROM alunos WHERE nome = ? AND email = ?";
+            stmt = conn.prepareStatement(sqlAlunos);
+            stmt.setString(1, nome);
+            stmt.setString(2, email);
     
-                rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
     
-                // Se a consulta retornar um resultado, o usuário é autenticado como aluno
-                if (rs.next()) {
-                    sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnEntrar);
-                } else {
-                    // Caso contrário, mostrar uma mensagem de erro
-                    System.out.println("Nome de usuário ou email incorretos");
-                }
-            } catch (SQLException e) {
-                System.out.println("Erro ao consultar o banco de dados: " + e.getMessage());
+            // Se a consulta retornar um resultado, o usuário é autenticado como aluno
+            if (rs.next()) {
+                sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnEntrar);
+            } else {
+                // Caso contrário, mostrar uma mensagem de erro
+                System.out.println("Nome de usuário ou email incorretos");
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             // Fechar recursos
