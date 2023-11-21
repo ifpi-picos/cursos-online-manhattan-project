@@ -125,7 +125,7 @@ public class controladorLogin implements Initializable {
         }
 
         AlunoDao alunoDao = new AlunoDao(conexao);
-        List<Aluno> alunos = alunoDao.consultarTodos();
+        List<Aluno> alunos = alunoDao.consultarAutenticar();
 
         for (Aluno aluno : alunos) {
             if (aluno.getNome().equals(nome) && aluno.getEmail().equals(email)) {

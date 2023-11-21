@@ -26,6 +26,13 @@ public class Aluno {
         this.status = status;
     }
 
+    public Aluno(String nome, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cursos = cursos;
+    }
+
     // Getters e Setters
     public int getId() {
         return id;
