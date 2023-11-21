@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorCadastroCurso">
    <children>
       <AnchorPane prefHeight="675.0" prefWidth="250.0">
@@ -85,12 +84,12 @@
                      </font>
                   </Text>
                   <ChoiceBox fx:id="selectProfessor" layoutX="277.0" layoutY="230.0" prefWidth="150.0" />
-                  <TextField fx:id="inputHoras" layoutX="176.0" layoutY="147.0" prefHeight="40.0" prefWidth="40.0" promptText="00" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
+                  <TextField fx:id="inputHoras" alignment="CENTER" layoutX="176.0" layoutY="147.0" prefHeight="42.0" prefWidth="70.0" promptText="00" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="231.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hrs">
+                  <Text layoutX="254.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hrs">
                      <font>
                         <Font size="24.0" />
                      </font>

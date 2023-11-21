@@ -71,7 +71,7 @@ public class controladorCadastroCurso implements Initializable {
         carregarProfessores();
         statusAberto.fire();
         btnCadastrar.setOnAction(event -> cadastrarCurso());
-        btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/gerenciarCursos", btnVoltar));
+        btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/gerenciarCursos.fxml", btnVoltar));
     }
 
 
