@@ -74,6 +74,7 @@ public class controladorPerfilAluno implements Initializable {
         btnHome.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnHome));
         btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilAluno.fxml", btnPerfil));
         btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
+        btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnVoltar));
     }
 
 }
