@@ -98,6 +98,8 @@ public class controladorCursosAluno implements Initializable {
         btnHome.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnHome));
         btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilAluno.fxml", btnPerfil));
         btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
+
+        btnInscrever.setOnAction(event -> cadastrarAlunoCurso());
     }
 
     public void cadastrarAlunoCurso(){
