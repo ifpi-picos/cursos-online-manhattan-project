@@ -81,6 +81,12 @@ public class controladorCadastro implements Initializable {
             return;
         }
 
+        // Verificar se o usuário já está cadastrado
+        if (verificarProfessor(nome, email) == true || verificarAluno(nome, email) == true) {
+            exibirPopupErro("Usuário já cadastrado");
+            return;
+        }
+
         if (radioAluno.isSelected()) {
             limparCampos();
             Aluno aluno = new Aluno(nome, email, StatusAluno.ATIVO);
@@ -112,5 +118,52 @@ public class controladorCadastro implements Initializable {
         inputEmail.clear();
         radioAluno.setSelected(false);
         radioProfessor.setSelected(false);
+    }
+
+    // Método para verificar professor
+    public boolean verificarProfessor (String nome , String email){
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+
+        ProfessorDao professorDao = new ProfessorDao(conexao);
+        List<Professor> professores = professorDao.consultarTodos();
+
+        for (Professor professor : professores) {
+            if (professor.getNome().equals(nome) && professor.getEmail().equals(email)) {
+                // Match found
+                return true;
+            }
+        }
+
+        // No match found
+        return false;
+    }
+
+    // Método para verificar aluno
+    public boolean verificarAluno (String nome, String email){
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+
+        AlunoDao alunoDao = new AlunoDao(conexao);
+        List<Aluno> alunos = alunoDao.consultarAutenticar();
+
+        for (Aluno aluno : alunos) {
+            if (aluno.getNome().equals(nome) && aluno.getEmail().equals(email)) {
+                // Match found
+                return true;
+            }
+        }
+    
+        // No match found
+        return false;
+
     }
 }
