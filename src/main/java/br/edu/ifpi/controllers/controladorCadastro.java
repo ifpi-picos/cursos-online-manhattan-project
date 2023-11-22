@@ -3,6 +3,7 @@ package br.edu.ifpi.controllers;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.sistema;
@@ -69,15 +70,13 @@ public class controladorCadastro implements Initializable {
         String nome = inputNome.getText();
         String email = inputEmail.getText();
 
-        if (sistema.validarEmail(email)){
-            System.out.println("Email válido");
-        }else{
-            exibirPopupErro();
+        if (sistema.validarEmail(email) != true){
+            exibirPopupErro("Email inválido");
             return;
         }
 
         if(email == null || email.isEmpty() || nome == null || nome.isEmpty()){
-            exibirPopupErro();
+            exibirPopupErro("Campos vazios");
             return;
         }
 
@@ -105,11 +104,11 @@ public class controladorCadastro implements Initializable {
 
     }
 
-    private void exibirPopupErro() {
+    private void exibirPopupErro(String mensagem) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erro");
         alert.setHeaderText(null);
-        alert.setContentText("Dados não preenchidos ou inválidos");
+        alert.setContentText(mensagem);
         alert.showAndWait();
     }
 
