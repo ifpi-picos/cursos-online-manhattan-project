@@ -40,9 +40,6 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
     public List<AlunoCurso> consultarTodos() {
         String sql = "SELECT * FROM aluno_curso";
         List<AlunoCurso> alunosCursos = new ArrayList<AlunoCurso>();
-
-
-        
         return alunosCursos;
     }
 
@@ -128,13 +125,11 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
     @Override
         public int alterar(AlunoCurso entidade) {
-            // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'alterar'");
         }
 
         @Override
         public int remover(AlunoCurso entidade) {
-            // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'remover'");
         }
 

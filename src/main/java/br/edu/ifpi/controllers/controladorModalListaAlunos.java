@@ -1,5 +1,13 @@
 package br.edu.ifpi.controllers;
 
+import java.io.IOException;
+
+import br.edu.ifpi.dao.AlunoCursoDao;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.entities.Aluno;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,16 +17,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-
-import br.edu.ifpi.dao.AlunoCursoDao;
-import br.edu.ifpi.dao.Conexao;
-import br.edu.ifpi.entities.Aluno;
-import br.edu.ifpi.entities.Curso;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class controladorModalListaAlunos {
 
