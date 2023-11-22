@@ -1,5 +1,6 @@
 package br.edu.ifpi.dao;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -38,7 +39,8 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
     @Override
     public List<AlunoCurso> consultarTodos() {
-        String sql = "SELECT * FROM aluno_curso";
+        // String sql = "SELECT * FROM aluno_curso";
+
         List<AlunoCurso> alunosCursos = new ArrayList<AlunoCurso>();
         return alunosCursos;
     }
@@ -124,33 +126,32 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
 
     @Override
-        public int alterar(AlunoCurso entidade) {
-            throw new UnsupportedOperationException("Unimplemented method 'alterar'");
-        }
+    public int alterar(AlunoCurso entidade) {
+        throw new UnsupportedOperationException("Unimplemented method 'alterar'");
+    }
 
-        @Override
-        public int remover(AlunoCurso entidade) {
-            throw new UnsupportedOperationException("Unimplemented method 'remover'");
-        }
+    @Override
+    public int remover(AlunoCurso entidade) {
+        throw new UnsupportedOperationException("Unimplemented method 'remover'");
+    }
 
-        // Método para fazer o cadastro de notas em um array no banco de dados
         public int cadastrarNotas(AlunoCurso alunoCurso) {
-            String sql = "INSERT INTO notas (id_aluno, id_curso, nota1, nota2, nota3) VALUES (?, ?, ?, ?, ?)";
-        
+            String sql = "UPDATE aluno_curso SET notas = ? WHERE id_aluno = ? AND id_curso = ?";
+            
             try {
                 PreparedStatement stmt = connection.prepareStatement(sql);
-                stmt.setInt(1, alunoCurso.getAluno().getId());
-                stmt.setInt(2, alunoCurso.getCurso().getId());
                 
                 Double[] notas = alunoCurso.getNota();
-                stmt.setDouble(3, notas[0]); // supondo que a nota1 está na posição 0 do array
-                stmt.setDouble(4, notas[1]); // supondo que a nota2 está na posição 1 do array
-                stmt.setDouble(5, notas[2]); // supondo que a nota3 está na posição 2 do array
-        
+                Array notasArray = connection.createArrayOf("double precision", notas);
+                
+                stmt.setArray(1, notasArray);
+                stmt.setInt(2, alunoCurso.getAluno().getId());
+                stmt.setInt(3, alunoCurso.getCurso().getId());
+                
                 return stmt.executeUpdate();
                 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        }        
+        }     
     }

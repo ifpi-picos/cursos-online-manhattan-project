@@ -36,4 +36,13 @@ public class AlunoCurso {
         this.nota = nota;
     }
 
+    // método para exibir o conteúdo do array de notas no terminal
+    public void exibirNotas() {
+        System.out.print("Notas do aluno " + aluno.getNome() + " no curso de " + curso.getNome() + ": ");
+        for (int i = 0; i < nota.length; i++) {
+            System.out.print(nota[i] + " ");
+        }
+        System.out.println(); // Pula uma linha após exibir as notas
+    }
+
 }

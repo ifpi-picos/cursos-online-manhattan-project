@@ -62,10 +62,6 @@ public class controladorModalCadastroNotas implements Initializable {
         // Cria um array com as notas
         Double[] notas = {nota1, nota2, nota3};
 
-        // Recebe o id do curso e do aluno
-        int idCurso = idCursoSelecionado;
-        int idAluno = alunoSelecionado.getId();
-
         Connection conexao = null;
         try {
             // Cria uma conexão com o banco de dados
@@ -74,16 +70,16 @@ public class controladorModalCadastroNotas implements Initializable {
             AlunoCursoDao alunoCursoDao = new AlunoCursoDao(conexao);
             CursoDao cursoDao = new CursoDao(conexao);
             // Cria uma instância de AlunoCurso com os dados
-            Curso curso = cursoDao.consultarPorId(idCurso);
+            Curso curso = cursoDao.consultarPorId(idCursoSelecionado);
             //Preciso que seja gerada uma instância de curso através do id do curso para ser passado na formação do objeto alunoCurso.
             AlunoCurso alunoCurso = new AlunoCurso(alunoSelecionado, curso);
-            alunoCurso.getAluno().setId(idAluno);
-            alunoCurso.getCurso().setId(idCurso);
             alunoCurso.setNota(notas);
+            alunoCurso.exibirNotas();
             // Chama o método cadastrarNotas
             int resultado = alunoCursoDao.cadastrarNotas(alunoCurso);
              if (resultado > 0) {
                 System.out.println("Notas cadastradas com sucesso!");
+                System.out.println(resultado + " linhas adicionadas.");
             } else {
                 System.out.println("Falha ao cadastrar as notas.");
             }
