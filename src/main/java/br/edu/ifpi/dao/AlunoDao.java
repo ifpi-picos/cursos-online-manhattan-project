@@ -185,4 +185,26 @@ public class AlunoDao implements Dao<Aluno>{
         } 
         return cursos;
     }
+
+    // Cursos que o aluno não está matriculado
+    public List<String> consultarCursosNaoMatriculados(int id) {
+        List<String> cursos = new ArrayList<>();
+
+        String sql = "SELECT id_curso FROM aluno_curso WHERE id_aluno != ? ORDER BY";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                String nome = rs.getString("nome");
+                cursos.add(nome);
+            }
+            
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar cursos não matriculados no banco de dados: " + e.getMessage());
+        } 
+        return cursos;
+    }
 }
