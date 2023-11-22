@@ -1,10 +1,17 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.SessaoUsuario;
 import br.edu.ifpi.sistema;
+import br.edu.ifpi.dao.AlunoCursoDao;
+import br.edu.ifpi.dao.AlunoDao;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.entities.Aluno;
+import br.edu.ifpi.entities.Curso;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,10 +41,10 @@ public class controladorPerfilAluno implements Initializable {
     private Button btnVoltar;
 
     @FXML
-    private TableColumn<?, ?> colunaNomeCursos;
+    private TableColumn<Curso, String> colunaNomeCursos;
 
     @FXML
-    private TableView<?> cursosCadastrado;
+    private TableView<Curso> cursosCadastrado;
 
     @FXML
     private Text textEmail;
@@ -52,15 +59,21 @@ public class controladorPerfilAluno implements Initializable {
         textNome.setText(SessaoUsuario.getNomeUsuario());
         textEmail.setText(SessaoUsuario.getEmailUsuario());
 
-        // try (Connection connection = Conexao.getConnection()) {
-        //     CursoDao cursoDao = new CursoDao(connection);
+        try (Connection connection = Conexao.getConnection()){
+            AlunoDao alunoDao = new AlunoDao(connection);
+            AlunoCursoDao alunoCursoDao = new AlunoCursoDao(connection);
 
-
-        //     // Configurar a lista de cursos na tabela
-        //     cursosCadastrado.getItems().setAll(listaCursos);
-        // } catch (SQLException e) {
-        //     e.printStackTrace();
-        // }
+            Aluno aluno = alunoDao.consultarPorNomeEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
+            int alunoId = aluno.getId();
+            
+            // Obter a lista de cursos vinculados ao aluno
+            List<Curso> cursos = alunoCursoDao.consultarCursosPorAluno(alunoId);
+            
+            // Exibir a lista de cursos na tabela
+            cursosCadastrado.getItems().setAll(cursos);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
         
         btnCursos.setOnAction(event -> sistema.trocarCena("/fxml/cursosAluno.fxml",btnCursos));
         btnHome.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnHome));
