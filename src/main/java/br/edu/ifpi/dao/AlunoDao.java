@@ -163,4 +163,26 @@ public class AlunoDao implements Dao<Aluno>{
         } 
         return null;
     }
+
+    // Cursos que o aluno está matriculado
+    public List<String> consultarCursosMatriculados(int id) {
+        List<String> cursos = new ArrayList<>();
+
+        String sql = "SELECT curso FROM alunos_cursos WHERE id_aluno = ? ORDER BY";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                String nome = rs.getString("nome");
+                cursos.add(nome);
+            }
+            
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar cursos matriculados no banco de dados: " + e.getMessage());
+        } 
+        return cursos;
+    }
 }
