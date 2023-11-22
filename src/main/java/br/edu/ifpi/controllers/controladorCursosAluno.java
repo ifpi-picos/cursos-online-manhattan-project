@@ -23,6 +23,7 @@ import br.edu.ifpi.dao.AlunoDao;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.dao.CursoDao;
 import br.edu.ifpi.entities.Aluno;
+import br.edu.ifpi.entities.AlunoCurso;
 import br.edu.ifpi.entities.Curso;
 
 public class controladorCursosAluno implements Initializable {
@@ -107,8 +108,8 @@ public class controladorCursosAluno implements Initializable {
             AlunoDao alunoDao = new AlunoDao(conexao);
             Aluno aluno = alunoDao.consultarPorNomeEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
             Curso cursoSelecionado = tabelaCursos.getSelectionModel().getSelectedItem();
-            
-            alunoCursoDao.cadastrar(aluno.getId(), cursoSelecionado.getId());
+            AlunoCurso alunoCurso = new AlunoCurso(aluno, cursoSelecionado)
+            alunoCursoDao.cadastrar(alunoCurso);
 
 
         } catch (SQLException e) {
