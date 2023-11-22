@@ -31,6 +31,25 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return 0;
+    }
+
+    @Override
+    public List<AlunoCurso> consultarTodos() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'consultarTodos'");
+    }
+
+    @Override
+    public int alterar(AlunoCurso entidade) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'alterar'");
+    }
+
+    @Override
+    public int remover(AlunoCurso entidade) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'remover'");
     }
 
 }
