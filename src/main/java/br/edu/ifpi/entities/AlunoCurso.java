@@ -70,4 +70,25 @@ public class AlunoCurso {
         System.out.println(); // Pula uma linha após exibir as notas
     }
 
+    public Double calcularMedia() {
+        // Verifique se todas as notas foram atribuídas antes de calcular a média
+        if (nota1 != null && nota2 != null && nota3 != null) {
+            // Calcula a média das notas
+            return (nota1 + nota2 + nota3) / 3.0;
+        } else {
+            // Se alguma nota não foi atribuída, retorna null ou lança uma exceção
+            return null;
+        }
+    }
+
+    // public void exibirMedia() {
+    //     Double media = calcularMedia();
+
+    //     if (media != null) {
+    //         System.out.println("Média do aluno " + aluno.getNome() + " no curso de " + curso.getNome() + ": " + media);
+    //     } else {
+    //         System.out.println("Alguma nota não foi atribuída. Não é possível calcular a média.");
+    //     }
+    // }
+
 }
