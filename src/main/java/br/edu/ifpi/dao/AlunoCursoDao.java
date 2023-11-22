@@ -20,14 +20,14 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
     @Override
     public int cadastrar(AlunoCurso alunoCurso) {
-        String sql = "INSERT INTO alunos_cursos (id_aluno, id_curso) VALUES (?, ?)";
+        String sql = "INSERT INTO Aluno_Curso (id_aluno, id_curso) VALUES (?, ?)";
 
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, alunoCurso.getAluno().getId());
-            statement.setInt(2, alunoCurso.getCurso().getId());
-            statement.execute();
-            statement.close();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, alunoCurso.getAluno().getId());
+            stmt.setInt(2, alunoCurso.getCurso().getId());
+            return stmt.executeUpdate();
+            
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -36,20 +36,25 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
     @Override
     public List<AlunoCurso> consultarTodos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'consultarTodos'");
-    }
+        String sql = "SELECT * FROM Aluno_Curso";
+        List<AlunoCurso> alunosCursos = new ArrayList<AlunoCurso>();
 
-    @Override
-    public int alterar(AlunoCurso entidade) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'alterar'");
-    }
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
 
-    @Override
-    public int remover(AlunoCurso entidade) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remover'");
+            while (resultSet.next()) {
+                Aluno aluno = new AlunoDao(connection).consultarPorId(resultSet.getInt("id_aluno"));
+                Curso curso = new CursoDao(connection).consultarPorId(resultSet.getInt("id_curso"));
+                AlunoCurso alunoCurso = new AlunoCurso(aluno, curso);
+                alunosCursos.add(alunoCurso);
+            }
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return alunosCursos;
     }
 
 }
