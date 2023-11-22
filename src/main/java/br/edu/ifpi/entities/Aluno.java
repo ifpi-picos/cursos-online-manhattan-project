@@ -1,6 +1,8 @@
 package br.edu.ifpi.entities;
 
 import br.edu.ifpi.enums.StatusAluno;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno {
@@ -14,7 +16,7 @@ public class Aluno {
     public Aluno(String nome, String email, StatusAluno status) {
         this.nome = nome;
         this.email = email;
-        this.cursos = cursos;
+        this.cursos = new ArrayList<>();
         this.status = status;
     }
 
@@ -22,7 +24,7 @@ public class Aluno {
         this.id = id;
         this.nome = nome;
         this.email = email;
-        this.cursos = cursos;
+        this.cursos = new ArrayList<>();
         this.status = status;
     }
 
@@ -30,7 +32,7 @@ public class Aluno {
         this.id = id;
         this.nome = nome;
         this.email = email;
-        this.cursos = cursos;
+        this.cursos = new ArrayList<>();
     }
 
     // Getters e Setters
