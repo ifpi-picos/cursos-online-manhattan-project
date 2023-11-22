@@ -1,5 +1,6 @@
 package br.edu.ifpi.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,12 +8,17 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import br.edu.ifpi.SessaoUsuario;
 import br.edu.ifpi.sistema;
 import br.edu.ifpi.dao.CursoDao;
@@ -78,6 +84,39 @@ public class controladorPerfilProfessor implements Initializable {
         btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilProfessor.fxml", btnPerfil));
         btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
         btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialprof.fxml", btnVoltar));
-        inserirNota.setOnAction(event -> sistema.trocarCena("/fxml/profGerenciarNotas.fxml", inserirNota));
+        inserirNota.setOnAction(event -> abrirModalListaAlunos());
     }
+
+
+    private void abrirModalListaAlunos() {
+        try {
+            // Carrega o arquivo FXML do modal
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modalListadeAlunos.fxml"));
+            Parent root = loader.load();
+
+            // Obtém o controlador do modal
+            controladorModalListaAlunos modalController = loader.getController();
+
+            // Define o ID do curso selecionado no controlador do modal
+            int idCursoSelecionado = obterIdCursoSelecionado(); // Substitua por sua lógica de obtenção do ID do curso
+            modalController.inicializar(idCursoSelecionado);
+
+            // Cria um novo palco para o modal
+            Stage modalStage = new Stage();
+            modalStage.initModality(Modality.APPLICATION_MODAL);
+            modalStage.setTitle("Lista de Alunos");
+            modalStage.setScene(new Scene(root));
+
+            // Exibe o modal e aguarda até que seja fechado
+            modalStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace(); // Lida com exceções ao carregar o FXML
+        }
+    }
+
+    private int obterIdCursoSelecionado() {
+        Curso cursoSelecionado = cursosCadastrado.getSelectionModel().getSelectedItem();
+        return cursoSelecionado.getId();
+    }
+    
 }
