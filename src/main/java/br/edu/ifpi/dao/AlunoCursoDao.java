@@ -20,7 +20,7 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
     @Override
     public int cadastrar(AlunoCurso alunoCurso) {
-        String sql = "INSERT INTO Aluno_Curso (id_aluno, id_curso) VALUES (?, ?)";
+        String sql = "INSERT INTO aluno_curso (id_aluno, id_curso) VALUES (?, ?)";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -35,7 +35,7 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
     @Override
     public List<AlunoCurso> consultarTodos() {
-        String sql = "SELECT * FROM Aluno_Curso";
+        String sql = "SELECT * FROM aluno_curso";
         List<AlunoCurso> alunosCursos = new ArrayList<AlunoCurso>();
 
 
