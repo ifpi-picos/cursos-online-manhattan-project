@@ -1,19 +1,21 @@
 package br.edu.ifpi.controllers;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import br.edu.ifpi.dao.AlunoCursoDao;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.entities.AlunoCurso;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
-public class controladorModalCadastroNotas {
+public class controladorModalCadastroNotas implements Initializable {
 
     @FXML
     private TextField inputNota1;
@@ -38,9 +40,14 @@ public class controladorModalCadastroNotas {
         this.alunoSelecionado = aluno;
         this.idCursoSelecionado = idCursoSelecionado;
     }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        btnCadastrar.setOnAction(event -> cadastrarNotas());
+    }
 
-    @FXML
-    private void handleCadastrar() throws SQLException {
+
+    public void cadastrarNotas()  {
         String textoNota1 = inputNota1.getText();
         String textoNota2 = inputNota2.getText();
         String textoNota3 = inputNota3.getText();
@@ -57,32 +64,28 @@ public class controladorModalCadastroNotas {
         int idCurso = idCursoSelecionado;
         int idAluno = alunoSelecionado.getId();
 
-        // Cria uma conexão com o banco de dados
-        Connection conexao = Conexao.getConnection();
-
+        Connection conexao = null;
         try {
+            // Cria uma conexão com o banco de dados
+            conexao = Conexao.getConnection();
             // Cria uma instância do AlunoCursoDao
             AlunoCursoDao alunoCursoDao = new AlunoCursoDao(conexao);
-
             // Cria uma instância de AlunoCurso com os dados
             AlunoCurso alunoCurso = new AlunoCurso(new Aluno(idAluno, null, null, null), null);
             alunoCurso.getAluno().setId(idAluno);
             alunoCurso.getCurso().setId(idCurso);
             alunoCurso.setNota(notas);
-
             // Chama o método cadastrarNotas
             int resultado = alunoCursoDao.cadastrarNotas(alunoCurso);
-
-            if (resultado > 0) {
+             if (resultado > 0) {
                 System.out.println("Notas cadastradas com sucesso!");
             } else {
                 System.out.println("Falha ao cadastrar as notas.");
             }
-        } finally {
-            // Fecha a conexão
-            if (conexao != null) {
-                conexao.close();
-            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+
 }
