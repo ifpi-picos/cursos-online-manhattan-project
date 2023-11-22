@@ -31,7 +31,6 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return 0;
     }
 
     @Override
