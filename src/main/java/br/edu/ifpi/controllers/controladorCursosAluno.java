@@ -63,16 +63,20 @@ public class controladorCursosAluno implements Initializable {
 
             // Chama o construtor de CursoDao passando a conexão como argumento
             CursoDao BDCurso = new CursoDao(conexao);
-            // Obter a lista de cursos do banco de dados
-            List<Curso> cursosDoBanco = BDCurso.consultarTodos();
+            AlunoDao alunoDao = new AlunoDao(conexao);
+            AlunoCursoDao alunoCursoDao = new AlunoCursoDao(conexao);
+            //Carregar o aluno
+            Aluno aluno = alunoDao.consultarPorNomeEmail(SessaoUsuario.getNomeUsuario(),SessaoUsuario.getEmailUsuario());
+            // Obter a lista de cursos não matriculados do banco de dados
+            List<Curso> cursosNaoMatriculados = alunoCursoDao.consultarCursosNaoMatriculados(aluno.getId());
+
             // Criar uma ObservableList a partir da lista de cursos
-            ObservableList<Curso> observableCursos = FXCollections.observableArrayList(cursosDoBanco);
+            ObservableList<Curso> observableCursos = FXCollections.observableArrayList(cursosNaoMatriculados);
 
             // Configurar o TableView e as colunas
             colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
             colunaCargaHoraria.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
             colunaProfessor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfessor().getNome()));
-            
 
             // Configurar a TableView para exibir a lista de cursos
             tabelaCursos.setItems(observableCursos);
@@ -93,8 +97,7 @@ public class controladorCursosAluno implements Initializable {
             }
         }
 
-
-        btnCursos.setOnAction(event -> sistema.trocarCena("/fxml/cursosAluno.fxml",btnCursos));
+        btnCursos.setOnAction(event -> sistema.trocarCena("/fxml/cursosAluno.fxml", btnCursos));
         btnHome.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnHome));
         btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilAluno.fxml", btnPerfil));
         btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
