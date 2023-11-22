@@ -1,8 +1,6 @@
 package br.edu.ifpi.entities;
 
 import br.edu.ifpi.enums.StatusCurso;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Curso {
     private int id;

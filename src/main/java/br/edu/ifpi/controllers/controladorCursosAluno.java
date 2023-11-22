@@ -21,7 +21,6 @@ import br.edu.ifpi.sistema;
 import br.edu.ifpi.dao.AlunoCursoDao;
 import br.edu.ifpi.dao.AlunoDao;
 import br.edu.ifpi.dao.Conexao;
-import br.edu.ifpi.dao.CursoDao;
 import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.entities.AlunoCurso;
 import br.edu.ifpi.entities.Curso;
@@ -62,7 +61,6 @@ public class controladorCursosAluno implements Initializable {
             conexao = Conexao.getConnection();
 
             // Chama o construtor de CursoDao passando a conexão como argumento
-            CursoDao BDCurso = new CursoDao(conexao);
             AlunoDao alunoDao = new AlunoDao(conexao);
             AlunoCursoDao alunoCursoDao = new AlunoCursoDao(conexao);
             //Carregar o aluno

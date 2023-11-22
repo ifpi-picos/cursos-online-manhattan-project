@@ -29,7 +29,6 @@ public class Aluno {
     }
 
     public Aluno(String nome, String email) {
-        this.id = id;
         this.nome = nome;
         this.email = email;
         this.cursos = new ArrayList<>();
