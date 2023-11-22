@@ -102,28 +102,6 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         return cursosAssociados;
     }
 
-    // Cursos que o aluno não está matriculado
-    public List<String> consultarCursosNaoMatriculados(int id) {
-        List<String> cursos = new ArrayList<>();
-
-        String sql = "SELECT id_curso FROM aluno_curso WHERE id_aluno != ? ORDER BY";
-
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()) {
-                String nome = rs.getString("nome");
-                cursos.add(nome);
-            }
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar cursos não matriculados no banco de dados: " + e.getMessage());
-        } 
-        return cursos;
-    }
-
 
     @Override
     public int alterar(AlunoCurso entidade) {
@@ -135,12 +113,11 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         throw new UnsupportedOperationException("Unimplemented method 'remover'");
     }
 
-        public int cadastrarNotas(AlunoCurso alunoCurso) {
-            String sql = "UPDATE aluno_curso SET nota1 = ?, nota2 = ?, nota3 = ? WHERE id_aluno = ? AND id_curso = ?";
+    public int cadastrarNotas(AlunoCurso alunoCurso) {
+        String sql = "UPDATE aluno_curso SET nota1 = ?, nota2 = ?, nota3 = ? WHERE id_aluno = ? AND id_curso = ?";
             
-            try {
-                PreparedStatement stmt = connection.prepareStatement(sql);
-                
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setDouble(1, alunoCurso.getNota1());
                 stmt.setDouble(2, alunoCurso.getNota2());
                 stmt.setDouble(3, alunoCurso.getNota3());
@@ -149,8 +126,38 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
                 
                 return stmt.executeUpdate();
                 
-            } catch (SQLException e) {
+                
+        } catch (SQLException e) {
                 throw new RuntimeException(e);
+        }
+    }    
+        
+    public List<Curso> consultarCursosNaoMatriculados(int idAluno) {
+        List<Curso> cursosNaoMatriculados = new ArrayList<>();
+
+        String sql = "SELECT * FROM cursos WHERE id NOT IN (SELECT id_curso FROM aluno_curso WHERE id_aluno = ?)";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idAluno);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                int idProfessor = rs.getInt("id_professor");
+                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
+
+                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
+
+                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
+                cursosNaoMatriculados.add(curso);
             }
-        }     
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao consultar cursos não matriculados no banco de dados: " + e.getMessage());
+        }
+        return cursosNaoMatriculados;
+    }
     }
