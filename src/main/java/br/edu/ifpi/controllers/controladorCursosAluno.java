@@ -108,7 +108,7 @@ public class controladorCursosAluno implements Initializable {
             AlunoDao alunoDao = new AlunoDao(conexao);
             Aluno aluno = alunoDao.consultarPorNomeEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
             Curso cursoSelecionado = tabelaCursos.getSelectionModel().getSelectedItem();
-            AlunoCurso alunoCurso = new AlunoCurso(aluno, cursoSelecionado)
+            AlunoCurso alunoCurso = new AlunoCurso(aluno, cursoSelecionado);
             alunoCursoDao.cadastrar(alunoCurso);
 
 
