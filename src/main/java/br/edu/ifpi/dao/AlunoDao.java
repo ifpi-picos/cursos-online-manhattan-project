@@ -168,7 +168,7 @@ public class AlunoDao implements Dao<Aluno>{
     public List<String> consultarCursosMatriculados(int id) {
         List<String> cursos = new ArrayList<>();
 
-        String sql = "SELECT curso FROM alunos_cursos WHERE id_aluno = ? ORDER BY";
+        String sql = "SELECT id_curso FROM aluno_curso WHERE id_aluno = ? ORDER BY";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
