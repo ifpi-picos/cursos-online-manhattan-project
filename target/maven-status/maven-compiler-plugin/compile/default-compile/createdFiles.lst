@@ -12,6 +12,7 @@ br\edu\ifpi\controllers\controladorCadastroCurso.class
 br\edu\ifpi\dao\CursoDao.class
 br\edu\ifpi\sistema.class
 br\edu\ifpi\entities\Curso.class
+br\edu\ifpi\controllers\controladorModalCadastroNotas.class
 br\edu\ifpi\controllers\controladorGerenciarCursos.class
 br\edu\ifpi\dao\AlunoDao.class
 br\edu\ifpi\entities\Aluno.class
