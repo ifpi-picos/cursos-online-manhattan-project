@@ -6,10 +6,10 @@ public class AlunoCurso {
     private Double[] nota;
 
     //construtor
-    public AlunoCurso(Aluno aluno, Curso curso, Double[] nota) {
+    public AlunoCurso(Aluno aluno, Curso curso) {
         this.aluno = aluno;
         this.curso = curso;
-        this.nota = nota;
+        this.nota = new Double[3];
     }
 
     public Aluno getAluno() {
