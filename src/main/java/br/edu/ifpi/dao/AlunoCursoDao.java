@@ -39,18 +39,20 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         List<AlunoCurso> alunosCursos = new ArrayList<AlunoCurso>();
 
 
-            while (resultSet.next()) {
-                Aluno aluno = new AlunoDao(connection).consultarPorId(resultSet.getInt("id_aluno"));
-                Curso curso = new CursoDao(connection).consultarPorId(resultSet.getInt("id_curso"));
-                AlunoCurso alunoCurso = new AlunoCurso(aluno, curso);
-                alunosCursos.add(alunoCurso);
-            }
-            resultSet.close();
-            statement.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        
         return alunosCursos;
     }
 
-}
+
+    @Override
+        public int alterar(AlunoCurso entidade) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'alterar'");
+        }
+
+        @Override
+        public int remover(AlunoCurso entidade) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'remover'");
+        }
+    }

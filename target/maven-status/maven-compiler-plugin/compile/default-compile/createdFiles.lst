@@ -4,6 +4,7 @@ br\edu\ifpi\controllers\controladorCursosAluno.class
 br\edu\ifpi\entities\Professor.class
 br\edu\ifpi\controllers\controladorPerfilAluno.class
 br\edu\ifpi\App.class
+br\edu\ifpi\entities\AlunoCurso.class
 br\edu\ifpi\dao\Dao.class
 br\edu\ifpi\enums\StatusCurso.class
 br\edu\ifpi\controllers\controladorCadastroCurso.class
@@ -18,5 +19,6 @@ br\edu\ifpi\enums\StatusAluno.class
 br\edu\ifpi\controllers\controladorCadastro.class
 br\edu\ifpi\controllers\controladorInicialAluno.class
 br\edu\ifpi\controllers\controladorLogin.class
+br\edu\ifpi\dao\AlunoCursoDao.class
 br\edu\ifpi\SessaoUsuario.class
 br\edu\ifpi\controllers\controladorInicialProf.class

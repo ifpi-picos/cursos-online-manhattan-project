@@ -1,5 +1,6 @@
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\AlunoDao.java
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\enums\StatusCurso.java
+C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entities\AlunoCurso.java
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entities\Professor.java
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entities\Aluno.java
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\controladorInicialAluno.java
@@ -10,6 +11,7 @@ C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\sr
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\controladorCadastro.java
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\controladorPerfilAluno.java
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\controladorGerenciarCursos.java
+C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\AlunoCursoDao.java
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\ProfessorDao.java
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entities\Curso.java
 C:\Users\Marcos Paulo\Documents\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\App.java
