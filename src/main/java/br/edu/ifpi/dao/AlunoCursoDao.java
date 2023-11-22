@@ -103,6 +103,28 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         return cursosAssociados;
     }
 
+    // Cursos que o aluno não está matriculado
+    public List<String> consultarCursosNaoMatriculados(int id) {
+        List<String> cursos = new ArrayList<>();
+
+        String sql = "SELECT id_curso FROM aluno_curso WHERE id_aluno != ? ORDER BY";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                String nome = rs.getString("nome");
+                cursos.add(nome);
+            }
+            
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar cursos não matriculados no banco de dados: " + e.getMessage());
+        } 
+        return cursos;
+    }
+
 
     @Override
         public int alterar(AlunoCurso entidade) {
@@ -115,4 +137,25 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'remover'");
         }
+
+        // Método para fazer o cadastro de notas em um array no banco de dados
+        public int cadastrarNotas(AlunoCurso alunoCurso) {
+            String sql = "INSERT INTO notas (id_aluno, id_curso, nota1, nota2, nota3) VALUES (?, ?, ?, ?, ?)";
+        
+            try {
+                PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt.setInt(1, alunoCurso.getAluno().getId());
+                stmt.setInt(2, alunoCurso.getCurso().getId());
+                
+                Double[] notas = alunoCurso.getNota();
+                stmt.setDouble(3, notas[0]); // supondo que a nota1 está na posição 0 do array
+                stmt.setDouble(4, notas[1]); // supondo que a nota2 está na posição 1 do array
+                stmt.setDouble(5, notas[2]); // supondo que a nota3 está na posição 2 do array
+        
+                return stmt.executeUpdate();
+                
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }        
     }
