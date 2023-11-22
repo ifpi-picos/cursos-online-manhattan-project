@@ -20,7 +20,7 @@ public class AlunoDao implements Dao<Aluno>{
 
     @Override
     public int cadastrar(Aluno aluno) {
-        String sql = "INSERT INTO alunos (nome, email, status) VALUES (?, ?)";
+        String sql = "INSERT INTO alunos (nome, email, status) VALUES (?, ?, ?)";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
