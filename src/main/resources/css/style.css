@@ -112,3 +112,8 @@
 .table-view .column-header:last-child .label {
     -fx-background-radius: 0 10px 0 0; /* Top-right corner rounded */
 }
+
+
+.modal-background{
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}

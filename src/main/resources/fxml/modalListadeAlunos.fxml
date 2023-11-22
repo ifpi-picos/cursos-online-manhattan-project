@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="480.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorModalListaAlunos">
+<AnchorPane prefHeight="418.0" prefWidth="429.0" styleClass="modal-background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorModalListaAlunos">
    <children>
-      <TableView fx:id="tabelaAlunos" layoutX="125.0" layoutY="41.0" prefHeight="350.0" prefWidth="400.0">
+      <TableView fx:id="tabelaAlunos" layoutX="15.0" layoutY="14.0" prefHeight="350.0" prefWidth="400.0">
          <columns>
             <TableColumn fx:id="colunaAlunos" prefWidth="400.0" text="Alunos" />
          </columns>
       </TableView>
-      <Button fx:id="btnCadastrarNotas" layoutX="266.0" layoutY="409.0" mnemonicParsing="false" text="Cadastrar Notas">
+      <Button fx:id="btnCadastrarNotas" layoutX="156.0" layoutY="377.0" mnemonicParsing="false" text="Cadastrar Notas">
          <font>
             <Font size="14.0" />
          </font>

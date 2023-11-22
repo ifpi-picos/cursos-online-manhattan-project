@@ -18,6 +18,9 @@ import javafx.scene.layout.AnchorPane;
 public class controladorModalCadastroNotas implements Initializable {
 
     @FXML
+    private Button btnCadastrar;
+
+    @FXML
     private TextField inputNota1;
 
     @FXML
@@ -28,9 +31,6 @@ public class controladorModalCadastroNotas implements Initializable {
 
     @FXML
     private AnchorPane nodalBackground;
-
-    @FXML
-    private Button btnCadastrar;
 
     private Aluno alunoSelecionado;
 

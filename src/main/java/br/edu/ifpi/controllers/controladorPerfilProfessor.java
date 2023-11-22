@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -61,24 +62,29 @@ public class controladorPerfilProfessor implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Configura o valor que irá ser exibido na coluna 
         colunaNomeCursos.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
+        //Configura a seleção de apenas uma linha da coluna
+        cursosCadastrado.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        //Carrega os dados do usuário que está logado na sessão
         carregarNome.setText(SessaoUsuario.getNomeUsuario());
         carregarEmail.setText(SessaoUsuario.getEmailUsuario());
 
+        //Obtém a lista de cursos o qual o professor que está logado ministra
         try (Connection connection = Conexao.getConnection()) {
             CursoDao cursoDao = new CursoDao(connection);
             ProfessorDao professorDao = new ProfessorDao(connection);
-
+            //Carrega o professor através dos dados da sessão
             Professor professor = professorDao.buscarPorNomeEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
             List<Curso> listaCursos = cursoDao.buscarPorId(professor.getId());
-
             // Configurar a lista de cursos na tabela
             cursosCadastrado.getItems().setAll(listaCursos);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        //configura as ações dos botões do menu lateral
         btnCursos.setOnAction(event -> sistema.trocarCena("/fxml/gerenciarCursos.fxml", btnCursos));
         btnHome.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialProf.fxml", btnHome));
         btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilProfessor.fxml", btnPerfil));

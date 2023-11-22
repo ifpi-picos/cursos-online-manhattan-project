@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
@@ -31,8 +32,6 @@ public class controladorModalListaAlunos {
 
     private ObservableList<Aluno> listaAlunos;
 
-    private Aluno alunoSelecionado;
-
     private int idCursoSelecionado;
 
     public void inicializar(int idCursoSelecionado) {
@@ -42,9 +41,14 @@ public class controladorModalListaAlunos {
 
     @FXML
     private void initialize() {
+        //Configura o valor que irá ser exibido na coluna 
         colunaAlunos.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
 
-        btnCadastrarNotas.setOnAction(event -> abrirModalCadastroNotas(alunoSelecionado , idCursoSelecionado));
+        //Configura a seleção de apenas uma linha da coluna
+        tabelaAlunos.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        //Configura ação do botão do modal
+        btnCadastrarNotas.setOnAction(event -> abrirModalCadastroNotas(idCursoSelecionado));
         
     }
 
@@ -60,7 +64,7 @@ public class controladorModalListaAlunos {
         }
     }
 
-    private void abrirModalCadastroNotas(Aluno aluno, int idCursoSelecionado) {
+    private void abrirModalCadastroNotas(int idCursoSelecionado) {
         try {
             // Carrega o arquivo FXML do modal de cadastro de notas
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modalCadastroNotas.fxml"));
@@ -68,7 +72,7 @@ public class controladorModalListaAlunos {
 
             // Obtém o controlador do modal
             controladorModalCadastroNotas modalCadastroNotasController = loader.getController();
-            modalCadastroNotasController.inicializar(aluno, idCursoSelecionado);
+            modalCadastroNotasController.inicializar(obterAlunoSelecionado(), idCursoSelecionado);
 
             // Cria um novo palco para o modal
             Stage modalStage = new Stage();
@@ -81,5 +85,10 @@ public class controladorModalListaAlunos {
         } catch (IOException e) {
             e.printStackTrace(); // Lida com exceções ao carregar o FXML
         }
+    }
+
+    private Aluno obterAlunoSelecionado() {
+        Aluno alunoSelecionado = tabelaAlunos.getSelectionModel().getSelectedItem();
+        return alunoSelecionado ;
     }
 }
