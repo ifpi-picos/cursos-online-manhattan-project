@@ -10,7 +10,6 @@ public class Curso {
     private StatusCurso status;
     private int cargaHoraria;
     private Professor professor;
-    private List<Double> notas;
 
     // Construtores
     public Curso(String nome, int cargaHoraria, Professor professor, StatusCurso StatusCurso) {
@@ -18,7 +17,6 @@ public class Curso {
         this.cargaHoraria = cargaHoraria;
         this.professor = professor;
         this.status = StatusCurso;
-        this.notas = new ArrayList<>();
     }
 
     // Construtor completo para manipulação no sistema
@@ -28,7 +26,6 @@ public class Curso {
         this.status = status;
         this.cargaHoraria = cargaHoraria;
         this.professor = professor;
-        this.notas = new ArrayList<>();
     }
 
     // Getters e Setters
@@ -70,13 +67,5 @@ public class Curso {
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
-    }
-
-    public List<Double> getNotas() {
-        return notas;
-    }
-
-    public void setNotas(Double nota) {
-        this.notas.add(nota);
     }
 }
