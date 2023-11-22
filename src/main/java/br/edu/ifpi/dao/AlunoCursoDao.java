@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 
 import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.entities.Curso;
+import br.edu.ifpi.entities.Professor;
+import br.edu.ifpi.enums.StatusAluno;
+import br.edu.ifpi.enums.StatusCurso;
 import br.edu.ifpi.entities.AlunoCurso;
 
 public class AlunoCursoDao implements Dao<AlunoCurso>{
@@ -41,6 +44,63 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
         
         return alunosCursos;
+    }
+
+    public List<Aluno> consultarAlunosPorCurso(int idCurso) {
+        String sql = "SELECT * FROM alunos " +
+                    "WHERE id IN (SELECT id_aluno FROM aluno_curso WHERE id_curso = ?)";
+        List<Aluno> alunosAssociados = new ArrayList<>();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idCurso);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+                StatusAluno status = StatusAluno.valueOf(rs.getString("status"));
+
+                Aluno aluno = new Aluno(id, nome, email, status);
+                alunosAssociados.add(aluno);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return alunosAssociados;
+    }
+
+    public List<Curso> consultarCursosPorAluno(int idAluno) {
+        String sql = "SELECT * FROM cursos " +
+                    "WHERE id IN (SELECT id_curso FROM aluno_curso WHERE id_aluno = ?)";
+        List<Curso> cursosAssociados = new ArrayList<>();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idAluno);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                int idProfessor = rs.getInt("id_professor");
+                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
+
+                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
+
+                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
+                cursosAssociados.add(curso);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return cursosAssociados;
     }
 
 

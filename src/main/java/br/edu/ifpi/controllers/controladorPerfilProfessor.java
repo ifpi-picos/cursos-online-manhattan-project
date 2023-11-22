@@ -78,5 +78,6 @@ public class controladorPerfilProfessor implements Initializable {
         btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilProfessor.fxml", btnPerfil));
         btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
         btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialprof.fxml", btnVoltar));
+        inserirNota.setOnAction(event -> sistema.trocarCena("/fxml/profGerenciarNotas.fxml", inserirNota));
     }
 }

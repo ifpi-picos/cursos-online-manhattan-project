@@ -1,18 +1,10 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.SessaoUsuario;
 import br.edu.ifpi.sistema;
-import br.edu.ifpi.dao.Conexao;
-import br.edu.ifpi.dao.CursoDao;
-import br.edu.ifpi.dao.ProfessorDao;
-import br.edu.ifpi.entities.Curso;
-import br.edu.ifpi.entities.Professor;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
