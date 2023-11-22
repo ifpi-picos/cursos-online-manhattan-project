@@ -136,17 +136,16 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
     }
 
         public int cadastrarNotas(AlunoCurso alunoCurso) {
-            String sql = "UPDATE aluno_curso SET notas = ? WHERE id_aluno = ? AND id_curso = ?";
+            String sql = "UPDATE aluno_curso SET nota1 = ?, nota2 = ?, nota3 = ? WHERE id_aluno = ? AND id_curso = ?";
             
             try {
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 
-                Double[] notas = alunoCurso.getNota();
-                Array notasArray = connection.createArrayOf("double precision", notas);
-                
-                stmt.setArray(1, notasArray);
-                stmt.setInt(2, alunoCurso.getAluno().getId());
-                stmt.setInt(3, alunoCurso.getCurso().getId());
+                stmt.setDouble(1, alunoCurso.getNota1());
+                stmt.setDouble(2, alunoCurso.getNota2());
+                stmt.setDouble(3, alunoCurso.getNota3());
+                stmt.setInt(4, alunoCurso.getAluno().getId());
+                stmt.setInt(5, alunoCurso.getCurso().getId());
                 
                 return stmt.executeUpdate();
                 

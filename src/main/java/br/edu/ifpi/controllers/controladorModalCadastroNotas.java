@@ -59,9 +59,6 @@ public class controladorModalCadastroNotas implements Initializable {
         Double nota2 = Double.parseDouble(textoNota2);
         Double nota3 = Double.parseDouble(textoNota3);
 
-        // Cria um array com as notas
-        Double[] notas = {nota1, nota2, nota3};
-
         Connection conexao = null;
         try {
             // Cria uma conexão com o banco de dados
@@ -73,7 +70,9 @@ public class controladorModalCadastroNotas implements Initializable {
             Curso curso = cursoDao.consultarPorId(idCursoSelecionado);
             //Preciso que seja gerada uma instância de curso através do id do curso para ser passado na formação do objeto alunoCurso.
             AlunoCurso alunoCurso = new AlunoCurso(alunoSelecionado, curso);
-            alunoCurso.setNota(notas);
+            alunoCurso.setNota1(nota1);
+            alunoCurso.setNota2(nota2);
+            alunoCurso.setNota3(nota3);
             alunoCurso.exibirNotas();
             // Chama o método cadastrarNotas
             int resultado = alunoCursoDao.cadastrarNotas(alunoCurso);
