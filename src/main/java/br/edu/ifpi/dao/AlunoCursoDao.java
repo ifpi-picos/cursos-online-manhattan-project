@@ -42,8 +42,18 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
     @Override
     public int alterar(AlunoCurso entidade) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'alterar'");
+        String sql = "UPDATE Aluno_Curso SET id_aluno = ?, id_curso = ? WHERE id = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, entidade.getAluno().getId());
+            statement.setInt(2, entidade.getCurso().getId());
+            statement.setInt(3, entidade.getId());
+            statement.execute();
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
