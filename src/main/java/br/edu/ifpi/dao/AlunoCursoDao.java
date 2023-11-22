@@ -1,19 +1,18 @@
 package br.edu.ifpi.dao;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.ifpi.entities.Aluno;
+import br.edu.ifpi.entities.AlunoCurso;
 import br.edu.ifpi.entities.Curso;
 import br.edu.ifpi.entities.Professor;
 import br.edu.ifpi.enums.StatusAluno;
 import br.edu.ifpi.enums.StatusCurso;
-import br.edu.ifpi.entities.AlunoCurso;
 
 public class AlunoCursoDao implements Dao<AlunoCurso>{
     private Connection connection;
@@ -40,7 +39,6 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
     @Override
     public List<AlunoCurso> consultarTodos() {
         // String sql = "SELECT * FROM aluno_curso";
-
         List<AlunoCurso> alunosCursos = new ArrayList<AlunoCurso>();
         return alunosCursos;
     }
