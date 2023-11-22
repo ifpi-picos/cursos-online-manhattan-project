@@ -1,7 +1,7 @@
 package br.edu.ifpi.dao;
 
 import java.util.List;
-
+//Estrutura Padrão do Dao
 public interface Dao<T> {
     public int cadastrar(T entidade);
 
