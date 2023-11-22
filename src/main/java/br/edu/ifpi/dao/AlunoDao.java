@@ -207,4 +207,26 @@ public class AlunoDao implements Dao<Aluno>{
         } 
         return cursos;
     }
+
+    public Aluno consultarPorId(int id) {
+        String sql = "SELECT * FROM alunos WHERE id = ?";
+    
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+    
+            if (rs.next()) {
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+                StatusAluno status = StatusAluno.valueOf(rs.getString("status")); // Converte a String para o Enum
+    
+                Aluno aluno = new Aluno(id, nome, email, status);
+                return aluno;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar aluno por ID no banco de dados: " + e.getMessage());
+        }
+        return null;
+    }
 }

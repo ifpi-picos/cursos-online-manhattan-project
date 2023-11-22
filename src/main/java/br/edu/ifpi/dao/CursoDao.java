@@ -180,4 +180,30 @@ public class CursoDao implements Dao<Curso>{
         }
         return cursos;
     }
+
+    public Curso consultarPorId(int idCurso) {
+        String sql = "SELECT * FROM cursos WHERE id = ?";
+    
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idCurso);
+            ResultSet rs = stmt.executeQuery();
+    
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                int idProfessor = rs.getInt("id_professor");
+                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
+    
+                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
+    
+                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
+                return curso;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar curso por ID no banco de dados: " + e.getMessage());
+        }
+        return null;
+    }
 }

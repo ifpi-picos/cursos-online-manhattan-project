@@ -7,8 +7,10 @@ import java.util.ResourceBundle;
 
 import br.edu.ifpi.dao.AlunoCursoDao;
 import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.CursoDao;
 import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.entities.AlunoCurso;
+import br.edu.ifpi.entities.Curso;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -68,10 +70,13 @@ public class controladorModalCadastroNotas implements Initializable {
         try {
             // Cria uma conexão com o banco de dados
             conexao = Conexao.getConnection();
-            // Cria uma instância do AlunoCursoDao
+            // Cria uma instância do AlunoCursoDao e cursoDao
             AlunoCursoDao alunoCursoDao = new AlunoCursoDao(conexao);
+            CursoDao cursoDao = new CursoDao(conexao);
             // Cria uma instância de AlunoCurso com os dados
-            AlunoCurso alunoCurso = new AlunoCurso(new Aluno(idAluno, null, null, null), null);
+            Curso curso = cursoDao.consultarPorId(idCurso);
+            //Preciso que seja gerada uma instância de curso através do id do curso para ser passado na formação do objeto alunoCurso.
+            AlunoCurso alunoCurso = new AlunoCurso(alunoSelecionado, curso);
             alunoCurso.getAluno().setId(idAluno);
             alunoCurso.getCurso().setId(idCurso);
             alunoCurso.setNota(notas);
