@@ -15,6 +15,7 @@ import java.io.IOException;
 import br.edu.ifpi.dao.AlunoCursoDao;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.entities.Aluno;
+import br.edu.ifpi.entities.Curso;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,7 +46,7 @@ public class controladorModalListaAlunos {
     private void initialize() {
         colunaAlunos.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
 
-        btnCadastrarNotas.setOnAction(event -> abrirModalCadastroNotas(alunoSelecionado));
+        btnCadastrarNotas.setOnAction(event -> abrirModalCadastroNotas(alunoSelecionado , idCursoSelecionado));
         
     }
 
@@ -61,7 +62,7 @@ public class controladorModalListaAlunos {
         }
     }
 
-    private void abrirModalCadastroNotas(Aluno aluno) {
+    private void abrirModalCadastroNotas(Aluno aluno, int idCursoSelecionado) {
         try {
             // Carrega o arquivo FXML do modal de cadastro de notas
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modalCadastroNotas.fxml"));
@@ -69,7 +70,7 @@ public class controladorModalListaAlunos {
 
             // Obtém o controlador do modal
             controladorModalCadastroNotas modalCadastroNotasController = loader.getController();
-            modalCadastroNotasController.inicializar(aluno);
+            modalCadastroNotasController.inicializar(aluno, idCursoSelecionado);
 
             // Cria um novo palco para o modal
             Stage modalStage = new Stage();
