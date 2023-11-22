@@ -20,12 +20,13 @@ public class AlunoDao implements Dao<Aluno>{
 
     @Override
     public int cadastrar(Aluno aluno) {
-        String sql = "INSERT INTO alunos (nome, email) VALUES (?, ?)";
+        String sql = "INSERT INTO alunos (nome, email, status) VALUES (?, ?)";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
             stmt.setString(2, aluno.getEmail());
+            stmt.setString(3, aluno.getStatus().toString()); // Converte o Enum para String
             return stmt.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao inserir aluno no banco de dados: " + e.getMessage());
