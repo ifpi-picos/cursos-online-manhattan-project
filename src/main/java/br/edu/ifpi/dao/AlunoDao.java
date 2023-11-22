@@ -157,7 +157,6 @@ public class AlunoDao implements Dao<Aluno>{
                 Aluno aluno = new Aluno(id, nome, email, status);
                 return aluno;
             }
-            return null;
         } catch (Exception e) {
             throw new RuntimeException("Erro ao consultar aluno no banco de dados: " + e.getMessage());
         } 

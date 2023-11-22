@@ -16,9 +16,13 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import br.edu.ifpi.SessaoUsuario;
 import br.edu.ifpi.sistema;
+import br.edu.ifpi.dao.AlunoCursoDao;
+import br.edu.ifpi.dao.AlunoDao;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.dao.CursoDao;
+import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.entities.Curso;
 
 public class controladorCursosAluno implements Initializable {
@@ -93,6 +97,24 @@ public class controladorCursosAluno implements Initializable {
         btnHome.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnHome));
         btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilAluno.fxml", btnPerfil));
         btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
+    }
+
+    public void cadastrarAlunoCurso(){
+        Connection conexao = null;
+        try {
+            conexao = Conexao.getConnection();
+            AlunoCursoDao alunoCursoDao = new AlunoCursoDao(conexao);
+            AlunoDao alunoDao = new AlunoDao(conexao);
+            Aluno aluno = alunoDao.consultarPorNomeEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
+            Curso cursoSelecionado = tabelaCursos.getSelectionModel().getSelectedItem();
+            
+            alunoCursoDao.cadastrar(aluno.getId(), cursoSelecionado.getId());
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
