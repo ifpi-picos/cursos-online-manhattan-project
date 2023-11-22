@@ -1,18 +1,15 @@
 package br.edu.ifpi.entities;
 
 public class AlunoCurso {
-    private String id;
     private Aluno aluno;
     private Curso curso;
+    private Double[] nota;
 
-    public AlunoCurso(Aluno aluno, Curso curso) {
+    //construtor
+    public AlunoCurso(Aluno aluno, Curso curso, Double[] nota) {
         this.aluno = aluno;
         this.curso = curso;
-        this.id = aluno.getId() + "-" + curso.getId();
-    }
-
-    public String getId() {
-        return id;
+        this.nota = nota;
     }
 
     public Aluno getAluno() {
@@ -23,8 +20,8 @@ public class AlunoCurso {
         return curso;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Double[] getNota() {
+        return nota;
     }
 
     public void setAluno(Aluno aluno) {
@@ -33,6 +30,10 @@ public class AlunoCurso {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public void setNota(Double[] nota) {
+        this.nota = nota;
     }
 
 }

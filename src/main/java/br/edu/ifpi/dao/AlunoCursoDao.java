@@ -38,9 +38,27 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         String sql = "SELECT * FROM Aluno_Curso";
         List<AlunoCurso> alunosCursos = new ArrayList<AlunoCurso>();
 
+<<<<<<< HEAD
+    @Override
+    public int alterar(AlunoCurso entidade) {
+        String sql = "UPDATE Aluno_Curso SET id_aluno = ?, id_curso = ? WHERE id = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, entidade.getAluno().getId());
+            statement.setInt(2, entidade.getCurso().getId());
+            statement.setInt(3, entidade.getId());
+            statement.execute();
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+=======
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
+>>>>>>> 3deb04633c6334d43520485a9c7e27a6fb63d310
 
             while (resultSet.next()) {
                 Aluno aluno = new AlunoDao(connection).consultarPorId(resultSet.getInt("id_aluno"));
