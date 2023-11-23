@@ -6,14 +6,14 @@
 
 <AnchorPane fx:id="nodalBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="520.0" styleClass="modal-background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorModalAluno">
    <children>
-      <TableView fx:id="tabelaNotas" layoutX="60.0" layoutY="50.0" prefHeight="150.0" prefWidth="400.0">
+      <TableView fx:id="tabelaNotas" layoutX="74.0" layoutY="50.0" prefHeight="150.0" prefWidth="400.0">
         <columns>
             <TableColumn maxWidth="400.0" prefWidth="400.0" text="Notas">
                <columns>
                 <TableColumn fx:id="nota1" prefWidth="100.0" text="Nota 1" />
                   <TableColumn fx:id="nota2" prefWidth="100.0" text="Nota 2" />
                 <TableColumn fx:id="nota3" prefWidth="100.0" text="Nota 3" />
-                  <TableColumn fx:id="media" prefWidth="100.0" text="Média" />
+                  <TableColumn fx:id="media" prefWidth="100.0" text="Media" />
                </columns>
             </TableColumn>
         </columns>

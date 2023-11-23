@@ -158,4 +158,29 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         }
         return cursosNaoMatriculados;
     }
+
+    public double[] consultarNotaPorAlunoECurso(int idAluno, int idCurso) {
+        String sql = "SELECT nota1, nota2, nota3 FROM aluno_curso WHERE id_aluno = ? AND id_curso = ?";
+        
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idAluno);
+            stmt.setInt(2, idCurso);
+            ResultSet rs = stmt.executeQuery();
+    
+            if (rs.next()) {
+                double nota1 = rs.getDouble("nota1");
+                double nota2 = rs.getDouble("nota2");
+                double nota3 = rs.getDouble("nota3");
+    
+                return new double[]{nota1, nota2, nota3};
+            }
+    
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao consultar nota no banco de dados: " + e.getMessage());
+        }
+    
+        // Caso não encontre nota para o aluno e curso especificados, você pode retornar um valor padrão ou lançar uma exceção, dependendo da sua lógica.
+        throw new RuntimeException("Nota não encontrada para o aluno e curso especificados");
     }
+}

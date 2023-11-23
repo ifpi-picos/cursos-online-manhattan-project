@@ -1,5 +1,6 @@
 package br.edu.ifpi.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.List;
@@ -13,12 +14,17 @@ import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.entities.Curso;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class controladorPerfilAluno implements Initializable {
 
@@ -72,7 +78,8 @@ public class controladorPerfilAluno implements Initializable {
             // Exibir a lista de cursos na tabela
             cursosCadastrado.getItems().setAll(cursos);
         } catch (Exception e) {
-            // TODO: handle exception
+            sistema sistema = new sistema();
+            sistema.exibirPopupErro("Erro ao carregar cursos...");
         }
         
         btnCursos.setOnAction(event -> sistema.trocarCena("/fxml/cursosAluno.fxml",btnCursos));
@@ -80,6 +87,30 @@ public class controladorPerfilAluno implements Initializable {
         btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilAluno.fxml", btnPerfil));
         btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
         btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnVoltar));
+        btnVerNotas.setOnAction(event -> abrirModalNotas());
+    }
+
+    private void abrirModalNotas(){
+        try {
+            // Carrega o arquivo FXML do modal
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modalAluno.fxml"));
+            Parent root = loader.load();
+            // Obtém o controlador do modal
+            controladorModalAluno modalController = loader.getController();
+            //Obtém o aluno e o curso para passar para carregamento das notas no modal de notas
+            Curso cursoSelecionado = cursosCadastrado.getSelectionModel().getSelectedItem();
+            modalController.inicializar(cursoSelecionado);
+
+            // Cria um novo palco para o modal
+            Stage modalStage = new Stage();
+            modalStage.initModality(Modality.APPLICATION_MODAL);
+            modalStage.setTitle("Notas");
+            modalStage.setScene(new Scene(root));
+            // Exibe o modal e aguarda até que seja fechado
+            modalStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }          
     }
 
 }
