@@ -1,0 +1,91 @@
+package br.edu.ifpi.controllers;
+
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import br.edu.ifpi.dao.AlunoCursoDao;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.CursoDao;
+import br.edu.ifpi.entities.Aluno;
+import br.edu.ifpi.entities.AlunoCurso;
+import br.edu.ifpi.entities.Curso;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+
+public class controladorModalCadastroNotas implements Initializable {
+
+    @FXML
+    private Button btnCadastrar;
+
+    @FXML
+    private TextField inputNota1;
+
+    @FXML
+    private TextField inputNota2;
+
+    @FXML
+    private TextField inputNota3;
+
+    @FXML
+    private AnchorPane nodalBackground;
+
+    private Aluno alunoSelecionado;
+
+    private int idCursoSelecionado;
+
+    public void inicializar(Aluno aluno, int idCursoSelecionado) {
+        this.alunoSelecionado = aluno;
+        this.idCursoSelecionado = idCursoSelecionado;
+    }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        btnCadastrar.setOnAction(event -> cadastrarNotas());
+    }
+
+
+    public void cadastrarNotas()  {
+        String textoNota1 = inputNota1.getText();
+        String textoNota2 = inputNota2.getText();
+        String textoNota3 = inputNota3.getText();
+
+        // Converte os valores de texto para Double
+        Double nota1 = Double.parseDouble(textoNota1);
+        Double nota2 = Double.parseDouble(textoNota2);
+        Double nota3 = Double.parseDouble(textoNota3);
+
+        Connection conexao = null;
+        try {
+            // Cria uma conexão com o banco de dados
+            conexao = Conexao.getConnection();
+            // Cria uma instância do AlunoCursoDao e cursoDao
+            AlunoCursoDao alunoCursoDao = new AlunoCursoDao(conexao);
+            CursoDao cursoDao = new CursoDao(conexao);
+            // Cria uma instância de AlunoCurso com os dados
+            Curso curso = cursoDao.consultarPorId(idCursoSelecionado);
+            //Preciso que seja gerada uma instância de curso através do id do curso para ser passado na formação do objeto alunoCurso.
+            AlunoCurso alunoCurso = new AlunoCurso(alunoSelecionado, curso);
+            alunoCurso.setNota1(nota1);
+            alunoCurso.setNota2(nota2);
+            alunoCurso.setNota3(nota3);
+            alunoCurso.exibirNotas();
+            // Chama o método cadastrarNotas
+            int resultado = alunoCursoDao.cadastrarNotas(alunoCurso);
+             if (resultado > 0) {
+                System.out.println("Notas cadastradas com sucesso!");
+                System.out.println(resultado + " linhas adicionadas.");
+            } else {
+                System.out.println("Falha ao cadastrar as notas.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+}

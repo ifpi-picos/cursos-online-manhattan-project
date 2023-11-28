@@ -1,0 +1,125 @@
+
+.background-secundario{
+    -fx-background-color: gray;
+}
+
+.background-primario{
+    -fx-background-color: snow;
+}
+
+#formsLogIn {
+    -fx-background-color: snow;
+    -fx-border-width: 0 0 0 5px; 
+    -fx-border-color: rgba(0, 0, 0, 0.8); 
+}
+
+.VBox {
+    -fx-background-color: silver;
+    -fx-min-width: 60px;
+    -fx-max-width: 60px;
+    -fx-spacing: 100;
+    -fx-overflow: hidden;
+    -fx-pref-height: 675px;
+    -fx-transition: width 1s;
+}
+
+.VBox:hover {
+    -fx-min-width: 200px;
+    -fx-max-width: 250px;
+}
+
+.btn-lateral{
+    -fx-min-width: 60px;
+    -fx-max-width: 60px;
+    -fx-overflow: hidden;
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-text-align: right;
+    -fx-text-fill: #000000;
+    -fx-padding: 10px;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-effect: dropshadow(three-pass-box, #999, 0, 0, 0, 0);
+    -fx-transition: width 1s;
+}
+
+.btn-lateral:hover {
+    -fx-min-width: 200px;
+    -fx-max-width: 250px;
+    -fx-background-color: gray;
+}
+
+.btn-lateral:armed{
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, #666, 0, 0, 0, 10);
+    -fx-translate-y: 10;
+}
+
+/* Personalização de tabelas */
+
+.table-view {
+    -fx-font-size: 14px;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.table-row-cell {
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: #ddd; 
+    -fx-border-width: 0 0 2 0; 
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f4f4f4; 
+}
+
+/* .table-view .column-header {
+    -fx-padding: 5 5 5 5;
+} */
+
+.table-view .column-header .label {
+    -fx-font-size: 15px;
+}
+
+.table-cell {
+    -fx-padding: 5 5 5 5;
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #e2e2e2; 
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgb(16, 174, 226); 
+}
+
+.table-view .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-scaling: 0; 
+}
+
+.table-view .column-header-background {
+    -fx-background-radius: 10px 10px 0 0; /* Top corners rounded */
+    
+}
+
+.table-view .column-header:first-child .label {
+    -fx-background-radius: 10px 0 0 0; /* Top-left corner rounded */
+}
+
+.table-view .column-header:last-child .label {
+    -fx-background-radius: 0 10px 0 0; /* Top-right corner rounded */
+}
+
+
+.modal-background{
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.column-header{
+    -fx-background-radius: 10 10 0 0;
+    -fx-border-radius: 10 10 0 0;
+}
