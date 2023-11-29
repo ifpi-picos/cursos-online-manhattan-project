@@ -183,4 +183,28 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         // Caso não encontre nota para o aluno e curso especificados, você pode retornar um valor padrão ou lançar uma exceção, dependendo da sua lógica.
         throw new RuntimeException("Nota não encontrada para o aluno e curso especificados");
     }
+
+    // Função p/ exibir a quantidade de alunos matriculados em um curso
+    public int quantidadeAlunosMatriculados(int idCurso) {
+        // SELECT COUNT(*) AS total conta o número de linhas retornadas pela consulta
+        String sql = "SELECT COUNT(*) AS total FROM aluno_curso WHERE id_curso = ? AND status = 'MATRICULADO'";
+        int totalAlunos = 0; // Variável para armazenar o total de alunos baseados nas linhas retornadas pela consulta
+    
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idCurso);
+            ResultSet rs = stmt.executeQuery();
+    
+            if (rs.next()) {
+                totalAlunos = rs.getInt("total");
+            } else {
+                throw new RuntimeException("Erro ao consultar a quantidade de alunos matriculados no curso.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao consultar a quantidade de alunos matriculados no curso: " + e.getMessage());
+        }
+        return totalAlunos;
+    }
+    
+    
 }
