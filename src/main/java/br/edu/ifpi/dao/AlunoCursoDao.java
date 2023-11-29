@@ -206,5 +206,53 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         return totalAlunos;
     }
     
+    // Funções p/ calcular a média geral e porcentagem de alunos aprovados em um curso
+    public double calcularMediaGeral(int idCurso) {
+        String sql = "SELECT AVG(media) AS media_geral FROM aluno_curso WHERE id_curso = ?";
+        double mediaGeral = 0;
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idCurso);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                mediaGeral = rs.getDouble("media_geral");
+            } else {
+                throw new RuntimeException("Erro ao calcular a média geral dos alunos.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao calcular a média geral dos alunos: " + e.getMessage());
+        }
+        return mediaGeral;
+    }
+
+    public double calcularPorcentagemAprovados(int idCurso) {
+        String sql = "SELECT COUNT(*) AS total_aprovados FROM aluno_curso WHERE id_curso = ? AND media >= 7";
+        int totalAprovados = 0;
+        int totalAlunos = 0;
+        double porcentagemAprovados = 0;
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idCurso);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                totalAprovados = rs.getInt("total_aprovados");
+            } else {
+                throw new RuntimeException("Erro ao calcular a porcentagem de alunos aprovados.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao calcular a porcentagem de alunos aprovados: " + e.getMessage());
+        }
+
+        totalAlunos = quantidadeAlunosMatriculados(idCurso);
+        if (totalAlunos > 0) {
+            porcentagemAprovados = (double) totalAprovados / totalAlunos * 100;
+        }
+
+        return porcentagemAprovados;
+    }
     
 }
