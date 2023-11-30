@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorCadastroCurso">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="675.0" prefWidth="250.0">
          <children>
@@ -41,6 +38,14 @@
                         <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
                      </graphic>
                   </Button>
+                  <Button fx:id="btnCursos1" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="MEUS CURSOS">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-clipboard-list" iconSize="40" />
+                     </graphic>
+                  </Button>
                   <Button fx:id="btnSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">
                      <font>
                         <Font name="System Bold" size="24.0" />
@@ -61,67 +66,43 @@
                </font>
             </Text>
             <FontIcon iconLiteral="fas-book-open" iconSize="75" layoutX="377.0" layoutY="92.0" />
-            <AnchorPane layoutX="184.0" layoutY="192.0" prefHeight="291.0" prefWidth="473.0">
+            <AnchorPane layoutX="203.0" layoutY="238.0" prefHeight="199.0" prefWidth="431.0">
                <children>
-                  <Text layoutX="14.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:">
+                  <Text layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text layoutX="14.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:">
+                  <Text layoutX="14.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga Horária:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text layoutX="14.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga Horária:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="14.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor Responsável:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <ChoiceBox fx:id="selectProfessor" layoutX="277.0" layoutY="230.0" prefWidth="150.0" />
-                  <TextField fx:id="inputHoras" alignment="CENTER" layoutX="176.0" layoutY="147.0" prefHeight="42.0" prefWidth="70.0" promptText="00" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
+                  <TextField fx:id="inputHoras" alignment="CENTER" layoutX="184.0" layoutY="130.0" prefHeight="42.0" prefWidth="70.0" promptText="00" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="254.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hrs">
+                  <Text layoutX="279.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hrs">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="inputNome" layoutX="104.0" layoutY="36.0" prefHeight="40.0" prefWidth="300.0">
+                  <TextField fx:id="inputNome" layoutX="104.0" layoutY="45.0" prefHeight="40.0" prefWidth="300.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <RadioButton fx:id="statusAberto" layoutX="122.0" layoutY="103.0" mnemonicParsing="false" text="ABERTO">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="status" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="statusFechado" layoutX="256.0" layoutY="103.0" mnemonicParsing="false" text="FECHADO" toggleGroup="$status">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </RadioButton>
                </children>
             </AnchorPane>
-            <Button fx:id="btnCadastrar" layoutX="370.0" layoutY="514.0" mnemonicParsing="false" text="Cadastrar">
+            <Button fx:id="btnCadastrar" layoutX="319.0" layoutY="559.0" mnemonicParsing="false" text="Cadastrar">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnVoltar" layoutX="393.0" layoutY="631.0" mnemonicParsing="false" text="voltar">
+            <Button fx:id="btnVoltar" layoutX="480.0" layoutY="559.0" mnemonicParsing="false" text="Voltar">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
             </Button>
          </children>

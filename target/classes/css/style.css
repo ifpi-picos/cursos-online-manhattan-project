@@ -17,7 +17,7 @@
     -fx-background-color: silver;
     -fx-min-width: 60px;
     -fx-max-width: 60px;
-    -fx-spacing: 100;
+    -fx-spacing: 75;
     -fx-overflow: hidden;
     -fx-pref-height: 675px;
     -fx-transition: width 1s;
