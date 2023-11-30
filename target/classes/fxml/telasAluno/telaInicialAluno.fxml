@@ -9,13 +9,13 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorInicialAluno">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorInicialAluno">
    <children>
-      <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0" styleClass="background-primario">
+      <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0">
          <children>
             <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="270.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/GC__1_-removebg-preview.png" />
+                  <Image url="@../../images/GC__1_-removebg-preview.png" />
                </image>
             </ImageView>
             <Text layoutX="316.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BEM-VINDO!">
