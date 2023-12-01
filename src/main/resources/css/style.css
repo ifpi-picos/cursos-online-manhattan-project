@@ -1,3 +1,43 @@
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Configuração básica para botão */
+
+.button {
+    -fx-background-color: Gray;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-padding: 8px 16px;
+    -fx-background-insets: 0 0 0 0;
+    -fx-border-width: 0;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 1, 1, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #c2bd8b;;
+}
+
+.button:pressed {
+    -fx-translate-y: 10;
+}
+
+.link-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(0, 110, 255);
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+    -fx-effect: none;
+}
+
+/* Fim da personalização dos botões*/
 
 .background-secundario{
     -fx-background-color: gray;
@@ -13,6 +53,7 @@
     -fx-border-color: rgba(0, 0, 0, 0.8); 
 }
 
+/* personalização da barra lateral */
 .VBox {
     -fx-background-color: silver;
     -fx-min-width: 60px;
@@ -23,10 +64,10 @@
     -fx-transition: width 1s;
 }
 
-.VBox:hover {
+/* .VBox:hover {
     -fx-min-width: 200px;
     -fx-max-width: 250px;
-}
+} */
 
 .btn-lateral{
     -fx-min-width: 60px;

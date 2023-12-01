@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
@@ -15,7 +16,7 @@
          <children>
             <VBox alignment="BASELINE_LEFT" prefHeight="675.0" prefWidth="250.0" styleClass="VBox">
                <children>
-                  <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="HOME">
+                  <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: Gray;" styleClass="btn-lateral" text="HOME">
                      <graphic>
                         <FontIcon iconLiteral="fas-home" iconSize="35" text="" />
                      </graphic>
@@ -23,7 +24,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="CURSOS">
+                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="CURSOS">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -61,26 +62,35 @@
       </AnchorPane>
       <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0">
          <children>
-            <Text layoutX="368.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Text>
-            <FontIcon iconLiteral="fas-book-reader" iconSize="75" layoutX="384.0" layoutY="87.0" />
-            <TableView fx:id="tabelaCursos" layoutX="95.0" layoutY="175.0" prefHeight="400.0" prefWidth="652.0">
-              <columns>
-                <TableColumn fx:id="colunaNome" maxWidth="200.0" prefWidth="200.0" text="Nome" />
-                  <TableColumn fx:id="colunaProfessor" maxWidth="200.0" prefWidth="200.0" text="Professor" />
-                <TableColumn fx:id="colunaCargaHoraria" maxWidth="125.0" prefWidth="125.0" text="Carga Horaria" />
-                  <TableColumn prefWidth="125.0" text="Matrícula" />
-              </columns>
+            <TableView layoutX="70.0" layoutY="156.0" prefHeight="370.0" prefWidth="700.0">
+               <columns>
+                  <TableColumn prefWidth="700.0">
+                     <columns>
+                        <TableColumn prefWidth="100.0" text="Nome" />
+                        <TableColumn prefWidth="100.0" text="Professor" />
+                        <TableColumn prefWidth="100.0" text="Média Geral" />
+                        <TableColumn prefWidth="100.0" text="Status" />
+                        <TableColumn prefWidth="300.0" text="Minhas notas">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Nota 1" />
+                              <TableColumn prefWidth="75.0" text="Nota 2" />
+                              <TableColumn prefWidth="75.0" text="Nota 3" />
+                              <TableColumn prefWidth="75.0" text="Média" />
+                           </columns>
+                        </TableColumn>
+                     </columns>
+                     <graphic>
+                        <MenuButton mnemonicParsing="false" style="-fx-background-color: transparent;" text="Cursos">
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Cursando" />
+                            <MenuItem mnemonicParsing="false" text="Concluidos" />
+                            <MenuItem mnemonicParsing="false" text="Desistidos" />
+                          </items>
+                        </MenuButton>
+                     </graphic>
+                  </TableColumn>
+               </columns>
             </TableView>
-            <Button fx:id="btnInscrever" layoutX="354.0" layoutY="595.0" mnemonicParsing="false" text="Inscrever-se">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

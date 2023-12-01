@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorLogin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="675.0" prefWidth="450.0" styleClass="background-secundario">
          <children>
@@ -46,18 +46,18 @@
                   </TextField>
                </children>
             </AnchorPane>
-            <FontIcon iconLiteral="bi-person-circle" iconSize="100" layoutX="175.0" layoutY="145.0" />
-            <Text layoutX="166.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+            <FontIcon iconLiteral="bi-person-circle" iconSize="100" layoutX="183.0" layoutY="152.0" />
+            <Text layoutX="174.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
                <font>
                   <Font size="48.0" />
                </font>
             </Text>
-            <Button fx:id="btnEntrar" layoutX="189.0" layoutY="528.0" mnemonicParsing="false" text="Entrar">
+            <Button fx:id="btnEntrar" layoutX="191.0" layoutY="534.0" mnemonicParsing="false" text="Entrar">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnCadastrar" layoutX="176.0" layoutY="631.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Cadastrar-se" textFill="#0400ff" underline="true">
+            <Button fx:id="btnCadastrar" layoutX="164.0" layoutY="628.0" mnemonicParsing="false" prefWidth="138.0" styleClass="link-button" text="Cadastrar-se" underline="true">
                <font>
                   <Font size="14.0" />
                </font>
