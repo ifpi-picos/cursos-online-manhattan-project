@@ -70,35 +70,6 @@ public class AlunoDao implements Dao<Aluno>{
         return alunos;
     }
 
-    public List<Aluno> consultarAutenticar() {
-        List<Aluno> alunos = new ArrayList<>();
-
-        String sql = "SELECT * FROM alunos";
-
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()) {
-                String nome = rs.getString("nome");
-                String email = rs.getString("email");
-
-                Aluno aluno = new Aluno(nome, email);
-                alunos.add(aluno);
-            }
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar alunos no banco de dados: " + e.getMessage());
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
-            }
-        }
-        return alunos;
-    }
-
     @Override
     public int alterar(Aluno aluno){
         String sql = "UPDATE alunos SET nome = ?, email = ?, status = ? WHERE id = ?";
