@@ -44,12 +44,21 @@ public class Sistema {
         }
     }
 
+    // Função que verifica se os campos foram preenchidos (se estão vazios)
+    public static boolean verificarCampos(String nome, String email) {
+        if (nome.isEmpty() || email.isEmpty()) {
+            Sistema.exibirPopupErro("Por favor, preencha todos os campos.");
+            return false;
+        }
+        return true;
+    }
+
     public static boolean validarEmail(String email) {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
 
-    public void exibirPopupErro(String mensagemErro) {
+    public static void exibirPopupErro(String mensagemErro) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erro");
         alert.setHeaderText(null);
@@ -57,7 +66,7 @@ public class Sistema {
         alert.showAndWait();
     }
 
-    public void exibirPopupSucesso(String mensagemSucesso) {
+    public static void exibirPopupSucesso(String mensagemSucesso) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Sucesso");
         alert.setHeaderText(null);
