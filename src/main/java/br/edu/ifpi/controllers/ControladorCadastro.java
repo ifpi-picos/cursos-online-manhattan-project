@@ -73,6 +73,16 @@ public class ControladorCadastro implements Initializable, SessaoController{
             return;
         }
 
+        if (verificarEmailExistente(email)) {
+            return;
+        }
+        
+        // Verifica se um dos botões de rádio está marcado
+        if (!(radioAluno.isSelected() || radioProfessor.isSelected())) {
+            Sistema.exibirPopupErro("Por favor, selecione Aluno ou Professor.");
+            return;
+        }
+
         // Se tudo estiver correto, exibe o popup de sucesso
         Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
 
