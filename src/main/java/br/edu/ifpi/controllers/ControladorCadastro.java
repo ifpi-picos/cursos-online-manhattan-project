@@ -8,7 +8,6 @@ import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.Sistema;
 import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.entities.Professor;
-import br.edu.ifpi.enums.StatusAluno;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
