@@ -6,6 +6,9 @@ import java.util.ResourceBundle;
 import br.edu.ifpi.SessaoController;
 import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.Sistema;
+import br.edu.ifpi.entities.Aluno;
+import br.edu.ifpi.entities.Professor;
+import br.edu.ifpi.enums.StatusAluno;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -81,7 +84,25 @@ public class ControladorCadastro implements Initializable, SessaoController{
             return;
         }
 
-        Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
+        if (radioAluno.isSelected()) {
+            Aluno aluno = new Aluno(nome, email, StatusAluno.ATIVO);
+            sessaoDao.alunoDao.cadastrar(aluno);
+            limparCampos();
+            Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
+        }else{
+            Professor professor = new Professor(nome, email);
+            sessaoDao.professorDao.cadastrar(professor);
+            limparCampos();
+            Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
+        }
+        
 
+    }
+
+    public void limparCampos() {
+        inputNome.clear();
+        inputEmail.clear();
+        radioAluno.setSelected(false);
+        radioProfessor.setSelected(false);
     }
 }
