@@ -1,11 +1,16 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.SessaoController;
 import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.Sistema;
+import br.edu.ifpi.dao.AlunoDao;
+import br.edu.ifpi.dao.ProfessorDao;
+import br.edu.ifpi.entities.Aluno;
+import br.edu.ifpi.entities.Professor;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -40,7 +45,7 @@ public class ControladorLogIn implements Initializable, SessaoController{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         btnCadastrar.setOnAction(event -> Sistema.trocarCena("/fxml/cadastro.fxml", btnCadastrar, sessaoDao));
-        // btnEntrar.setOnAction(event -> Autenticar());
+        btnEntrar.setOnAction(event -> Autenticar());
     }
 
     private void Autenticar(){
@@ -54,14 +59,22 @@ public class ControladorLogIn implements Initializable, SessaoController{
         String email = inputEmail.getText();
 
         if (Sistema.verificarCampos(nome, email) && Sistema.validarEmail(email)){
-           if (sessaoDao.alunoDao.consultarPorEmail(email) != null) {
-            Sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnEntrar, sessaoDao);
-            } else if (sessaoDao.professorDao.consultarPorEmail(email) != null) {
-                Sistema.trocarCena("/fxml/telaInicialProfessor.fxml", btnEntrar, sessaoDao);
+            Connection connection = sessaoDao.getConnection();
+            
+            AlunoDao alunoDao = new AlunoDao(connection);
+            ProfessorDao professorDao = new ProfessorDao(connection);
+
+            Aluno aluno = alunoDao.consultarPorEmail(email);
+            Professor professor = professorDao.consultarPorEmail(email);
+
+            if (aluno != null){
+                
+                Sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnEntrar, sessaoDao);
+            } else if (professor != null){
+                
+                Sistema.trocarCena("/fxml/telaInicialProf.fxml", btnEntrar, sessaoDao);
             } else {
                 Sistema.exibirPopupErro("Usuário não encontrado.");
-                inputNome.clear();
-                inputEmail.clear();
             }
         }           
     }
@@ -80,5 +93,5 @@ public class ControladorLogIn implements Initializable, SessaoController{
             return;
         }
     }
-    
+      
 }
