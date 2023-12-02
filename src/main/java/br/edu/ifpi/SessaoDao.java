@@ -8,11 +8,11 @@ import br.edu.ifpi.dao.CursoDao;
 import br.edu.ifpi.dao.ProfessorDao;
 
 public class SessaoDao {
-    private Connection connection;
-    private AlunoDao alunoDao;
-    private ProfessorDao professorDao;
-    private CursoDao cursoDao;
-    private AlunoCursoDao alunoCursoDao;
+    public Connection connection;
+    public AlunoDao alunoDao;
+    public ProfessorDao professorDao;
+    public CursoDao cursoDao;
+    public AlunoCursoDao alunoCursoDao;
 
     
     public SessaoDao(Connection connection, AlunoDao alunoDao, ProfessorDao professorDao, CursoDao cursoDao, AlunoCursoDao alunoCursoDao) {
