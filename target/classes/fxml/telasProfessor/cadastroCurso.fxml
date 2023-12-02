@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="675.0" prefWidth="250.0">
          <children>
@@ -22,12 +23,12 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="CURSOS">
+                  <Button fx:id="btnCursos1" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="CADASTRAR">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                      <graphic>
-                        <FontIcon iconLiteral="fas-book" iconSize="35" />
+                        <FontIcon iconLiteral="fas-clipboard-list" iconSize="40" />
                      </graphic>
                   </Button>
                   <Button fx:id="btnPerfil" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="PERFIL">
@@ -38,12 +39,12 @@
                         <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnCursos1" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="MEUS CURSOS">
+                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="CURSOS">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                      <graphic>
-                        <FontIcon iconLiteral="fas-clipboard-list" iconSize="40" />
+                        <FontIcon iconLiteral="fas-book" iconSize="35" />
                      </graphic>
                   </Button>
                   <Button fx:id="btnSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">
@@ -94,13 +95,16 @@
                      </font>
                   </TextField>
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </AnchorPane>
-            <Button fx:id="btnCadastrar" layoutX="319.0" layoutY="559.0" mnemonicParsing="false" text="Cadastrar">
+            <Button fx:id="btnCadastrar" layoutX="264.0" layoutY="552.0" mnemonicParsing="false" text="Cadastrar">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnVoltar" layoutX="480.0" layoutY="559.0" mnemonicParsing="false" text="Voltar">
+            <Button fx:id="btnVoltar" layoutX="480.0" layoutY="552.0" mnemonicParsing="false" text="Voltar">
                <font>
                   <Font size="18.0" />
                </font>

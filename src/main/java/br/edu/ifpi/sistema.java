@@ -11,28 +11,31 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class sistema {
+public class Sistema {
 
     private static final String EMAIL_REGEX =
             "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
     private static final Pattern pattern = Pattern.compile(EMAIL_REGEX);
 
-    public static void trocarCena(String caminhoFXML, Button botao) {
+    public static void trocarCena(String caminhoFXML, Button botao, Object controlador) {
         try {
             // Carrega o arquivo FXML
-            FXMLLoader loader = new FXMLLoader(sistema.class.getResource(caminhoFXML));
+            FXMLLoader loader = new FXMLLoader(Sistema.class.getResource(caminhoFXML));
+    
+            // Configura o controlador fornecido
+            loader.setController(controlador);
+    
             Parent novaCena = loader.load();
-
+    
             // Obtém o palco principal a partir do botão clicado
             Stage palco = (Stage) botao.getScene().getWindow();
-
             // Configura a nova cena
             Scene novaScene = new Scene(novaCena);
             palco.setScene(novaScene);
             palco.show();
         } catch (IOException e) {
-            e.printStackTrace(); // Lida com exceções ao carregar o FXML
+            e.printStackTrace();
         }
     }
 

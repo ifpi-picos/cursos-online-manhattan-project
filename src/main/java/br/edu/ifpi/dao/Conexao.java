@@ -13,13 +13,11 @@ public class Conexao {
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
-    public static void closeConnection(Connection connection) throws SQLException {
+    public static void closeConnection() {
         try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
+            DriverManager.getConnection(URL, USERNAME, PASSWORD).close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

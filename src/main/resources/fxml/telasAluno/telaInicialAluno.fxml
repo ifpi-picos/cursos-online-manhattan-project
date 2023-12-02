@@ -39,7 +39,7 @@
                         <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="MEUS CURSOS">
+                  <Button fx:id="btnMeusCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="MEUS CURSOS">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -47,7 +47,7 @@
                         <FontIcon iconLiteral="fas-graduation-cap" iconSize="35" selectionFill="BLACK" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnSair1" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">
+                  <Button fx:id="btnSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

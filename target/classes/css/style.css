@@ -108,20 +108,16 @@
 
 .table-row-cell {
     -fx-padding: 5 5 5 5;
-    -fx-border-color: #ddd; 
+    -fx-border-color: #000000; 
     -fx-border-width: 0 0 2 0; 
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #f4f4f4; 
+    -fx-background-color: #ffffff; 
 }
 
-/* .table-view .column-header {
-    -fx-padding: 5 5 5 5;
-} */
-
 .table-view .column-header .label {
-    -fx-font-size: 15px;
+    -fx-font-size: 14px;
 }
 
 .table-cell {
@@ -143,7 +139,7 @@
 }
 
 .table-view .column-header-background {
-    -fx-background-radius: 10px 10px 0 0; /* Top corners rounded */
+    -fx-background-radius: 0px 0px 0 0; /* Top corners rounded */
     
 }
 
@@ -161,6 +157,6 @@
 }
 
 .column-header{
-    -fx-background-radius: 10 10 0 0;
-    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 5 5 0 0;
+    -fx-border-radius: 5 5 0 0;
 }

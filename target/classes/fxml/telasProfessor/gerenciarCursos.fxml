@@ -9,36 +9,38 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorGerenciarCursos">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0">
          <children>
-            <Text layoutX="367.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos">
+            <Text layoutX="367.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos">
                <font>
                   <Font size="36.0" />
                </font>
             </Text>
-            <FontIcon iconLiteral="fas-book-reader" iconSize="75" layoutX="383.0" layoutY="87.0" />
-            <TableView fx:id="tabelaCursos" layoutX="104.0" layoutY="164.0" prefHeight="416.0" prefWidth="631.0">
+            <FontIcon iconLiteral="fas-book-reader" iconSize="75" layoutX="383.0" layoutY="80.0" />
+            <TableView fx:id="tabelaCursos" layoutX="55.0" layoutY="173.0" prefHeight="400.0" prefWidth="730.0">
                <columns>
-                  <TableColumn fx:id="colunaNome" maxWidth="250.0" prefWidth="250.0" text="Nome" />
-                  <TableColumn fx:id="colunaProfessor" maxWidth="250.0" prefWidth="250.0" text="Professor" />
-                  <TableColumn fx:id="colunaCargaHoraria" maxWidth="130.0" prefWidth="130.0" text="Carga Horaria" />
+                  <TableColumn fx:id="colunaNome" maxWidth="200.0" prefWidth="150.0" text="Nome do Curso" />
+                  <TableColumn fx:id="colunaProfessor" maxWidth="200.0" prefWidth="150.0" text="Professor" />
+                  <TableColumn fx:id="colunaCargaHoraria" maxWidth="150.0" prefWidth="125.0" text="Carga Horária" />
+                  <TableColumn fx:id="colunaCargaHoraria1" maxWidth="150.0" prefWidth="150.0" text="Quant. de Alunos" />
+                  <TableColumn fx:id="colunaCargaHoraria2" maxWidth="150.0" prefWidth="150.0" text="Aproveitamento" />
                </columns>
             </TableView>
-            <Button fx:id="btnAdicionar" layoutX="380.0" layoutY="588.0" mnemonicParsing="false" text="Adicionar">
+            <Button fx:id="btnAdicionar" layoutX="269.0" layoutY="610.0" mnemonicParsing="false" text="Adicionar">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnRemover" layoutX="383.0" layoutY="631.0" mnemonicParsing="false" text="Remover">
+            <Button fx:id="btnRemover" layoutX="458.0" layoutY="610.0" mnemonicParsing="false" text="Remover">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="675.0" prefWidth="250.0" stylesheets="@../css/style.css">
+      <AnchorPane prefHeight="675.0" prefWidth="250.0">
          <children>
             <VBox alignment="BASELINE_LEFT" prefHeight="675.0" prefWidth="250.0" styleClass="VBox">
                <children>
@@ -50,12 +52,12 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="CURSOS">
+                  <Button fx:id="btnCursos1" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="CADASTRAR">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                      <graphic>
-                        <FontIcon iconLiteral="fas-book" iconSize="35" />
+                        <FontIcon iconLiteral="fas-clipboard-list" iconSize="40" />
                      </graphic>
                   </Button>
                   <Button fx:id="btnPerfil" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="PERFIL">
@@ -64,6 +66,14 @@
                      </font>
                      <graphic>
                         <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="CURSOS">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-book" iconSize="35" />
                      </graphic>
                   </Button>
                   <Button fx:id="btnSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">

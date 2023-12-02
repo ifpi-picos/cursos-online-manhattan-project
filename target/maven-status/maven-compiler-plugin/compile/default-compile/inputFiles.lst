@@ -1,7 +1,9 @@
-C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\sistema.java
+C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\Sistema.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\CursoDao.java
+C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\SessaoDao.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\ProfessorDao.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entities\AlunoCurso.java
+C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorLogIn.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\App.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\AlunoCursoDao.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\SessaoUsuario.java
@@ -11,6 +13,7 @@ C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\AlunoDao.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\enums\StatusCurso.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\enums\StatusAlunoCurso.java
+C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorCadastro.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\Dao.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entities\Professor.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entities\Curso.java
