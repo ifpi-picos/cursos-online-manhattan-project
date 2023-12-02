@@ -9,10 +9,10 @@ import br.edu.ifpi.Sistema;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
-public class ControladorTelaInicialAluno implements Initializable, SessaoController {
-
-    @FXML
+public class ControladorPerfilAluno implements Initializable, SessaoController {
+   @FXML
     private Button btnCursos;
 
     @FXML
@@ -26,6 +26,15 @@ public class ControladorTelaInicialAluno implements Initializable, SessaoControl
 
     @FXML
     private Button btnSair;
+
+    @FXML
+    private Button btnVoltar;
+
+    @FXML
+    private Text textEmail;
+
+    @FXML
+    private Text textNome;
 
     private SessaoDao sessaoDao;
     
@@ -42,6 +51,4 @@ public class ControladorTelaInicialAluno implements Initializable, SessaoControl
         btnMeusCursos.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/meusCursos.fxml", btnMeusCursos, sessaoDao));
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair, sessaoDao));
     }
-
 }
-

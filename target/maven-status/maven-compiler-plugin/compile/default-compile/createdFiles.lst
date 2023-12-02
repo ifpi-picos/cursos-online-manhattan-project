@@ -1,6 +1,9 @@
 br\edu\ifpi\controllers\ControladorCadastro.class
+br\edu\ifpi\controllers\ControladorMeusCursosAluno.class
 br\edu\ifpi\dao\ProfessorDao.class
+br\edu\ifpi\controllers\ControladorCursosAluno.class
 br\edu\ifpi\entities\Professor.class
+br\edu\ifpi\controllers\ControladorPerfilAluno.class
 br\edu\ifpi\App.class
 br\edu\ifpi\entities\AlunoCurso.class
 br\edu\ifpi\SessaoDao.class
