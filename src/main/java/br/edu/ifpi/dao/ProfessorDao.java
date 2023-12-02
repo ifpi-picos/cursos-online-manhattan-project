@@ -116,24 +116,5 @@ public class ProfessorDao implements Dao<Professor> {
         }
     }
 
-    // Função que consulta um professor pelo email
-    public Professor consultarPorEmail(String email) {
-        String sql = "SELECT * FROM professores WHERE email = ?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                int id = rs.getInt("id");
-                String nome = rs.getString("nome");
-
-                Professor professor = new Professor(id, nome, email);
-                return professor;
-            }
-            return null;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao consultar professor no banco de dados: " + e.getMessage());
-        }
-    }
+    
 }

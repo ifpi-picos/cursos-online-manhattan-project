@@ -16,7 +16,6 @@ br\edu\ifpi\controllers\ControladorLogIn.class
 br\edu\ifpi\dao\AlunoDao.class
 br\edu\ifpi\entities\Aluno.class
 br\edu\ifpi\dao\Conexao.class
-br\edu\ifpi\enums\StatusAluno.class
 br\edu\ifpi\SessaoController.class
 br\edu\ifpi\enums\StatusAlunoCurso.class
 br\edu\ifpi\controllers\ControladorTelaInicialAluno.class
