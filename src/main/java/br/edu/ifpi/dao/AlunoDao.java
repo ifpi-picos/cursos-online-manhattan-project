@@ -128,4 +128,26 @@ public class AlunoDao implements Dao<Aluno>{
             throw new RuntimeException("Erro ao verificar email no banco de dados: " + e.getMessage());
         }
     }
+
+    // Função que consulta um aluno pelo email
+    public Aluno consultarPorEmail(String email) {
+        String sql = "SELECT * FROM alunos WHERE email = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String nome = rs.getString("nome");
+                StatusAluno status = StatusAluno.valueOf(rs.getString("status")); // Converte a String para o Enum
+
+                Aluno aluno = new Aluno(nome, email, status);
+                return aluno;
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao consultar aluno no banco de dados: " + e.getMessage());
+        }
+    }
 }
