@@ -111,4 +111,21 @@ public class AlunoDao implements Dao<Aluno>{
             }
         }
     }
+
+    public boolean verificarEmailExistente(String email) {
+        String sql = "SELECT COUNT(*) FROM alunos WHERE email = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+            return false;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao verificar email no banco de dados: " + e.getMessage());
+        }
+    }
 }
