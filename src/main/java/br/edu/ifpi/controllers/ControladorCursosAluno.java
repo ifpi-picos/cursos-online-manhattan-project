@@ -9,14 +9,18 @@ import br.edu.ifpi.Sistema;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
-public class ControladorTelaInicialAluno implements Initializable, SessaoController {
-
+public class ControladorCursosAluno implements Initializable, SessaoController{
     @FXML
     private Button btnCursos;
 
     @FXML
     private Button btnHome;
+
+    @FXML
+    private Button btnInscrever;
 
     @FXML
     private Button btnMeusCursos;
@@ -26,6 +30,18 @@ public class ControladorTelaInicialAluno implements Initializable, SessaoControl
 
     @FXML
     private Button btnSair;
+
+    @FXML
+    private TableColumn<?, ?> colunaCargaHoraria;
+
+    @FXML
+    private TableColumn<?, ?> colunaNome;
+
+    @FXML
+    private TableColumn<?, ?> colunaProfessor;
+
+    @FXML
+    private TableView<?> tabelaCursos;
 
     private SessaoDao sessaoDao;
     
@@ -42,6 +58,4 @@ public class ControladorTelaInicialAluno implements Initializable, SessaoControl
         btnMeusCursos.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/meusCursos.fxml", btnMeusCursos, sessaoDao));
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair, sessaoDao));
     }
-
 }
-

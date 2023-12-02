@@ -9,8 +9,31 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorCursosAluno">
    <children>
+      <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0">
+         <children>
+            <Text layoutX="368.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <FontIcon iconLiteral="fas-book-reader" iconSize="75" layoutX="384.0" layoutY="87.0" />
+            <TableView fx:id="tabelaCursos" layoutX="95.0" layoutY="175.0" prefHeight="400.0" prefWidth="652.0">
+              <columns>
+                <TableColumn fx:id="colunaNome" maxWidth="200.0" prefWidth="200.0" text="Nome" />
+                  <TableColumn fx:id="colunaProfessor" maxWidth="200.0" prefWidth="200.0" text="Professor" />
+                <TableColumn fx:id="colunaCargaHoraria" maxWidth="125.0" prefWidth="125.0" text="Carga Horaria" />
+                  <TableColumn prefWidth="125.0" text="Matrícula" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnInscrever" layoutX="354.0" layoutY="595.0" mnemonicParsing="false" text="Inscrever-se">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
       <AnchorPane focusTraversable="true" prefHeight="675.0" prefWidth="250.0">
          <children>
             <VBox alignment="BASELINE_LEFT" prefHeight="675.0" prefWidth="250.0" styleClass="VBox">
@@ -39,7 +62,7 @@
                         <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="MEUS CURSOS">
+                  <Button fx:id="btnMeusCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="MEUS CURSOS">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -47,7 +70,7 @@
                         <FontIcon iconLiteral="fas-graduation-cap" iconSize="35" selectionFill="BLACK" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnSair1" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">
+                  <Button fx:id="btnSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -57,29 +80,6 @@
                   </Button>
                </children>
             </VBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0">
-         <children>
-            <Text layoutX="368.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Text>
-            <FontIcon iconLiteral="fas-book-reader" iconSize="75" layoutX="384.0" layoutY="87.0" />
-            <TableView fx:id="tabelaCursos" layoutX="95.0" layoutY="175.0" prefHeight="400.0" prefWidth="652.0">
-              <columns>
-                <TableColumn fx:id="colunaNome" maxWidth="200.0" prefWidth="200.0" text="Nome" />
-                  <TableColumn fx:id="colunaProfessor" maxWidth="200.0" prefWidth="200.0" text="Professor" />
-                <TableColumn fx:id="colunaCargaHoraria" maxWidth="125.0" prefWidth="125.0" text="Carga Horaria" />
-                  <TableColumn prefWidth="125.0" text="Matrícula" />
-              </columns>
-            </TableView>
-            <Button fx:id="btnInscrever" layoutX="354.0" layoutY="595.0" mnemonicParsing="false" text="Inscrever-se">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </children>

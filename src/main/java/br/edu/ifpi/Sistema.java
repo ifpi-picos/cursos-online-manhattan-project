@@ -47,7 +47,6 @@ public class Sistema {
         }
     }
 
-    // Função que verifica se os campos foram preenchidos (se estão vazios)
     public static boolean verificarCampos(String nome, String email) {
         if (nome.isEmpty() || email.isEmpty()) {
             Sistema.exibirPopupErro("Por favor, preencha todos os campos.");
