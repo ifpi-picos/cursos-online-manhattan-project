@@ -20,13 +20,12 @@ public class AlunoDao implements Dao<Aluno>{
 
     @Override
     public int cadastrar(Aluno aluno) {
-        String sql = "INSERT INTO alunos (nome, email, status) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO alunos (nome, email) VALUES (?, ?)";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
             stmt.setString(2, aluno.getEmail());
-            stmt.setString(3, aluno.getStatus().toString()); // Converte o Enum para String
             return stmt.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao inserir aluno no banco de dados: " + e.getMessage());
@@ -52,9 +51,8 @@ public class AlunoDao implements Dao<Aluno>{
             while(rs.next()) {
                 String nome = rs.getString("nome");
                 String email = rs.getString("email");
-                StatusAluno status = StatusAluno.valueOf(rs.getString("status")); // Converte a String para o Enum
 
-                Aluno aluno = new Aluno(nome, email, status);
+                Aluno aluno = new Aluno(nome, email);
                 alunos.add(aluno);
             }
             
@@ -72,13 +70,12 @@ public class AlunoDao implements Dao<Aluno>{
 
     @Override
     public int alterar(Aluno aluno){
-        String sql = "UPDATE alunos SET nome = ?, email = ?, status = ? WHERE id = ?";
+        String sql = "UPDATE alunos SET nome = ?, email = ?WHERE id = ?";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
             stmt.setString(2, aluno.getEmail());
-            stmt.setString(3,aluno.getStatus().toString()); // Converte o Enum para String
 
             return stmt.executeUpdate();
         } catch (Exception e) {

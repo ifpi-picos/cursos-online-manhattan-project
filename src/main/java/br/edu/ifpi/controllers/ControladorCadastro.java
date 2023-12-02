@@ -85,7 +85,7 @@ public class ControladorCadastro implements Initializable, SessaoController{
         }
 
         if (radioAluno.isSelected()) {
-            Aluno aluno = new Aluno(nome, email, StatusAluno.ATIVO);
+            Aluno aluno = new Aluno(nome, email);
             sessaoDao.alunoDao.cadastrar(aluno);
             limparCampos();
             Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
