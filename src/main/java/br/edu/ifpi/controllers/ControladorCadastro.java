@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 import br.edu.ifpi.SessaoController;
 import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.Sistema;
-import br.edu.ifpi.dao.AlunoDao;
-import br.edu.ifpi.dao.ProfessorDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -47,7 +45,7 @@ public class ControladorCadastro implements Initializable, SessaoController{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         btnVoltar.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnVoltar,sessaoDao));
-        
+        btnCadastrar.setOnAction(event-> gerarCadastro());
     }
 
     public boolean verificarEmailExistente(String email) {
@@ -56,13 +54,14 @@ public class ControladorCadastro implements Initializable, SessaoController{
         
         if (alunoEmailExistente || professorEmailExistente) {
             Sistema.exibirPopupErro("E-mail já cadastrado. Por favor, escolha outro e-mail.");
-            return true; // Retorna true se o e-mail já existe
+            return true; 
         }
-        
-        return false; // Retorna false se o e-mail não existe
+        return false; 
     }
 
-    public void gerarCadastro(String nome, String email) {
+    public void gerarCadastro() {
+        String nome = inputNome.getText();
+        String email = inputEmail.getText();
         // Verifica se os campos estão preenchidos
         if (!Sistema.verificarCampos(nome, email)) {
             return;
