@@ -35,25 +35,29 @@ public class CursoDao implements Dao<Curso>{
     @Override
     public List<Curso> consultarTodos() {
         List<Curso> cursos = new ArrayList<>();
-
-        String sql = "SELECT * FROM cursos";
-
+    
+        String sql = "SELECT c.id, c.nome, c.carga_horaria, c.id_professor, c.status, p.nome as nome_professor, p.email "
+                + "FROM cursos c "
+                + "JOIN professores p ON c.id_professor = p.id";
+    
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()) {
+    
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 String nome = rs.getString("nome");
                 int cargaHoraria = rs.getInt("carga_horaria");
                 int idProfessor = rs.getInt("id_professor");
                 StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
-                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
-
+                String nomeProfessor = rs.getString("nome_professor");
+                String emailProfessor = rs.getString("email");
+    
+                Professor professor = new Professor(idProfessor, nomeProfessor, emailProfessor);
                 Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
                 cursos.add(curso);
             }
-            
+    
         } catch (Exception e) {
             throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
         }
