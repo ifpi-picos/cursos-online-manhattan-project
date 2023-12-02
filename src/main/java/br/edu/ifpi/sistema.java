@@ -18,24 +18,29 @@ public class Sistema {
 
     private static final Pattern pattern = Pattern.compile(EMAIL_REGEX);
 
-    public static void trocarCena(String caminhoFXML, Button botao, Object controlador) {
+    public static void trocarCena(String caminhoFXML, Button botao, SessaoDao sessaoDao) {
         try {
             // Carrega o arquivo FXML
             FXMLLoader loader = new FXMLLoader(Sistema.class.getResource(caminhoFXML));
-    
-            // Configura o controlador fornecido
-            loader.setController(controlador);
-    
             Parent novaCena = loader.load();
-    
+
+            // Obtém o controlador associado à nova cena
+            Object controller = loader.getController();
+
+            // Se o controlador implementar a interface SessaoController, chama getSessao
+            if (controller instanceof SessaoController) {
+                ((SessaoController) controller).getSessao(sessaoDao);
+            }
+
             // Obtém o palco principal a partir do botão clicado
             Stage palco = (Stage) botao.getScene().getWindow();
+
             // Configura a nova cena
             Scene novaScene = new Scene(novaCena);
             palco.setScene(novaScene);
             palco.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Lida com exceções ao carregar o FXML
         }
     }
 

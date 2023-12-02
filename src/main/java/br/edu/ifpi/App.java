@@ -40,10 +40,8 @@ public class App extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-        ControladorLogIn controladorLogIn = new ControladorLogIn(sessaoDao);
-        loader.setController(controladorLogIn);
-        Parent root = loader.load();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
