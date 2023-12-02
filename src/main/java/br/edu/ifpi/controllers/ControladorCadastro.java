@@ -62,12 +62,11 @@ public class ControladorCadastro implements Initializable, SessaoController{
     public void gerarCadastro() {
         String nome = inputNome.getText();
         String email = inputEmail.getText();
-        // Verifica se os campos estão preenchidos
+        
         if (!Sistema.verificarCampos(nome, email)) {
             return;
         }
 
-        // Valida o formato do e-mail
         if (!Sistema.validarEmail(email)) {
             Sistema.exibirPopupErro("Formato de e-mail inválido.");
             return;
@@ -76,14 +75,12 @@ public class ControladorCadastro implements Initializable, SessaoController{
         if (verificarEmailExistente(email)) {
             return;
         }
-        
-        // Verifica se um dos botões de rádio está marcado
+
         if (!(radioAluno.isSelected() || radioProfessor.isSelected())) {
             Sistema.exibirPopupErro("Por favor, selecione Aluno ou Professor.");
             return;
         }
 
-        // Se tudo estiver correto, exibe o popup de sucesso
         Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
 
     }
