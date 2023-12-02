@@ -46,7 +46,8 @@ public class ControladorCadastro implements Initializable, SessaoController{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        btnVoltar.setOnAction( event -> Sistema.trocarCena("/fxml/login.fxml", btnCadastrar,sessaoDao));
+        btnVoltar.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnVoltar,sessaoDao));
+        
     }
 
     public boolean verificarEmailExistente(String email) {
