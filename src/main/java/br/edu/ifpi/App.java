@@ -2,7 +2,6 @@ package br.edu.ifpi;
 
 import java.sql.Connection;
 
-import br.edu.ifpi.controllers.ControladorLogIn;
 import br.edu.ifpi.dao.AlunoCursoDao;
 import br.edu.ifpi.dao.AlunoDao;
 import br.edu.ifpi.dao.Conexao;
@@ -14,10 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * Hello world!
- *
- */
 public class App extends Application{
 
     private Connection connection;
@@ -29,20 +24,24 @@ public class App extends Application{
 
     @Override
     public void init() throws Exception {
-        connection = Conexao.getConnection();
-        alunoDao = new AlunoDao(connection);
-        professorDao = new ProfessorDao(connection);
-        cursoDao = new CursoDao(connection);
-        alunoCursoDao = new AlunoCursoDao(connection);
-
-        sessaoDao = new SessaoDao(connection, alunoDao, professorDao, cursoDao, alunoCursoDao);
+        this.connection = Conexao.getConnection();
+        this.alunoDao = new AlunoDao(connection);
+        this.professorDao = new ProfessorDao(connection);
+        this.cursoDao = new CursoDao(connection);
+        this.alunoCursoDao = new AlunoCursoDao(connection);
     }
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-        
+        sessaoDao = new SessaoDao(connection, alunoDao, professorDao, cursoDao, alunoCursoDao);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
+        SessaoController controller = loader.getController();
+
+        if (controller instanceof SessaoController) {
+            ((SessaoController) controller).getSessao(sessaoDao);
+        }
         stage.setScene(scene);
         stage.show();
     }

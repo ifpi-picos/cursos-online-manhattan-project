@@ -40,7 +40,7 @@ public class ControladorLogIn implements Initializable, SessaoController{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         btnCadastrar.setOnAction(event -> Sistema.trocarCena("/fxml/cadastro.fxml", btnCadastrar, sessaoDao));
-        btnEntrar.setOnAction(event -> Autenticar());
+        // btnEntrar.setOnAction(event -> Autenticar());
     }
 
     private void Autenticar(){
