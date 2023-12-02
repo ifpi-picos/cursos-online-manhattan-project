@@ -61,6 +61,6 @@ public class ControladorCadastro implements Initializable, SessaoController{
 
         // Se tudo estiver correto, exibe o popup de sucesso
         Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
-        // Você pode adicionar aqui qualquer outra lógica relacionada ao cadastro
+
     }
 }
