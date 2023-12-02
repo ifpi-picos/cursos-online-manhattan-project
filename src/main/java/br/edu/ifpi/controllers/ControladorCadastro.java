@@ -42,9 +42,25 @@ public class ControladorCadastro implements Initializable, SessaoController{
         this.sessaoDao = sessaoDao;
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        btnVoltar.setOnAction( event -> Sistema.trocarCena("/fxml/login.fxml", btnCadastrar,SessaoDao));
+        btnVoltar.setOnAction( event -> Sistema.trocarCena("/fxml/login.fxml", btnCadastrar,sessaoDao));
+    }
+
+    public void gerarCadastro(String nome, String email) {
+        // Verifica se os campos estão preenchidos
+        if (!Sistema.verificarCampos(nome, email)) {
+            return;
+        }
+
+        // Valida o formato do e-mail
+        if (!Sistema.validarEmail(email)) {
+            Sistema.exibirPopupErro("Formato de e-mail inválido.");
+            return;
+        }
+
+        // Se tudo estiver correto, exibe o popup de sucesso
+        Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
+        // Você pode adicionar aqui qualquer outra lógica relacionada ao cadastro
     }
 }
