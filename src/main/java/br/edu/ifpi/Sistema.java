@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import br.edu.ifpi.dao.AlunoDao;
+import br.edu.ifpi.dao.ProfessorDao;
+
 public class Sistema {
 
     private static final String EMAIL_REGEX =
