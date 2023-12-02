@@ -39,32 +39,31 @@ public class ControladorLogIn implements Initializable, SessaoController{
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Condicional para verificar se os campos foram preenchidos corretamente
-        btnEntrar.setOnAction(event -> {
-            if (verificarCampos()) {
-                sessaoDao.criarSessao(inputNome.getText(), inputEmail.getText());
-                Sistema.trocarCena("/br/edu/ifpi/views/telaPrincipal.fxml", btnEntrar, new ControladorTelaPrincipal(sessaoDao));
-            }
-        });
-        btnCadastrar.setOnAction(event -> Sistema.trocarCena(null, btnCadastrar, null));
-        btnEntrar.setOnAction(event -> Sistema.trocarCena(null, btnEntrar, null));
+        btnCadastrar.setOnAction(event -> Sistema.trocarCena("/fxml/cadastro.fxml", btnCadastrar, sessaoDao));
+        btnEntrar.setOnAction(event -> Autenticar());
     }
 
+    private void Autenticar(){
+        String nome;
+        String email;
+        verificarCampos();
+        email = inputEmail.getText();
+        nome = inputNome.getText();
 
+    }
     // Função que verifica se os campos foram preenchidos corretamente (nome e email em estrutura válida)
-    private boolean verificarCampos() {
+    private void verificarCampos() {
         if (!Sistema.verificarCampos(inputNome.getText(), inputEmail.getText())) {
             Sistema.exibirPopupErro("Por favor, preencha todos os campos.");
-            return false;
+            return;
         }
     
         if (!Sistema.validarEmail(inputEmail.getText())) {
             Sistema.exibirPopupErro("O formato do e-mail é inválido.");
             inputNome.clear();
             inputEmail.clear();
-            return false;
+            return;
         }
-        return true;
     }
     
 }
