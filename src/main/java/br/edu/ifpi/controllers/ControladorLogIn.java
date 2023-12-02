@@ -44,13 +44,28 @@ public class ControladorLogIn implements Initializable, SessaoController{
     }
 
     private void Autenticar(){
-        String nome;
-        String email;
-        verificarCampos();
-        email = inputEmail.getText();
-        nome = inputNome.getText();
+        // String nome;
+        // String email;
+        // verificarCampos();
+        // email = inputEmail.getText();
+        // nome = inputNome.getText();
 
+        String nome = inputNome.getText();
+        String email = inputEmail.getText();
+
+        if (Sistema.verificarCampos(nome, email) && Sistema.validarEmail(email)){
+           if (sessaoDao.alunoDao.consultarPorEmail(email) != null) {
+            Sistema.trocarCena("/fxml/telaInicialAluno.fxml", btnEntrar, sessaoDao);
+            } else if (sessaoDao.professorDao.consultarPorEmail(email) != null) {
+                Sistema.trocarCena("/fxml/telaInicialProfessor.fxml", btnEntrar, sessaoDao);
+            } else {
+                Sistema.exibirPopupErro("Usuário não encontrado.");
+                inputNome.clear();
+                inputEmail.clear();
+            }
+        }           
     }
+    
     // Função que verifica se os campos foram preenchidos corretamente (nome e email em estrutura válida)
     private void verificarCampos() {
         if (!Sistema.verificarCampos(inputNome.getText(), inputEmail.getText())) {
