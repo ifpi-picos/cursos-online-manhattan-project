@@ -94,7 +94,11 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         carregarTabela();
+        itemDefault.setOnAction(event -> carregarTabela());
+        
 
+
+    
         colNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurso().getNome()));
         colProfessor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurso().getProfessor().getNome()));
         colNota1.setCellValueFactory(new PropertyValueFactory<>("nota1"));
@@ -138,4 +142,6 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
             Sistema.exibirPopupErro("Erro ao se conectar ao Banco de dados");
         }
     }
+
+
 }
