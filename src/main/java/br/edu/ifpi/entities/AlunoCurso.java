@@ -11,10 +11,20 @@ public class AlunoCurso {
     private Double media;
     private StatusAlunoCurso statusAlunoCurso;
 
-    //construtor
+    // Construtores
     public AlunoCurso(Aluno aluno, Curso curso) {
         this.aluno = aluno;
         this.curso = curso;
+    }
+
+    public AlunoCurso(Aluno aluno, Curso curso, Double nota1, Double nota2, Double nota3, Double media, StatusAlunoCurso statusAlunoCurso) {
+        this.aluno = aluno;
+        this.curso = curso;
+        this.nota1 = nota1;
+        this.nota2 = nota2;
+        this.nota3 = nota3;
+        this.media = media;
+        this.statusAlunoCurso = statusAlunoCurso;
     }
 
     public Aluno getAluno() {
@@ -55,6 +65,22 @@ public class AlunoCurso {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public Double getMedia() {
+        return media;
+    }
+
+    public void setMedia(Double media) {
+        this.media = media;
+    }
+
+    public StatusAlunoCurso getStatusAlunoCurso() {
+        return statusAlunoCurso;
+    }
+
+    public void setStatusAlunoCurso(StatusAlunoCurso statusAlunoCurso) {
+        this.statusAlunoCurso = statusAlunoCurso;
     }
 
     public void exibirNotas() {
