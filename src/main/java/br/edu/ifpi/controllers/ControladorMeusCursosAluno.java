@@ -74,7 +74,6 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        mediaGeralCurso();
 
         btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasAluno/cursosAluno.fxml", btnCursos, sessaoDao));
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasAluno/telaInicialAluno.fxml", btnCursos, sessaoDao));
@@ -83,10 +82,5 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair, sessaoDao));
     }
 
-    public void mediaGeralCurso() {
-        double mediaGeralCurso = sessaoDao.alunoCursoDao.calcularMediaGeralDoCurso();
-
-
-    }
 
 }

@@ -93,27 +93,27 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
     }
 
     // Método para calcular a média geral do curso
-    public double calcularMediaGeralDoCurso() {
-        List<AlunoCurso> alunosCursos = consultarCursosAbertos();
+    // public double calcularMediaGeralDoCurso() {
+    //     List<AlunoCurso> alunosCursos = consultarCursosAbertos();
     
-        if (alunosCursos.isEmpty()) {
-            // Retornar 0 ou outro valor padrão caso não haja alunos matriculados
-            return 0.0;
-        }
+    //     if (alunosCursos.isEmpty()) {
+    //         // Retornar 0 ou outro valor padrão caso não haja alunos matriculados
+    //         return 0.0;
+    //     }
     
-        double somaMedias = 0.0;
-        int quantidadeAlunos = 0;
+    //     double somaMedias = 0.0;
+    //     int quantidadeAlunos = 0;
     
-        for (AlunoCurso alunoCurso : alunosCursos) {
-            // Somar as médias de cada aluno
-            somaMedias += alunoCurso.getMedia();
-            quantidadeAlunos++;
-        }
+    //     for (AlunoCurso alunoCurso : alunosCursos) {
+    //         // Somar as médias de cada aluno
+    //         somaMedias += alunoCurso.getMedia();
+    //         quantidadeAlunos++;
+    //     }
     
-        // Calcular a média geral do curso
-        double mediaGeral = somaMedias / quantidadeAlunos;
+    //     // Calcular a média geral do curso
+    //     double mediaGeral = somaMedias / quantidadeAlunos;
     
-        return mediaGeral;
-    }    
+    //     return mediaGeral;
+    // }    
     
 }
