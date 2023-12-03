@@ -495,5 +495,22 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
             throw new RuntimeException("Erro ao consultar alunos por curso no banco de dados: " + e.getMessage(), e);
         }
         return alunosCursos;
+    } 
+
+    public void inserirPrimeiraNota(int alunoId, int cursoId, double nota) {
+        String query = "INSERT INTO notas (aluno_id, curso_id, nota1) VALUES (?, ?, ?)";
+
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, alunoId);
+            ps.setInt(2, cursoId);
+            ps.setDouble(3, nota);
+
+            // Executa a atualização no banco de dados
+            ps.executeUpdate();
+
+            System.out.println("Nota inserida com sucesso!");
+        } catch (SQLException e) {
+            System.err.println("Erro ao inserir nota: " + e.getMessage());
+        }
     }
 }
