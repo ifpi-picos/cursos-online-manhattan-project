@@ -20,6 +20,10 @@ public class Sistema {
 
     public static void trocarCena(String caminhoFXML, Button botao, SessaoDao sessaoDao) {
         try {
+            if (caminhoFXML == null || botao == null || sessaoDao == null) {
+                exibirPopupErro("Erro está aqui");
+                return;
+            }
             // Carrega o arquivo FXML
             FXMLLoader loader = new FXMLLoader(Sistema.class.getResource(caminhoFXML));
             Parent novaCena = loader.load();

@@ -1,5 +1,6 @@
 br\edu\ifpi\controllers\ControladorCadastro.class
 br\edu\ifpi\controllers\ControladorMeusCursosAluno.class
+br\edu\ifpi\controllers\ControladorTelaInicialProfessor.class
 br\edu\ifpi\dao\ProfessorDao.class
 br\edu\ifpi\controllers\ControladorCursosAluno.class
 br\edu\ifpi\entities\Professor.class
@@ -10,12 +11,16 @@ br\edu\ifpi\SessaoDao.class
 br\edu\ifpi\dao\Dao.class
 br\edu\ifpi\enums\StatusCurso.class
 br\edu\ifpi\dao\CursoDao.class
+br\edu\ifpi\controllers\ControladorPerfilProfessor.class
 br\edu\ifpi\Sistema.class
 br\edu\ifpi\entities\Curso.class
+br\edu\ifpi\controllers\ControladorMeusCursosProf.class
 br\edu\ifpi\controllers\ControladorLogIn.class
 br\edu\ifpi\dao\AlunoDao.class
+br\edu\ifpi\controllers\ControladorCadastroCurso.class
 br\edu\ifpi\entities\Aluno.class
 br\edu\ifpi\dao\Conexao.class
+br\edu\ifpi\controllers\ControladorGerenciarCursos.class
 br\edu\ifpi\SessaoController.class
 br\edu\ifpi\enums\StatusAlunoCurso.class
 br\edu\ifpi\controllers\ControladorTelaInicialAluno.class

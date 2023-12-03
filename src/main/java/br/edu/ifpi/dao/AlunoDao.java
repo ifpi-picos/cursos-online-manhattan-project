@@ -125,4 +125,25 @@ public class AlunoDao implements Dao<Aluno>{
         }
     }
     
+    public Aluno buscarPorNomeEEmail(String nome, String email) {
+    String sql = "SELECT * FROM alunos WHERE nome = ? AND email = ?";
+    try {
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, nome);
+        stmt.setString(2, email);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            int id = rs.getInt("id");
+            String nomeDoBanco = rs.getString("nome");
+            String emailDoBanco = rs.getString("email");
+
+            Aluno aluno = new Aluno(id, nomeDoBanco, emailDoBanco);
+            return aluno;
+        }
+        return null;
+    } catch (SQLException e) {
+        throw new RuntimeException("Erro ao buscar aluno por nome e email no banco de dados: " + e.getMessage());
+    }
+}
 }
