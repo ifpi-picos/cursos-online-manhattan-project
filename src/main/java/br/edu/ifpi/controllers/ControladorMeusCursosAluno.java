@@ -101,6 +101,8 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
         itemConcluidos.setOnAction(event -> carregarTabelaConcluidos());
         itemCursando.setOnAction(event -> carregarTabelaCursando());
         itemNaoConcluidos.setOnAction(event -> carregarTabelaDesistiu());
+
+        btnTrancarCurso.setOnAction(event -> desistirCurso());
     
         colNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurso().getNome()));
         colProfessor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurso().getProfessor().getNome()));
@@ -224,6 +226,24 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
             tabelaCursos.setItems(cursosObservable);
             // List<AlunoCurso> cursos = sessaoDao.getAluno().getCursos();
             // tabelaCursos.getItems().setAll(cursos);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Sistema.exibirPopupErro("Erro ao se conectar ao Banco de dados");
+        }
+    }
+
+    //Método para desistir do curso
+    public void desistirCurso(){
+        try {
+            AlunoCursoDao alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
+            AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
+
+            Aluno aluno = alunoDao.buscarPorNomeEEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
+            AlunoCurso alunoCurso = tabelaCursos.getSelectionModel().getSelectedItem();
+
+            alunoCursoDao.trancarCurso(aluno.getId(), alunoCurso.getCurso().getId());
+            Sistema.exibirPopupSucesso("Curso trancado com sucesso");
+            carregarTabela();
         } catch (Exception e) {
             e.printStackTrace();
             Sistema.exibirPopupErro("Erro ao se conectar ao Banco de dados");
