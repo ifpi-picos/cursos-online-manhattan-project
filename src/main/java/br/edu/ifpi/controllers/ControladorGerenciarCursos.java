@@ -5,13 +5,13 @@ import java.util.ResourceBundle;
 
 
 import br.edu.ifpi.Sistema;
-import br.edu.ifpi.entities.AlunoCurso;
-import br.edu.ifpi.entities.Professor;
+import br.edu.ifpi.models.Cursoinfo;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ControladorGerenciarCursos implements Initializable{
     @FXML
@@ -33,26 +33,27 @@ public class ControladorGerenciarCursos implements Initializable{
     private Button btnSair;
 
     @FXML
-    private TableColumn<?, ?> colunaCargaHoraria;
+    private TableColumn<Cursoinfo, String> colunaNome;
 
     @FXML
-    private TableColumn<?, ?> colunaCargaHoraria1;
+    private TableColumn<Cursoinfo, String> colunaProfessor;
 
     @FXML
-    private TableColumn<?, ?> colunaCargaHoraria2;
+    private TableColumn<Cursoinfo, Integer> colunaQuantAlunos;
 
     @FXML
-    private TableColumn<?, ?> colunaNome;
+    private TableColumn<Cursoinfo, Double> colunaAproveitamento;
 
     @FXML
-    private TableColumn<AlunoCurso, String> colunaProfessor;
-
-    @FXML
-    private TableView<AlunoCurso> tabelaCursos;
+    private TableView<Cursoinfo> tabelaCursos;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nomeCurso"));
+        colunaProfessor.setCellValueFactory(new PropertyValueFactory<>("professor"));
+        colunaQuantAlunos.setCellValueFactory(new PropertyValueFactory<>("quantAlunos"));
+        colunaAproveitamento.setCellValueFactory(new PropertyValueFactory<>("aproveitamento"));
+        
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));
         btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/gerenciarCursos.fxml", btnCursos));
         btnMeusCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/MeusCursosProf.fxml", btnMeusCursos));

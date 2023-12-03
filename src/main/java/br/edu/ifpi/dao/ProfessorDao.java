@@ -115,6 +115,5 @@ public class ProfessorDao implements Dao<Professor> {
             throw new RuntimeException("Erro ao verificar email no banco de dados: " + e.getMessage());
         }
     }
-
     
 }

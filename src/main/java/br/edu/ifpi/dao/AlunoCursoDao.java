@@ -131,28 +131,63 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         return alunosCursos;
     }
 
-    // Método para calcular a média geral do curso
-    // public double calcularMediaGeralDoCurso() {
-    //     List<AlunoCurso> alunosCursos = consultarCursosAbertos();
+    public double calcularPorcentagemAprovadosReprovados(int idCurso, StatusAlunoCurso statusAlvo) {
+        String sql = "SELECT COUNT(*) AS total_alunos FROM aluno_curso " +
+                     "WHERE curso_id = ? AND status_matricula = ?";
     
-    //     if (alunosCursos.isEmpty()) {
-    //         // Retornar 0 ou outro valor padrão caso não haja alunos matriculados
-    //         return 0.0;
-    //     }
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idCurso);
+            stmt.setString(2, statusAlvo.toString());
+            ResultSet rs = stmt.executeQuery();
     
-    //     double somaMedias = 0.0;
-    //     int quantidadeAlunos = 0;
+            if (rs.next()) {
+                int totalAlunos = rs.getInt("total_alunos");
     
-    //     for (AlunoCurso alunoCurso : alunosCursos) {
-    //         // Somar as médias de cada aluno
-    //         somaMedias += alunoCurso.getMedia();
-    //         quantidadeAlunos++;
-    //     }
+                if (totalAlunos == 0) {
+                    // Retornar 0 se não houver alunos com o status alvo
+                    return 0.0;
+                }
     
-    //     // Calcular a média geral do curso
-    //     double mediaGeral = somaMedias / quantidadeAlunos;
+                String sqlTotalMatriculados = "SELECT COUNT(*) AS total_matriculados FROM aluno_curso WHERE curso_id = ?";
+                try (PreparedStatement stmtTotalMatriculados = connection.prepareStatement(sqlTotalMatriculados)) {
+                    stmtTotalMatriculados.setInt(1, idCurso);
+                    ResultSet rsTotalMatriculados = stmtTotalMatriculados.executeQuery();
     
-    //     return mediaGeral;
-    // }    
+                    if (rsTotalMatriculados.next()) {
+                        int totalMatriculados = rsTotalMatriculados.getInt("total_matriculados");
+    
+                        // Calcular a porcentagem de alunos com o status alvo
+                        double porcentagem = (double) totalAlunos / totalMatriculados * 100.0;
+                        return porcentagem;
+                    }
+                }
+            }
+    
+            // Retornar 0 se ocorrer algum problema ou se não houver alunos no curso
+            return 0.0;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao calcular a porcentagem de alunos aprovados/reprovados no banco de dados: " + e.getMessage(), e);
+        }
+    }
+
+    public int calcularQuantidadeAlunosAtivosNoCurso(int idCurso) {
+        String sql = "SELECT COUNT(*) AS total_alunos FROM aluno_curso " +
+                     "WHERE curso_id = ? AND status_matricula = 'ATIVO'";
+    
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idCurso);
+            ResultSet rs = stmt.executeQuery();
+    
+            if (rs.next()) {
+                return rs.getInt("total_alunos");
+            }
+    
+            // Retornar 0 se não houver alunos ATIVOS no curso
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao calcular a quantidade de alunos ativos no curso no banco de dados: " + e.getMessage(), e);
+        }
+    }
+  
     
 }
