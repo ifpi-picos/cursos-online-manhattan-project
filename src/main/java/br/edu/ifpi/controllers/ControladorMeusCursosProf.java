@@ -64,6 +64,8 @@ public class ControladorMeusCursosProf implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
         carregarCursos();
+
+        btnFecharCurso.setOnAction(event -> fecharCurso());
         // Configure as colunas da tabela para exibir os dados corretos.
         colNome.setCellValueFactory(new PropertyValueFactory<>("nomeCurso"));
         colMediaGeral.setCellValueFactory(new PropertyValueFactory<>("mediaGeralCurso"));
@@ -93,5 +95,25 @@ public class ControladorMeusCursosProf implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void fecharCurso() {
+        Curso cursoSelecionado = tabelaCursosProfessor.getSelectionModel().getSelectedItem().getCurso();
+
+        try {
+            CursoDao cursoDao = new CursoDao(Conexao.getConnection());
+            int resultado = cursoDao.fecharCurso(cursoSelecionado.getId());
+
+            if (resultado == 1) {
+                // Atualize a tabela após fechar o curso com sucesso
+                carregarCursos();
+                Sistema.exibirPopupSucesso("Curso fechado com sucesso!");
+            } else {
+                // Exibir mensagem de erro se ocorrer algum problema
+                Sistema.exibirPopupErro("Erro ao fechar curso!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
