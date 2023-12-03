@@ -9,8 +9,13 @@ import br.edu.ifpi.Sistema;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 
 public class ControladorMeusCursosAluno implements Initializable,SessaoController {
+
+    @FXML
+    private TableColumn<?, ?> ColMedia;
 
     @FXML
     private Button btnCursos;
@@ -26,6 +31,39 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
 
     @FXML
     private Button btnSair;
+
+    @FXML
+    private TableColumn<?, ?> colMinhasNotas;
+
+    @FXML
+    private TableColumn<?, ?> colNome;
+
+    @FXML
+    private TableColumn<?, ?> colNota1;
+
+    @FXML
+    private TableColumn<?, ?> colNota2;
+
+    @FXML
+    private TableColumn<?, ?> colNota3;
+
+    @FXML
+    private TableColumn<?, ?> colProfessor;
+
+    @FXML
+    private MenuItem itemConcluidos;
+
+    @FXML
+    private MenuItem itemCursando;
+
+    @FXML
+    private MenuItem itemNaoConcluidos;
+
+    @FXML
+    private TableColumn<?, ?> mediaGeralCurso;
+
+    @FXML
+    private TableColumn<?, ?> statusMatricula;
 
     private SessaoDao sessaoDao;
     
