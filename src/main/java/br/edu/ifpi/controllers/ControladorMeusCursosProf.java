@@ -66,18 +66,18 @@ public class ControladorMeusCursosProf implements Initializable {
         
         carregarCursos();
 
-        btnFecharCurso.setOnAction(event -> fecharCurso());
         // Configure as colunas da tabela para exibir os dados corretos.
         colNome.setCellValueFactory(new PropertyValueFactory<>("nomeCurso"));
         colMediaGeral.setCellValueFactory(new PropertyValueFactory<>("mediaGeralCurso"));
         colQuantAlunos.setCellValueFactory(new PropertyValueFactory<>("quantAlunosCursando"));
         colStatusCurso.setCellValueFactory(new PropertyValueFactory<>("statusCurso"));
-
+        
         // Defina os manipuladores de eventos para os botões.
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));
         btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/gerenciarCursos.fxml", btnCursos));
         btnMeusCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/MeusCursosProf.fxml", btnMeusCursos));
         btnPerfil.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/perfilProfessor.fxml", btnPerfil));
+        btnFecharCurso.setOnAction(event -> fecharCurso());
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair));
     }
 
@@ -113,11 +113,9 @@ public class ControladorMeusCursosProf implements Initializable {
             int resultado = cursoDao.fecharCurso(curso.getId());
 
             if (resultado == 1) {
-                // Atualize a tabela após fechar o curso com sucesso
                 carregarCursos();
                 Sistema.exibirPopupSucesso("Curso fechado com sucesso!");
             } else {
-                // Exibir mensagem de erro se ocorrer algum problema
                 Sistema.exibirPopupErro("Erro ao fechar curso!");
             }
         } catch (SQLException e) {
