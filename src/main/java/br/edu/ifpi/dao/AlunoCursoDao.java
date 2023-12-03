@@ -288,4 +288,82 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         return alunosCursos;
     }
     
+    //Consultar alunos com status Ativo/Cursando
+    public List<AlunoCurso> consultarAlunosMatriculadosCursando(int idAluno) {
+        List<AlunoCurso> alunosCursos = new ArrayList<>();
+        String sql = "SELECT " +
+                "alunos.id AS aluno_id, alunos.nome AS aluno_nome, alunos.email AS aluno_email, " +
+                "cursos.id AS curso_id, cursos.nome AS curso_nome, cursos.carga_Horaria AS carga_horaria, " +
+                "professores.id AS professor_id, professores.nome AS professor_nome, professores.email AS professor_email, " +
+                "aluno_curso.nota1, aluno_curso.nota2, aluno_curso.nota3, aluno_curso.media, aluno_curso.status_matricula " +
+                "FROM aluno_curso " +
+                "INNER JOIN alunos ON aluno_curso.aluno_id = alunos.id " +
+                "INNER JOIN cursos ON aluno_curso.curso_id = cursos.id " +
+                "INNER JOIN professores ON cursos.id_professor = professores.id " +
+                "WHERE alunos.id = ? AND aluno_curso.status_matricula = 'ATIVO'";
+    
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idAluno);  
+            ResultSet rs = stmt.executeQuery();
+    
+            while (rs.next()) {
+                Aluno aluno = new Aluno(rs.getInt("aluno_id"), rs.getString("aluno_nome"), rs.getString("aluno_email"));
+                Professor professor = new Professor(rs.getInt("professor_id"), rs.getString("professor_nome"), rs.getString("professor_email"));
+                Curso curso = new Curso(rs.getInt("curso_id"), rs.getString("curso_nome"), rs.getInt("carga_horaria"), professor, StatusCurso.ABERTO);
+    
+                Double nota1 = rs.getDouble("nota1");
+                Double nota2 = rs.getDouble("nota2");
+                Double nota3 = rs.getDouble("nota3");
+                Double media = rs.getDouble("media");
+                StatusAlunoCurso statusAlunoCurso = StatusAlunoCurso.valueOf(rs.getString("status_matricula"));
+    
+                AlunoCurso alunoCurso = new AlunoCurso(aluno, curso, nota1, nota2, nota3, media, statusAlunoCurso);
+                alunosCursos.add(alunoCurso);
+            }
+    
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao consultar alunos matriculados cursando no banco de dados: " + e.getMessage(), e);
+        }
+        return alunosCursos;
+    }
+    
+    //Consultar alunos com status Inativo/Desistiu
+    public List<AlunoCurso> consultarAlunosDesistentes(int idAluno) {
+        List<AlunoCurso> alunosCursos = new ArrayList<>();
+        String sql = "SELECT " +
+                "alunos.id AS aluno_id, alunos.nome AS aluno_nome, alunos.email AS aluno_email, " +
+                "cursos.id AS curso_id, cursos.nome AS curso_nome, cursos.carga_Horaria AS carga_horaria, " +
+                "professores.id AS professor_id, professores.nome AS professor_nome, professores.email AS professor_email, " +
+                "aluno_curso.nota1, aluno_curso.nota2, aluno_curso.nota3, aluno_curso.media, aluno_curso.status_matricula " +
+                "FROM aluno_curso " +
+                "INNER JOIN alunos ON aluno_curso.aluno_id = alunos.id " +
+                "INNER JOIN cursos ON aluno_curso.curso_id = cursos.id " +
+                "INNER JOIN professores ON cursos.id_professor = professores.id " +
+                "WHERE alunos.id = ? AND aluno_curso.status_matricula = 'INATIVO'";
+    
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idAluno);  
+            ResultSet rs = stmt.executeQuery();
+    
+            while (rs.next()) {
+                Aluno aluno = new Aluno(rs.getInt("aluno_id"), rs.getString("aluno_nome"), rs.getString("aluno_email"));
+                Professor professor = new Professor(rs.getInt("professor_id"), rs.getString("professor_nome"), rs.getString("professor_email"));
+                Curso curso = new Curso(rs.getInt("curso_id"), rs.getString("curso_nome"), rs.getInt("carga_horaria"), professor, StatusCurso.ABERTO);
+    
+                Double nota1 = rs.getDouble("nota1");
+                Double nota2 = rs.getDouble("nota2");
+                Double nota3 = rs.getDouble("nota3");
+                Double media = rs.getDouble("media");
+                StatusAlunoCurso statusAlunoCurso = StatusAlunoCurso.valueOf(rs.getString("status_matricula"));
+    
+                AlunoCurso alunoCurso = new AlunoCurso(aluno, curso, nota1, nota2, nota3, media, statusAlunoCurso);
+                alunosCursos.add(alunoCurso);
+            }
+    
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao consultar alunos matriculados cursando no banco de dados: " + e.getMessage(), e);
+        }
+        return alunosCursos;
+    }
+    
 }
