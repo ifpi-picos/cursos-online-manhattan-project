@@ -130,11 +130,30 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         }
         return alunosCursos;
     }
+    
+    // Método para exibir a nota média geral dos alunos de um determinado curso
+        public double calcularMediaGeralPorCurso(int idCurso) {
+            String sql = "SELECT AVG(media) AS media_geral FROM aluno_curso " +
+                         "WHERE curso_id = ?";
+    
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                stmt.setInt(1, idCurso);
+                ResultSet rs = stmt.executeQuery();
+    
+                if (rs.next()) {
+                    return rs.getDouble("media_geral");
+                }
+    
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao calcular média geral dos alunos no banco de dados: " + e.getMessage(), e);
+            }
+            return 0; // Retorna 0 se não houver registros ou ocorrer um erro
+        }
+    
 
     public double calcularPorcentagemAprovadosReprovados(int idCurso, StatusAlunoCurso statusAlvo) {
         String sql = "SELECT COUNT(*) AS total_alunos FROM aluno_curso " +
-                     "WHERE curso_id = ? AND status_matricula = ?";
-    
+                     "WHERE curso_id = ? AND status_matricula = ?";  
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, idCurso);
             stmt.setString(2, statusAlvo.toString());

@@ -14,6 +14,7 @@ import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.entities.AlunoCurso;
 import br.edu.ifpi.enums.StatusAlunoCurso;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -73,7 +74,7 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
     private MenuItem itemNaoConcluidos;
 
     @FXML
-    private TableColumn<?, ?> mediaGeralCurso;
+    private TableColumn<AlunoCurso, Double> mediaGeralCurso;
 
     @FXML
     private TableColumn<AlunoCurso, StatusAlunoCurso> statusMatricula;
@@ -116,6 +117,14 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
             Aluno aluno = alunoDao.buscarPorNomeEEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
             
             List<AlunoCurso> cursos = alunoCursoDao.consultarCursosMatriculados(aluno.getId());
+            
+            // Configuração da coluna para exibir a média geral
+            mediaGeralCurso.setCellValueFactory(cellData -> {
+                AlunoCurso alunoCurso = cellData.getValue();
+                double mediaGeral = alunoCursoDao.calcularMediaGeralPorCurso(alunoCurso.getCurso().getId());
+                return new SimpleDoubleProperty(mediaGeral).asObject();
+            });
+            
             ObservableList<AlunoCurso> cursosObservable = FXCollections.observableArrayList(cursos);
 
             tabelaCursos.setItems(cursosObservable);
