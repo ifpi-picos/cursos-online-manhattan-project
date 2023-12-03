@@ -19,21 +19,16 @@
                </font>
             </Text>
             <FontIcon iconLiteral="fas-book-reader" iconSize="75" layoutX="383.0" layoutY="80.0" />
-            <TableView fx:id="tabelaCursos" layoutX="55.0" layoutY="173.0" prefHeight="400.0" prefWidth="730.0">
+            <TableView fx:id="tabelaCursos" layoutX="66.0" layoutY="148.0" prefHeight="400.0" prefWidth="706.0">
                <columns>
                   <TableColumn fx:id="colunaNome" maxWidth="200.0" prefWidth="150.0" text="Nome do Curso" />
                   <TableColumn fx:id="colunaProfessor" maxWidth="200.0" prefWidth="150.0" text="Professor" />
                   <TableColumn fx:id="colunaCargaHoraria" maxWidth="150.0" prefWidth="125.0" text="Carga Horária" />
                   <TableColumn fx:id="colunaCargaHoraria1" maxWidth="150.0" prefWidth="150.0" text="Quant. de Alunos" />
-                  <TableColumn fx:id="colunaCargaHoraria2" maxWidth="150.0" prefWidth="150.0" text="Aproveitamento" />
+                  <TableColumn fx:id="colunaCargaHoraria2" maxWidth="150.0" prefWidth="125.0" text="Aproveitamento" />
                </columns>
             </TableView>
-            <Button fx:id="btnAdicionar" layoutX="269.0" layoutY="610.0" mnemonicParsing="false" text="Adicionar">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnRemover" layoutX="458.0" layoutY="610.0" mnemonicParsing="false" text="Remover">
+            <Button fx:id="btnAdicionar" layoutX="337.0" layoutY="586.0" mnemonicParsing="false" text="Cadastrar Curso">
                <font>
                   <Font size="14.0" />
                </font>
@@ -52,12 +47,12 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnCursos1" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="CADASTRAR">
+                  <Button fx:id="btnMeusCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="MEUS CURSOS">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                      <graphic>
-                        <FontIcon iconLiteral="fas-clipboard-list" iconSize="40" />
+                        <FontIcon iconLiteral="fas-chalkboard-teacher" iconSize="35" />
                      </graphic>
                   </Button>
                   <Button fx:id="btnPerfil" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="PERFIL">
