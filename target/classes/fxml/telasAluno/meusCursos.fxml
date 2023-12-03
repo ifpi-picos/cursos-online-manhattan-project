@@ -14,7 +14,7 @@
    <children>
       <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0">
          <children>
-            <TableView layoutX="70.0" layoutY="156.0" prefHeight="370.0" prefWidth="700.0">
+            <TableView fx:id="tabelaCursos" layoutX="70.0" layoutY="156.0" prefHeight="370.0" prefWidth="700.0">
                <columns>
                   <TableColumn prefWidth="700.0">
                      <columns>

@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 
 import br.edu.ifpi.Sistema;
+import br.edu.ifpi.entities.AlunoCurso;
+import br.edu.ifpi.entities.Professor;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -43,10 +45,10 @@ public class ControladorGerenciarCursos implements Initializable{
     private TableColumn<?, ?> colunaNome;
 
     @FXML
-    private TableColumn<?, ?> colunaProfessor;
+    private TableColumn<AlunoCurso, String> colunaProfessor;
 
     @FXML
-    private TableView<?> tabelaCursos;
+    private TableView<AlunoCurso> tabelaCursos;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
