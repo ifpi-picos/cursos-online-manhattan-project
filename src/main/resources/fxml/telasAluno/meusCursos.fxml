@@ -34,7 +34,7 @@
                      <graphic>
                         <MenuButton mnemonicParsing="false" style="-fx-background-color: transparent;" text="Cursos">
                           <items>
-                              <MenuItem fx:id="btnDefault" mnemonicParsing="false" text="Default" />
+                              <MenuItem fx:id="itemDefault" mnemonicParsing="false" text="Default" />
                               <MenuItem fx:id="itemCursando" mnemonicParsing="false" text="Cursando" />
                             <MenuItem fx:id="itemConcluidos" mnemonicParsing="false" text="Concluidos" />
                             <MenuItem fx:id="itemNaoConcluidos" mnemonicParsing="false" text="Não Concluido" />

@@ -44,14 +44,20 @@ public class ControladorGerenciarCursos implements Initializable{
     @FXML
     private TableColumn<Cursoinfo, String> colunaProfessor;
 
-    @FXML
-    private TableColumn<Cursoinfo, Integer> colunaQuantAlunos;
+    // @FXML
+    // private TableColumn<Cursoinfo, Integer> colunaQuantAlunos;
 
     @FXML
     private TableColumn<Cursoinfo, Double> colunaAproveitamento;
 
     @FXML
     private TableColumn<Cursoinfo, Integer> colunaCargaHoraria;
+
+    @FXML
+    private TableColumn<Cursoinfo, Integer> concluido;
+
+    @FXML
+    private TableColumn<Cursoinfo, Integer> cursando;
 
     @FXML
     private TableView<Cursoinfo> tabelaCursos;
@@ -63,7 +69,7 @@ public class ControladorGerenciarCursos implements Initializable{
 
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nomeCurso"));
         colunaProfessor.setCellValueFactory(new PropertyValueFactory<>("professor"));
-        colunaQuantAlunos.setCellValueFactory(new PropertyValueFactory<>("quantAlunos"));
+        
         colunaAproveitamento.setCellValueFactory(new PropertyValueFactory<>("aproveitamento"));
         colunaCargaHoraria.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
         

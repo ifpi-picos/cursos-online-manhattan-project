@@ -24,7 +24,11 @@
                   <TableColumn fx:id="colunaNome" maxWidth="200.0" prefWidth="150.0" text="Nome do Curso" />
                   <TableColumn fx:id="colunaProfessor" maxWidth="200.0" prefWidth="150.0" text="Professor" />
                   <TableColumn fx:id="colunaCargaHoraria" maxWidth="150.0" prefWidth="125.0" text="Carga Horária" />
-                  <TableColumn fx:id="colunaQuantAlunos" maxWidth="150.0" prefWidth="150.0" text="Quant. de Alunos" />
+                  <TableColumn fx:id="colunaQuantAlunos" maxWidth="150.0" prefWidth="150.0" text="Quant. de Alunos">
+                     <columns>
+                        <TableColumn fx:id="cursando" prefWidth="75.0" text="Cursando" />
+                        <TableColumn fx:id="concluido" prefWidth="75.0" text="Concluido" />
+                     </columns></TableColumn>
                   <TableColumn fx:id="colunaAproveitamento" maxWidth="150.0" prefWidth="125.0" text="Aproveitamento" />
                </columns>
             </TableView>

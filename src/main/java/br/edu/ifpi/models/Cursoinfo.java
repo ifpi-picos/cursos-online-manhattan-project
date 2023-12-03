@@ -11,7 +11,8 @@ import br.edu.ifpi.entities.Curso;
 import br.edu.ifpi.enums.StatusAlunoCurso;
 
 public class Cursoinfo {
-    private Integer quantAlunos;
+    private Integer quantAlunosCursando;
+    private Integer quantAlunosConcluido;
     private Double aproveitamento;
     private Curso curso;
     
@@ -35,8 +36,8 @@ public class Cursoinfo {
         this.curso = curso;
     }
     
-    public void setQuantAlunos() {
-        this.quantAlunos = this.alunoCursoDao.calcularQuantidadeAlunosAtivosNoCurso(this.curso.getId());
+    public void setQuantAlunosCursando() {
+        this.quantAlunosCursando = this.alunoCursoDao.calcularQuantidadeAlunosAtivosNoCurso(this.curso.getId());
     }
 
     public void setAproveitamento() {
@@ -45,12 +46,20 @@ public class Cursoinfo {
         this.aproveitamento = Double.parseDouble(df.format(aproveitamentoRaw));
     }
 
+    public Integer getQuantAlunosConcluido() {
+        return quantAlunosConcluido;
+    }
+
+    public void setQuantAlunosConcluido(Integer quantAlunosConcluido) {
+        this.quantAlunosConcluido = quantAlunosConcluido;
+    }
+    
     public Double getAproveitamento() {
         return aproveitamento;
     }
-
-    public Integer getQuantAlunos() {
-        return quantAlunos;
+    
+    public Integer getQuantAlunosCursando() {
+        return quantAlunosCursando;
     }
 
     public Integer getCargaHoraria(){
@@ -71,7 +80,8 @@ public class Cursoinfo {
         for (Curso curso : listaCursos) {
             Cursoinfo cursoinfo = new Cursoinfo();
             cursoinfo.setCurso(curso);
-            cursoinfo.setQuantAlunos();
+            cursoinfo.setQuantAlunosCursando();
+            
             cursoinfo.setAproveitamento();
 
             listaCursoinfo.add(cursoinfo);
