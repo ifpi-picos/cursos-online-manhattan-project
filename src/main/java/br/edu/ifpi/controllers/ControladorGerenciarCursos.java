@@ -69,9 +69,10 @@ public class ControladorGerenciarCursos implements Initializable{
 
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nomeCurso"));
         colunaProfessor.setCellValueFactory(new PropertyValueFactory<>("professor"));
-        
         colunaAproveitamento.setCellValueFactory(new PropertyValueFactory<>("aproveitamento"));
         colunaCargaHoraria.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
+        concluido.setCellValueFactory(new PropertyValueFactory<>("quantAlunosConcluido"));
+        cursando.setCellValueFactory(new PropertyValueFactory<>("quantAlunosCursando"));
         
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));
         btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/gerenciarCursos.fxml", btnCursos));

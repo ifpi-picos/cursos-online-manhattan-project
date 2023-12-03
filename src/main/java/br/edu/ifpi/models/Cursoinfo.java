@@ -19,7 +19,6 @@ public class Cursoinfo {
     AlunoCursoDao alunoCursoDao;
     
     public Cursoinfo (){
-        
         try {
             this.alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
         } catch (SQLException e) {
@@ -31,13 +30,8 @@ public class Cursoinfo {
         return curso;
     }
 
-
     public void setCurso(Curso curso) {
         this.curso = curso;
-    }
-    
-    public void setQuantAlunosCursando() {
-        this.quantAlunosCursando = this.alunoCursoDao.calcularQuantidadeAlunosAtivosNoCurso(this.curso.getId());
     }
 
     public void setAproveitamento() {
@@ -45,21 +39,25 @@ public class Cursoinfo {
         DecimalFormat df = new DecimalFormat("#,##");
         this.aproveitamento = Double.parseDouble(df.format(aproveitamentoRaw));
     }
+    
+    public void setQuantAlunosCursando() {
+        this.quantAlunosCursando = this.alunoCursoDao.calcularQuantidadeAlunosAtivosNoCurso(this.curso.getId());
+    }
+
+    public void setQuantAlunosConcluido() {
+        this.quantAlunosConcluido = this.alunoCursoDao.calcularQuantidadeAlunosConcluidos(this.curso.getId());
+    }
 
     public Integer getQuantAlunosConcluido() {
         return quantAlunosConcluido;
     }
-
-    public void setQuantAlunosConcluido(Integer quantAlunosConcluido) {
-        this.quantAlunosConcluido = quantAlunosConcluido;
+    
+    public Integer getQuantAlunosCursando() {
+        return quantAlunosCursando;
     }
     
     public Double getAproveitamento() {
         return aproveitamento;
-    }
-    
-    public Integer getQuantAlunosCursando() {
-        return quantAlunosCursando;
     }
 
     public Integer getCargaHoraria(){
@@ -81,7 +79,7 @@ public class Cursoinfo {
             Cursoinfo cursoinfo = new Cursoinfo();
             cursoinfo.setCurso(curso);
             cursoinfo.setQuantAlunosCursando();
-            
+            cursoinfo.setQuantAlunosConcluido();
             cursoinfo.setAproveitamento();
 
             listaCursoinfo.add(cursoinfo);

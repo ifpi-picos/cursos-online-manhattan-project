@@ -231,6 +231,25 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
             throw new RuntimeException("Erro ao calcular a quantidade de alunos ativos no curso no banco de dados: " + e.getMessage(), e);
         }
     }
-  
+    
+    public int calcularQuantidadeAlunosConcluidos(int idCurso) {
+        String sql = "SELECT COUNT(*) AS total_alunos FROM aluno_curso " +
+                     "WHERE curso_id = ? AND status_matricula IN ('APROVADO', 'REPROVADO')";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idCurso);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("total_alunos");
+            }
+
+            // Retornar 0 se não houver alunos concluídos
+            return 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao calcular a quantidade de alunos concluídos no banco de dados: " + e.getMessage(), e);
+        }
+    }
     
 }
