@@ -435,4 +435,26 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
             throw new RuntimeException("Erro ao cadastrar notas no banco de dados: " + e.getMessage(), e);
         }
     }
+
+    // Método para retornar uma lista de alunos de um curso
+    public List<Aluno> consultarAlunosPorCurso(int idCurso) {
+        List<Aluno> alunos = new ArrayList<>();
+        String sql = "SELECT alunos.id, alunos.nome, alunos.email FROM aluno_curso " +
+                     "INNER JOIN alunos ON aluno_curso.aluno_id = alunos.id " +
+                     "WHERE curso_id = ?";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idCurso);
+            ResultSet rs = stmt.executeQuery();
+    
+            while (rs.next()) {
+                Aluno aluno = new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("email"));
+                alunos.add(aluno);
+            }
+    
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao consultar alunos por curso no banco de dados: " + e.getMessage(), e);
+        }
+        return alunos;
+    }
 }
