@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import br.edu.ifpi.SessaoController;
 import br.edu.ifpi.SessaoDao;
+import br.edu.ifpi.SessaoUsuario;
 import br.edu.ifpi.Sistema;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,10 +45,18 @@ public class ControladorPerfilProfessor implements Initializable, SessaoControll
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        exibirDadosProfessor();
+
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome, sessaoDao));
         btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/gerenciarCursos.fxml", btnCursos, sessaoDao));
         btnMeusCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/MeusCursosProf.fxml", btnMeusCursos,sessaoDao));
         btnPerfil.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/", btnPerfil,sessaoDao));
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair,sessaoDao));
+    }
+
+    public void exibirDadosProfessor() {
+        carregarNome.setText(SessaoUsuario.getNomeUsuario());
+        carregarEmail.setText(SessaoUsuario.getEmailUsuario());
     }
 }

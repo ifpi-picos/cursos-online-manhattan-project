@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import br.edu.ifpi.SessaoController;
 import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.Sistema;
-import br.edu.ifpi.entities.Curso;
+import br.edu.ifpi.entities.AlunoCurso;
 import br.edu.ifpi.enums.StatusAlunoCurso;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,19 +34,19 @@ public class ControladorCursosAluno implements Initializable, SessaoController{
     private Button btnSair;
 
     @FXML
-    private TableColumn<Curso, StatusAlunoCurso> ColMatricula;
+    private TableColumn<AlunoCurso, StatusAlunoCurso> ColMatricula;
 
     @FXML
-    private TableColumn<Curso, Integer> colunaCargaHoraria;
+    private TableColumn<AlunoCurso, Integer> colunaCargaHoraria;
 
     @FXML
-    private TableColumn<Curso, String> colunaNome;
+    private TableColumn<AlunoCurso, String> colunaNome;
 
     @FXML
-    private TableColumn<Curso, String> colunaProfessor;
+    private TableColumn<AlunoCurso, String> colunaProfessor;
 
     @FXML
-    private TableView<Curso> tabelaCursos;
+    private TableView<AlunoCurso> tabelaCursos;
 
     private SessaoDao sessaoDao;
     
@@ -62,5 +62,9 @@ public class ControladorCursosAluno implements Initializable, SessaoController{
         btnPerfil.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/perfilAluno.fxml", btnPerfil, sessaoDao));
         btnMeusCursos.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/meusCursos.fxml", btnMeusCursos, sessaoDao));
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair, sessaoDao));
+    }
+
+    public void carregarCursos(){
+
     }
 }

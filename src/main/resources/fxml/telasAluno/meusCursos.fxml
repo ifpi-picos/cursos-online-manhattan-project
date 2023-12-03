@@ -18,25 +18,25 @@
                <columns>
                   <TableColumn prefWidth="700.0">
                      <columns>
-                        <TableColumn prefWidth="100.0" text="Nome" />
-                        <TableColumn prefWidth="100.0" text="Professor" />
-                        <TableColumn prefWidth="100.0" text="Média Geral" />
-                        <TableColumn prefWidth="100.0" text="Status" />
-                        <TableColumn prefWidth="300.0" text="Minhas notas">
+                        <TableColumn fx:id="colNome" prefWidth="100.0" text="Nome" />
+                        <TableColumn fx:id="colProfessor" prefWidth="100.0" text="Professor" />
+                        <TableColumn fx:id="mediaGeralCurso" prefWidth="100.0" text="Média Geral" />
+                        <TableColumn fx:id="statusMatricula" prefWidth="100.0" text="Status" />
+                        <TableColumn fx:id="colMinhasNotas" prefWidth="300.0" text="Minhas notas">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="Nota 1" />
-                              <TableColumn prefWidth="75.0" text="Nota 2" />
-                              <TableColumn prefWidth="75.0" text="Nota 3" />
-                              <TableColumn prefWidth="75.0" text="Média" />
+                              <TableColumn fx:id="colNota1" prefWidth="75.0" text="Nota 1" />
+                              <TableColumn fx:id="colNota2" prefWidth="75.0" text="Nota 2" />
+                              <TableColumn fx:id="colNota3" prefWidth="75.0" text="Nota 3" />
+                              <TableColumn fx:id="ColMedia" prefWidth="75.0" text="Média" />
                            </columns>
                         </TableColumn>
                      </columns>
                      <graphic>
                         <MenuButton mnemonicParsing="false" style="-fx-background-color: transparent;" text="Cursos">
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Cursando" />
-                            <MenuItem mnemonicParsing="false" text="Concluidos" />
-                            <MenuItem mnemonicParsing="false" text="Desistidos" />
+                              <MenuItem fx:id="itemCursando" mnemonicParsing="false" text="Cursando" />
+                            <MenuItem fx:id="itemConcluidos" mnemonicParsing="false" text="Concluidos" />
+                            <MenuItem fx:id="itemNaoConcluidos" mnemonicParsing="false" text="Não Concluido" />
                           </items>
                         </MenuButton>
                      </graphic>

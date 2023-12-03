@@ -27,7 +27,7 @@
                   <TableColumn fx:id="ColMatricula" prefWidth="125.0" text="Matrícula" />
               </columns>
             </TableView>
-            <Button fx:id="btnInscrever" layoutX="354.0" layoutY="595.0" mnemonicParsing="false" text="Inscrever-se">
+            <Button fx:id="btnInscrever" layoutX="354.0" layoutY="570.0" mnemonicParsing="false" text="Inscrever-se">
                <font>
                   <Font size="14.0" />
                </font>
