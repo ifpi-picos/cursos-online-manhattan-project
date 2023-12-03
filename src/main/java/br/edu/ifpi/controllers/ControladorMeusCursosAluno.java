@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class ControladorMeusCursosAluno implements Initializable,SessaoController {
 
@@ -66,6 +67,9 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
 
     @FXML
     private TableColumn<AlunoCurso, StatusAlunoCurso> statusMatricula;
+
+    @FXML
+    private TableView<AlunoCurso> tabelaCursos;
 
     private SessaoDao sessaoDao;
     
