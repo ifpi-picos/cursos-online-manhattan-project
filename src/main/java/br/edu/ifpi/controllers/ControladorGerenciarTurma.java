@@ -3,6 +3,7 @@ package br.edu.ifpi.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.edu.ifpi.Sistema;
 import br.edu.ifpi.entities.Curso;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,6 +42,12 @@ public class ControladorGerenciarTurma implements Initializable {
     private Button btnSair;
 
     @FXML
+    private Button btnCadastrar;
+
+    @FXML
+    private Button btnVoltar;
+
+    @FXML
     private TableColumn<Curso, String> colAluno;
 
     @FXML
@@ -66,6 +73,10 @@ public class ControladorGerenciarTurma implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));
+        btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/gerenciarCursos.fxml", btnCursos));
+        btnPerfil.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/perfilProfessor.fxml", btnPerfil));
+        btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair));
+        btnVoltar.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/MeusCursosProf.fxml", btnVoltar));
     }
 }

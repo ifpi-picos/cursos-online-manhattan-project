@@ -10,9 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="br.edu.ifpi.controllers.ControladorGerenciarTurma">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorGerenciarTurma">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="675.0" prefWidth="250.0">
          <children>
@@ -70,7 +68,7 @@ fx:controller="br.edu.ifpi.controllers.ControladorGerenciarTurma">
                   <Font size="36.0" />
                </font>
             </Text>
-            <TableView fx:id="tabelaTurma" layoutX="164.0" layoutY="173.0" prefHeight="302.0" prefWidth="502.0">
+            <TableView fx:id="tabelaTurma" layoutX="164.0" layoutY="157.0" prefHeight="302.0" prefWidth="502.0">
               <columns>
                   <TableColumn prefWidth="75.0">
                      <columns>
@@ -85,17 +83,19 @@ fx:controller="br.edu.ifpi.controllers.ControladorGerenciarTurma">
                   </TableColumn>
               </columns>
             </TableView>
-            <Text layoutX="164.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar Notas:">
+            <Text layoutX="165.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar Notas:">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="btnNota1" layoutX="356.0" layoutY="500.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="60.0" style="-fx-font-size: 14px; -fx-padding: auto; -fx-background-radius: 100;" text="Nota 1" />
-            <Button fx:id="btnNota3" layoutX="606.0" layoutY="500.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="60.0" style="-fx-font-size: 14px; -fx-padding: auto; -fx-background-radius: 100;" text="Nota 3" />
-            <Button fx:id="btnNota2" layoutX="480.0" layoutY="500.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="60.0" style="-fx-font-size: 14px; -fx-padding: auto; -fx-background-radius: 100;" text="Nota 2" />
-            <TextField fx:id="inputNota1" layoutX="339.0" layoutY="557.0" prefHeight="48.0" prefWidth="94.0" />
-            <TextField fx:id="inputNota2" layoutX="463.0" layoutY="557.0" prefHeight="48.0" prefWidth="94.0" />
-            <TextField fx:id="inputNota3" layoutX="589.0" layoutY="557.0" prefHeight="48.0" prefWidth="94.0" />
+            <Button fx:id="btnNota1" layoutX="357.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="60.0" style="-fx-font-size: 14px; -fx-padding: auto; -fx-background-radius: 100;" text="Nota 1" />
+            <Button fx:id="btnNota3" layoutX="607.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="60.0" style="-fx-font-size: 14px; -fx-padding: auto; -fx-background-radius: 100;" text="Nota 3" />
+            <Button fx:id="btnNota2" layoutX="481.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="60.0" style="-fx-font-size: 14px; -fx-padding: auto; -fx-background-radius: 100;" text="Nota 2" />
+            <TextField fx:id="inputNota1" disable="true" layoutX="339.0" layoutY="537.0" prefHeight="48.0" prefWidth="94.0" visible="false" />
+            <TextField fx:id="inputNota2" disable="true" layoutX="463.0" layoutY="537.0" prefHeight="48.0" prefWidth="94.0" visible="false" />
+            <TextField fx:id="inputNota3" disable="true" layoutX="589.0" layoutY="537.0" prefHeight="48.0" prefWidth="94.0" visible="false" />
+            <Button fx:id="btnCadastrar" disable="true" layoutX="456.0" layoutY="598.0" mnemonicParsing="false" text="cadastrar" visible="false" />
+            <Button fx:id="btnVoltar" layoutX="742.0" layoutY="617.0" mnemonicParsing="false" text="Voltar" />
          </children>
       </AnchorPane>
    </children>
