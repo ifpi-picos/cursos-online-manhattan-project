@@ -115,5 +115,28 @@ public class ProfessorDao implements Dao<Professor> {
             throw new RuntimeException("Erro ao verificar email no banco de dados: " + e.getMessage());
         }
     }
+
+    // Função para buscar professor por nome e email
+    public Professor buscarPorNomeEEmail(String nome, String email) {
+        String sql = "SELECT * FROM professores WHERE nome = ? AND email = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, nome);
+            stmt.setString(2, email);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String nomeProfessor = rs.getString("nome");
+                String emailProfessor = rs.getString("email");
+
+                Professor professor = new Professor(id, nomeProfessor, emailProfessor);
+                return professor;
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar professor no banco de dados: " + e.getMessage());
+        }
+    }
     
 }
