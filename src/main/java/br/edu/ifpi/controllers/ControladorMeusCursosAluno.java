@@ -47,6 +47,9 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
     private Button btnSair;
 
     @FXML
+    private Button btnTrancarCurso;
+
+    @FXML
     private TableColumn<?, ?> colMinhasNotas;
 
     @FXML

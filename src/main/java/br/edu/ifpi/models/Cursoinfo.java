@@ -8,13 +8,14 @@ import java.util.List;
 import br.edu.ifpi.dao.AlunoCursoDao;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.entities.Curso;
+import br.edu.ifpi.enums.StatusCurso;
 
 public class Cursoinfo {
     private Integer quantAlunosCursando;
     private Integer quantAlunosConcluido;
     private Double aproveitamento;
     private Curso curso;
-    
+    private Double mediaGeralCurso;
     AlunoCursoDao alunoCursoDao;
     
     public Cursoinfo (){
@@ -48,6 +49,10 @@ public class Cursoinfo {
         this.quantAlunosConcluido = this.alunoCursoDao.calcularQuantidadeAlunosConcluidos(this.curso.getId());
     }
 
+    public void setMediaGeralCurso(){
+        this.mediaGeralCurso = alunoCursoDao.calcularMediaGeralPorCurso(this.curso.getId());
+    }
+
     public Integer getQuantAlunosConcluido() {
         return quantAlunosConcluido;
     }
@@ -72,6 +77,17 @@ public class Cursoinfo {
         return this.curso.getProfessor().getNome();
     }
 
+    public Double getMediaGeralCurso() {
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(mediaGeralCurso));
+        // return mediaGeralCurso;
+    }
+
+    public StatusCurso getStatusCurso(){
+        return this.curso.getStatus();
+    }
+
+
     public List<Cursoinfo> gerarListaCursoinfo(List<Curso> listaCursos) {
         List<Cursoinfo> listaCursoinfo = new ArrayList<>();
 
@@ -81,7 +97,7 @@ public class Cursoinfo {
             cursoinfo.setQuantAlunosCursando();
             cursoinfo.setQuantAlunosConcluido();
             cursoinfo.setAproveitamento();
-
+            cursoinfo.setMediaGeralCurso();
             listaCursoinfo.add(cursoinfo);
         }
 

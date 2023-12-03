@@ -162,4 +162,37 @@ public class CursoDao implements Dao<Curso>{
         }
         return cursos;
     }
+
+    public List<Curso> consultarCursosPorProfessor(int idProfessor) {
+        List<Curso> cursos = new ArrayList<>();
+    
+        String sql = "SELECT c.id, c.nome, c.carga_horaria, c.id_professor, c.status, p.nome as nome_professor, p.email "
+                + "FROM cursos c "
+                + "JOIN professores p ON c.id_professor = p.id "
+                + "WHERE c.id_professor = ?";
+    
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idProfessor);
+            ResultSet rs = stmt.executeQuery();
+    
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                int idProfessorCurso = rs.getInt("id_professor");
+                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
+                String nomeProfessor = rs.getString("nome_professor");
+                String emailProfessor = rs.getString("email");
+    
+                Professor professor = new Professor(idProfessorCurso, nomeProfessor, emailProfessor);
+                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
+                cursos.add(curso);
+            }
+    
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
+        }
+        return cursos;
+    }
 }
