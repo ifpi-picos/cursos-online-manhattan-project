@@ -38,14 +38,14 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
     @Override
     public List<AlunoCurso> consultarTodos() {
-        List<AlunoCurso> alunosCursos = new ArrayList<AlunoCurso>();
-        String sql = "SELECT ac.*, a.aluno_id, a.aluno_nome, a.aluno_email, " +
-             "c.curso_id, c.curso_nome, c.carga_horaria, " +
-             "p.professor_id, p.professor_nome, p.professor_email " +
-             "FROM aluno_curso ac " +
-             "JOIN alunos a ON ac.aluno_id = a.aluno_id " +
-             "JOIN cursos c ON ac.curso_id = c.curso_id " +
-             "JOIN professores p ON c.professor_id = p.professor_id";
+        List<AlunoCurso> alunosCursos = new ArrayList<>();
+        String sql = "SELECT ac.*, a.id AS aluno_id, a.nome AS aluno_nome, a.email AS aluno_email, " +
+            "c.id AS curso_id, c.nome AS curso_nome, c.carga_horaria, " +
+            "p.id AS professor_id, p.nome AS professor_nome, p.email AS professor_email " +
+            "FROM Aluno_Curso ac " +
+            "JOIN Alunos a ON ac.aluno_id = a.id " +
+            "JOIN Cursos c ON ac.curso_id = c.id " +
+            "JOIN Professores p ON c.id_professor = p.id";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);

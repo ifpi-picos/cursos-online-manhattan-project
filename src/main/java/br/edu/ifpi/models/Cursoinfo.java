@@ -1,22 +1,24 @@
 package br.edu.ifpi.models;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifpi.dao.AlunoCursoDao;
 import br.edu.ifpi.dao.Conexao;
-import br.edu.ifpi.entities.AlunoCurso;
+import br.edu.ifpi.entities.Curso;
 import br.edu.ifpi.enums.StatusAlunoCurso;
 
 public class Cursoinfo {
-    private AlunoCurso alunoCurso;
     private Integer quantAlunos;
     private Double aproveitamento;
+    private Curso curso;
+    
     AlunoCursoDao alunoCursoDao;
     
-    public Cursoinfo (AlunoCurso alunoCurso){
-        this.alunoCurso = alunoCurso;
+    public Cursoinfo (){
+        
         try {
             this.alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
         } catch (SQLException e) {
@@ -24,17 +26,23 @@ public class Cursoinfo {
         }
     }
     
+    public Curso getCurso() {
+        return curso;
+    }
 
-    public void setAlunoCurso(AlunoCurso alunoCurso) {
-        this.alunoCurso = alunoCurso;
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
     
     public void setQuantAlunos() {
-        this.quantAlunos = this.alunoCursoDao.calcularQuantidadeAlunosAtivosNoCurso(this.alunoCurso.getCurso().getId());
+        this.quantAlunos = this.alunoCursoDao.calcularQuantidadeAlunosAtivosNoCurso(this.curso.getId());
     }
 
     public void setAproveitamento() {
-        this.aproveitamento = alunoCursoDao.calcularPorcentagemAprovadosReprovados(this.alunoCurso.getCurso().getId(), StatusAlunoCurso.APROVADO);
+        double aproveitamentoRaw = alunoCursoDao.calcularPorcentagemAprovadosReprovados(this.curso.getId(), StatusAlunoCurso.APROVADO);
+        DecimalFormat df = new DecimalFormat("#,##");
+        this.aproveitamento = Double.parseDouble(df.format(aproveitamentoRaw));
     }
 
     public Double getAproveitamento() {
@@ -45,29 +53,30 @@ public class Cursoinfo {
         return quantAlunos;
     }
 
-    public AlunoCurso getAlunoCurso() {
-        return alunoCurso;
+    public Integer getCargaHoraria(){
+        return curso.getCargaHoraria();
     }
 
     public String getNomeCurso(){
-        return this.alunoCurso.getCurso().getNome();
+        return this.curso.getNome();
     }
 
     public String getProfessor(){
-        return this.alunoCurso.getCurso().getProfessor().getNome();
+        return this.curso.getProfessor().getNome();
     }
 
-    public static List<Cursoinfo> gerarListaCursoinfo(List<AlunoCurso> listaAlunoCurso) {
+    public List<Cursoinfo> gerarListaCursoinfo(List<Curso> listaCursos) {
         List<Cursoinfo> listaCursoinfo = new ArrayList<>();
 
-        for (AlunoCurso alunoCurso : listaAlunoCurso) {
-            Cursoinfo cursoinfo = new Cursoinfo(alunoCurso);
+        for (Curso curso : listaCursos) {
+            Cursoinfo cursoinfo = new Cursoinfo();
+            cursoinfo.setCurso(curso);
             cursoinfo.setQuantAlunos();
-            cursoinfo.setAproveitamento(); 
+            cursoinfo.setAproveitamento();
+
             listaCursoinfo.add(cursoinfo);
         }
 
         return listaCursoinfo;
     }
-
 }

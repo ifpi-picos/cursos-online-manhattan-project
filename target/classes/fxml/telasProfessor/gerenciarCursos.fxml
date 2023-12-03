@@ -24,8 +24,8 @@
                   <TableColumn fx:id="colunaNome" maxWidth="200.0" prefWidth="150.0" text="Nome do Curso" />
                   <TableColumn fx:id="colunaProfessor" maxWidth="200.0" prefWidth="150.0" text="Professor" />
                   <TableColumn fx:id="colunaCargaHoraria" maxWidth="150.0" prefWidth="125.0" text="Carga Horária" />
-                  <TableColumn fx:id="colunaCargaHoraria1" maxWidth="150.0" prefWidth="150.0" text="Quant. de Alunos" />
-                  <TableColumn fx:id="colunaCargaHoraria2" maxWidth="150.0" prefWidth="125.0" text="Aproveitamento" />
+                  <TableColumn fx:id="colunaQuantAlunos" maxWidth="150.0" prefWidth="150.0" text="Quant. de Alunos" />
+                  <TableColumn fx:id="colunaAproveitamento" maxWidth="150.0" prefWidth="125.0" text="Aproveitamento" />
                </columns>
             </TableView>
             <Button fx:id="btnAdicionar" layoutX="337.0" layoutY="586.0" mnemonicParsing="false" text="Cadastrar Curso">
