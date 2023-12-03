@@ -3,18 +3,14 @@ package br.edu.ifpi.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.edu.ifpi.SessaoController;
 import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.Sistema;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
-public class ControladorGerenciarCursos implements Initializable{
-    @FXML
-    private Button btnAdicionar;
-
+public class ControladorMeusCursosProf implements Initializable, SessaoController{
     @FXML
     private Button btnCursos;
 
@@ -30,24 +26,6 @@ public class ControladorGerenciarCursos implements Initializable{
     @FXML
     private Button btnSair;
 
-    @FXML
-    private TableColumn<?, ?> colunaCargaHoraria;
-
-    @FXML
-    private TableColumn<?, ?> colunaCargaHoraria1;
-
-    @FXML
-    private TableColumn<?, ?> colunaCargaHoraria2;
-
-    @FXML
-    private TableColumn<?, ?> colunaNome;
-
-    @FXML
-    private TableColumn<?, ?> colunaProfessor;
-
-    @FXML
-    private TableView<?> tabelaCursos;
-
     private SessaoDao sessaoDao;
 
     public void getSessao (SessaoDao sessaoDao){
@@ -62,5 +40,4 @@ public class ControladorGerenciarCursos implements Initializable{
         btnPerfil.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/", btnPerfil,sessaoDao));
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair,sessaoDao));
     }
-    
 }

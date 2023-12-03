@@ -30,7 +30,6 @@ public class ControladorLogIn implements Initializable, SessaoController{
     @FXML
     private TextField inputNome;
 
-
     private SessaoDao sessaoDao;
 
     public void getSessao (SessaoDao sessaoDao){

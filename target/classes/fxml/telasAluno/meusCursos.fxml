@@ -48,7 +48,7 @@
          <children>
             <VBox alignment="BASELINE_LEFT" prefHeight="675.0" prefWidth="250.0" styleClass="VBox">
                <children>
-                  <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: Gray;" styleClass="btn-lateral" text="HOME">
+                  <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="HOME">
                      <graphic>
                         <FontIcon iconLiteral="fas-home" iconSize="35" text="" />
                      </graphic>
@@ -72,7 +72,7 @@
                         <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnMeusCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="MEUS CURSOS">
+                  <Button fx:id="btnMeusCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="MEUS CURSOS">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
