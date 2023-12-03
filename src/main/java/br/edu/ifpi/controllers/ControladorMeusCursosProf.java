@@ -13,6 +13,7 @@ import br.edu.ifpi.dao.CursoDao;
 import br.edu.ifpi.dao.ProfessorDao;
 import br.edu.ifpi.entities.Curso;
 import br.edu.ifpi.entities.Professor;
+import br.edu.ifpi.enums.StatusCurso;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -98,11 +99,18 @@ public class ControladorMeusCursosProf implements Initializable {
     }
 
     public void fecharCurso() {
-        Curso cursoSelecionado = tabelaCursosProfessor.getSelectionModel().getSelectedItem().getCurso();
+        Cursoinfo cursoSelecionado = tabelaCursosProfessor.getSelectionModel().getSelectedItem();
+
+        if (cursoSelecionado.getStatusCurso().equals(StatusCurso.FECHADO)) {
+            Sistema.exibirPopupErro("O curso já está fechado!");
+            return;
+        }
+
+        Curso curso = cursoSelecionado.getCurso();
 
         try {
             CursoDao cursoDao = new CursoDao(Conexao.getConnection());
-            int resultado = cursoDao.fecharCurso(cursoSelecionado.getId());
+            int resultado = cursoDao.fecharCurso(curso.getId());
 
             if (resultado == 1) {
                 // Atualize a tabela após fechar o curso com sucesso
