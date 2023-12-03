@@ -366,4 +366,56 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         return alunosCursos;
     }
     
+    public boolean verificarMatriculaExistente(int idAluno, int idCurso) {
+        String sql = "SELECT COUNT(*) FROM aluno_curso WHERE aluno_id = ? AND curso_id = ?";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idAluno);
+            stmt.setInt(2, idCurso);
+            
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            
+            int count = rs.getInt(1);
+            return count > 0; // Retorna true se já existe uma matrícula, false se não existe.
+    
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao verificar matrícula no banco de dados: " + e.getMessage(), e);
+        }
+    }
+    
+    public void inscreverCurso(int idAluno, int idCurso) {
+        if (verificarMatriculaExistente(idAluno, idCurso)) {
+            // Exibir um popup de erro notificando que o aluno já está matriculado no curso.
+            // O código para exibir o popup pode depender do contexto da sua aplicação.
+            System.out.println("Erro: Aluno já matriculado no curso!");
+            return;
+        }
+    
+        String sql = "INSERT INTO aluno_curso (aluno_id, curso_id, status_matricula) VALUES (?, ?, ?)";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idAluno);
+            stmt.setInt(2, idCurso);
+            stmt.setString(3, StatusAlunoCurso.ATIVO.toString());
+            stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao inscrever aluno no curso no banco de dados: " + e.getMessage(), e);
+        }
+    }
+
+    // Método para alterar o status da matrícula para INATIVO
+    public void trancarCurso(int idAluno, int idCurso) {
+        String sql = "UPDATE aluno_curso SET status_matricula = 'INATIVO' WHERE aluno_id = ? AND curso_id = ?";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idAluno);
+            stmt.setInt(2, idCurso);
+            stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao trancar curso no banco de dados: " + e.getMessage(), e);
+        }
+    }
 }
