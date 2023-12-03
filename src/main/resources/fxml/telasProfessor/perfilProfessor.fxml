@@ -64,7 +64,7 @@
                         <FontIcon iconLiteral="fas-chalkboard-teacher" iconSize="35" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnPerfil" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="PERFIL">
+                  <Button fx:id="btnPerfil" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="PERFIL">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -72,7 +72,7 @@
                         <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="CURSOS">
+                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="CURSOS">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
