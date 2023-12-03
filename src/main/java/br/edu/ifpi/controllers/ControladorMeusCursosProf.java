@@ -13,6 +13,7 @@ import br.edu.ifpi.dao.CursoDao;
 import br.edu.ifpi.dao.ProfessorDao;
 import br.edu.ifpi.entities.Curso;
 import br.edu.ifpi.entities.Professor;
+import br.edu.ifpi.enums.StatusCurso;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -64,17 +65,19 @@ public class ControladorMeusCursosProf implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
         carregarCursos();
+
         // Configure as colunas da tabela para exibir os dados corretos.
         colNome.setCellValueFactory(new PropertyValueFactory<>("nomeCurso"));
         colMediaGeral.setCellValueFactory(new PropertyValueFactory<>("mediaGeralCurso"));
         colQuantAlunos.setCellValueFactory(new PropertyValueFactory<>("quantAlunosCursando"));
         colStatusCurso.setCellValueFactory(new PropertyValueFactory<>("statusCurso"));
-
+        
         // Defina os manipuladores de eventos para os botões.
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));
         btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/gerenciarCursos.fxml", btnCursos));
         btnMeusCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/MeusCursosProf.fxml", btnMeusCursos));
         btnPerfil.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/perfilProfessor.fxml", btnPerfil));
+        btnFecharCurso.setOnAction(event -> fecharCurso());
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair));
     }
 
@@ -93,5 +96,30 @@ public class ControladorMeusCursosProf implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void fecharCurso() {
+        Cursoinfo cursoSelecionado = tabelaCursosProfessor.getSelectionModel().getSelectedItem();
+
+        if (cursoSelecionado.getStatusCurso().equals(StatusCurso.FECHADO)) {
+            Sistema.exibirPopupErro("O curso já está fechado!");
+            return;
+        }
+
+        Curso curso = cursoSelecionado.getCurso();
+
+        try {
+            CursoDao cursoDao = new CursoDao(Conexao.getConnection());
+            int resultado = cursoDao.fecharCurso(curso.getId());
+
+            if (resultado == 1) {
+                carregarCursos();
+                Sistema.exibirPopupSucesso("Curso fechado com sucesso!");
+            } else {
+                Sistema.exibirPopupErro("Erro ao fechar curso!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

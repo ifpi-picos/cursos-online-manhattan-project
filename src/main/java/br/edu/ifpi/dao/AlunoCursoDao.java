@@ -418,4 +418,21 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
             throw new RuntimeException("Erro ao trancar curso no banco de dados: " + e.getMessage(), e);
         }
     }
+
+    // Método para cadastrar as notas do aluno
+    public void cadastrarNotas(int idAluno, int idCurso, double nota1, double nota2, double nota3) {
+        String sql = "UPDATE aluno_curso SET nota1 = ?, nota2 = ?, nota3 = ? WHERE aluno_id = ? AND curso_id = ?";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDouble(1, nota1);
+            stmt.setDouble(2, nota2);
+            stmt.setDouble(3, nota3);
+            stmt.setInt(5, idAluno);
+            stmt.setInt(6, idCurso);
+            stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao cadastrar notas no banco de dados: " + e.getMessage(), e);
+        }
+    }
 }
