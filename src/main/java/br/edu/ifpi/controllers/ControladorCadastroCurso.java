@@ -53,7 +53,7 @@ public class ControladorCadastroCurso implements Initializable{
         btnPerfil.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/perfilProfessor.fxml", btnPerfil));
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair));
         btnVoltar.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/gerenciarCursos.fxml", btnVoltar));
-        btnCadastrar.setOnAction( e -> cadastrarCurso());
+        btnCadastrar.setOnAction( event -> cadastrarCurso());
     }
 
     public void cadastrarCurso(){
@@ -74,6 +74,9 @@ public class ControladorCadastroCurso implements Initializable{
             Professor professor = professorDao.buscarPorNomeEEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
             Curso curso = new Curso(nome, horas, professor, StatusCurso.ABERTO);
             cursoDao.cadastrar(curso);
+            inputNome.clear();
+            inputHoras.clear();
+            Sistema.exibirPopupSucesso("O curso foi criado com sucesso!");
             } catch (SQLException e) {
                     e.printStackTrace();
             }

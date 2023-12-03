@@ -78,7 +78,7 @@ public class Cursoinfo {
     }
 
     public Double getMediaGeralCurso() {
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("#,##");
         return Double.parseDouble(df.format(mediaGeralCurso));
         // return mediaGeralCurso;
     }
