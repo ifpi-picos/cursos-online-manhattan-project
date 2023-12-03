@@ -95,9 +95,9 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
     public void initialize(URL location, ResourceBundle resources) {
         carregarTabela();
         itemDefault.setOnAction(event -> carregarTabela());
-        
-
-
+        itemConcluidos.setOnAction(event -> carregarTabelaConcluidos());
+        itemCursando.setOnAction(event -> carregarTabelaCursando());
+        itemNaoConcluidos.setOnAction(event -> carregarTabelaDesistiu());
     
         colNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurso().getNome()));
         colProfessor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurso().getProfessor().getNome()));
@@ -143,5 +143,87 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
         }
     }
 
+    // Função p/ carregar a tabela de cursos que o aluno concluiu
+    public void carregarTabelaConcluidos(){
+        try {
+            AlunoCursoDao alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
+            AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
 
+            Aluno aluno = alunoDao.buscarPorNomeEEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
+            
+            List<AlunoCurso> cursos = alunoCursoDao.consultarCursosMatriculadosConcluidos(aluno.getId());
+            
+            // Configuração da coluna para exibir a média geral
+            mediaGeralCurso.setCellValueFactory(cellData -> {
+                AlunoCurso alunoCurso = cellData.getValue();
+                double mediaGeral = alunoCursoDao.calcularMediaGeralPorCurso(alunoCurso.getCurso().getId());
+                return new SimpleDoubleProperty(mediaGeral).asObject();
+            });
+            
+            ObservableList<AlunoCurso> cursosObservable = FXCollections.observableArrayList(cursos);
+
+            tabelaCursos.setItems(cursosObservable);
+            // List<AlunoCurso> cursos = sessaoDao.getAluno().getCursos();
+            // tabelaCursos.getItems().setAll(cursos);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Sistema.exibirPopupErro("Erro ao se conectar ao Banco de dados");
+        }
+    }
+
+    // Função p/ carregar a tabela de cursos que o aluno está cursando
+    public void carregarTabelaCursando(){
+        try {
+            AlunoCursoDao alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
+            AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
+
+            Aluno aluno = alunoDao.buscarPorNomeEEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
+            
+            List<AlunoCurso> cursos = alunoCursoDao.consultarCursosMatriculadosCursando(aluno.getId());
+            
+            // Configuração da coluna para exibir a média geral
+            mediaGeralCurso.setCellValueFactory(cellData -> {
+                AlunoCurso alunoCurso = cellData.getValue();
+                double mediaGeral = alunoCursoDao.calcularMediaGeralPorCurso(alunoCurso.getCurso().getId());
+                return new SimpleDoubleProperty(mediaGeral).asObject();
+            });
+            
+            ObservableList<AlunoCurso> cursosObservable = FXCollections.observableArrayList(cursos);
+
+            tabelaCursos.setItems(cursosObservable);
+            // List<AlunoCurso> cursos = sessaoDao.getAluno().getCursos();
+            // tabelaCursos.getItems().setAll(cursos);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Sistema.exibirPopupErro("Erro ao se conectar ao Banco de dados");
+        }
+    }
+
+    // Função p/ carregar a tabela de cursos que o aluno não concluiu
+    public void carregarTabelaDesistiu(){
+        try {
+            AlunoCursoDao alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
+            AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
+
+            Aluno aluno = alunoDao.buscarPorNomeEEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
+            
+            List<AlunoCurso> cursos = alunoCursoDao.consultarCursosTrancados(aluno.getId());
+            
+            // Configuração da coluna para exibir a média geral
+            mediaGeralCurso.setCellValueFactory(cellData -> {
+                AlunoCurso alunoCurso = cellData.getValue();
+                double mediaGeral = alunoCursoDao.calcularMediaGeralPorCurso(alunoCurso.getCurso().getId());
+                return new SimpleDoubleProperty(mediaGeral).asObject();
+            });
+            
+            ObservableList<AlunoCurso> cursosObservable = FXCollections.observableArrayList(cursos);
+
+            tabelaCursos.setItems(cursosObservable);
+            // List<AlunoCurso> cursos = sessaoDao.getAluno().getCursos();
+            // tabelaCursos.getItems().setAll(cursos);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Sistema.exibirPopupErro("Erro ao se conectar ao Banco de dados");
+        }
+    }
 }
