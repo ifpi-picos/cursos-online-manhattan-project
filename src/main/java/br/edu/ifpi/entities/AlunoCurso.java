@@ -27,6 +27,12 @@ public class AlunoCurso {
         this.statusAlunoCurso = statusAlunoCurso;
     }
 
+    public AlunoCurso(Aluno aluno, Curso curso, StatusAlunoCurso statusAlunoCurso) {
+        this.aluno = aluno;
+        this.curso = curso;
+        this.statusAlunoCurso = statusAlunoCurso;
+    }
+
     public Aluno getAluno() {
         return aluno;
     }
