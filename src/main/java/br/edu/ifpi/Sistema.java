@@ -48,6 +48,24 @@ public class Sistema {
         }
     }
 
+    public static void trocarCena(String caminhoFXML, Button botao) {
+        try {
+            // Carrega o arquivo FXML
+            FXMLLoader loader = new FXMLLoader(Sistema.class.getResource(caminhoFXML));
+            Parent novaCena = loader.load();
+
+            // Obtém o palco principal a partir do botão clicado
+            Stage palco = (Stage) botao.getScene().getWindow();
+
+            // Configura a nova cena
+            Scene novaScene = new Scene(novaCena);
+            palco.setScene(novaScene);
+            palco.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Lida com exceções ao carregar o FXML
+        }
+    }
+
     public static boolean verificarCampos(String nome, String email) {
         if (nome.isEmpty() || email.isEmpty()) {
             Sistema.exibirPopupErro("Por favor, preencha todos os campos.");

@@ -13,12 +13,12 @@
    <children>
       <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0" styleClass="background-primario">
          <children>
-            <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="270.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="270.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/GC__1_-removebg-preview.png" />
                </image>
             </ImageView>
-            <Text layoutX="316.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BEM-VINDO!">
+            <Text layoutX="316.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BEM-VINDO!">
                <font>
                   <Font size="36.0" />
                </font>
@@ -29,7 +29,7 @@
          <children>
             <VBox alignment="BASELINE_LEFT" prefHeight="675.0" prefWidth="250.0" styleClass="VBox">
                <children>
-                  <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="HOME">
+                  <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="HOME">
                      <graphic>
                         <FontIcon iconLiteral="fas-home" iconSize="35" text="" />
                      </graphic>
@@ -53,7 +53,7 @@
                         <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="CURSOS">
+                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="CURSOS">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
