@@ -288,8 +288,8 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         return alunosCursos;
     }
     
-    //Consultar alunos com status Ativo/Cursando
-    public List<AlunoCurso> consultarAlunosMatriculadosCursando(int idAluno) {
+    //Consultar cursos com status Ativo/Cursando
+    public List<AlunoCurso> consultarCursosMatriculadosCursando(int idAluno) {
         List<AlunoCurso> alunosCursos = new ArrayList<>();
         String sql = "SELECT " +
                 "alunos.id AS aluno_id, alunos.nome AS aluno_nome, alunos.email AS aluno_email, " +
@@ -328,7 +328,7 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
     }
     
     //Consultar alunos com status Inativo/Desistiu
-    public List<AlunoCurso> consultarAlunosDesistentes(int idAluno) {
+    public List<AlunoCurso> consultarCursosTrancados(int idAluno) {
         List<AlunoCurso> alunosCursos = new ArrayList<>();
         String sql = "SELECT " +
                 "alunos.id AS aluno_id, alunos.nome AS aluno_nome, alunos.email AS aluno_email, " +
