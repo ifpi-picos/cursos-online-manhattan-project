@@ -71,6 +71,15 @@ public class ControladorCursosAluno implements Initializable, SessaoController{
         
         carregarTabela();
 
+        btnInscrever.setOnAction(event -> {
+            try {
+                matricular();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                Sistema.exibirPopupErro("Erro ao se conectar ao Banco de dados");
+            }
+        });
+
         ColMatricula.setCellValueFactory(new PropertyValueFactory<>("statusAlunoCurso"));
         colunaCargaHoraria.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCurso().getCargaHoraria()).asObject());
         colunaNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurso().getNome()));
@@ -97,6 +106,23 @@ public class ControladorCursosAluno implements Initializable, SessaoController{
         } catch (SQLException e) {
             e.printStackTrace();
             Sistema.exibirPopupErro("Erro ao se conectar ao Banco de dados");
+        }
+    }
+
+    //Método para verificar se o aluno já está matriculado no curso e em seguida realizar a matrícula
+    public void matricular() throws SQLException{
+        AlunoCursoDao alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
+        AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
+
+        Aluno aluno = alunoDao.buscarPorNomeEEmail(SessaoUsuario.getNomeUsuario(), SessaoUsuario.getEmailUsuario());
+        AlunoCurso alunoCurso = tabelaCursos.getSelectionModel().getSelectedItem();
+
+        if(alunoCursoDao.verificarMatriculaExistente(aluno.getId(), alunoCurso.getCurso().getId())){
+            Sistema.exibirPopupErro("Você já se matriculou neste curso.");
+        }else{
+            alunoCursoDao.inscreverCurso(aluno.getId(), alunoCurso.getCurso().getId());
+            Sistema.exibirPopupSucesso("Matrícula realizada com sucesso");
+            carregarTabela();
         }
     }
 
