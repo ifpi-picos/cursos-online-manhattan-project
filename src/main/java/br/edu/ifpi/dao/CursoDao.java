@@ -195,4 +195,17 @@ public class CursoDao implements Dao<Curso>{
         }
         return cursos;
     }
+
+    // Método para mudar status do curso para FECHADO
+    public int fecharCurso(int idCurso) {
+        String sql = "UPDATE cursos SET status = 'FECHADO' WHERE id = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idCurso);
+            return stmt.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao fechar curso no banco de dados: " + e.getMessage());
+        }
+    }
 }
