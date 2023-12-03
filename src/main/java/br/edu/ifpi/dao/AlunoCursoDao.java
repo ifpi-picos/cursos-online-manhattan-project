@@ -175,43 +175,40 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         }
     
 
-    public double calcularPorcentagemAprovadosReprovados(int idCurso, StatusAlunoCurso statusAlvo) {
-        String sql = "SELECT COUNT(*) AS total_alunos FROM aluno_curso " +
-                     "WHERE curso_id = ? AND status_matricula = ?";  
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, idCurso);
-            stmt.setString(2, statusAlvo.toString());
-            ResultSet rs = stmt.executeQuery();
-    
-            if (rs.next()) {
-                int totalAlunos = rs.getInt("total_alunos");
-    
-                if (totalAlunos == 0) {
-                    // Retornar 0 se não houver alunos com o status alvo
-                    return 0.0;
-                }
-    
-                String sqlTotalMatriculados = "SELECT COUNT(*) AS total_matriculados FROM aluno_curso WHERE curso_id = ?";
-                try (PreparedStatement stmtTotalMatriculados = connection.prepareStatement(sqlTotalMatriculados)) {
-                    stmtTotalMatriculados.setInt(1, idCurso);
-                    ResultSet rsTotalMatriculados = stmtTotalMatriculados.executeQuery();
-    
-                    if (rsTotalMatriculados.next()) {
-                        int totalMatriculados = rsTotalMatriculados.getInt("total_matriculados");
-    
-                        // Calcular a porcentagem de alunos com o status alvo
-                        double porcentagem = (double) totalAlunos / totalMatriculados * 100.0;
-                        return porcentagem;
+        public double calcularPorcentagemAprovadosReprovados(int idCurso) {
+            String sql = "SELECT COUNT(*) AS total_alunos, " +
+                         "SUM(CASE WHEN status_matricula = ? THEN 1 ELSE 0 END) AS total_aprovados " +
+                         "FROM aluno_curso WHERE curso_id = ? AND status_matricula IN (?, ?)";
+            
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                stmt.setString(1, StatusAlunoCurso.APROVADO.toString());
+                stmt.setInt(2, idCurso);
+                stmt.setString(3, StatusAlunoCurso.APROVADO.toString());
+                stmt.setString(4, StatusAlunoCurso.REPROVADO.toString());
+        
+                ResultSet rs = stmt.executeQuery();
+        
+                if (rs.next()) {
+                    int totalAlunos = rs.getInt("total_alunos");
+                    int totalAprovados = rs.getInt("total_aprovados");
+        
+                    if (totalAlunos == 0) {
+                        // Retornar 0 se não houver alunos aprovados ou reprovados
+                        return 0.0;
                     }
+        
+                    // Calcular a porcentagem de alunos aprovados
+                    double porcentagemAprovados = (double) totalAprovados / totalAlunos * 100.0;
+                    return porcentagemAprovados;
                 }
+        
+                // Retornar 0 se ocorrer algum problema ou se não houver alunos no curso
+                return 0.0;
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao calcular a porcentagem de alunos aprovados/reprovados no banco de dados: " + e.getMessage(), e);
             }
-    
-            // Retornar 0 se ocorrer algum problema ou se não houver alunos no curso
-            return 0.0;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao calcular a porcentagem de alunos aprovados/reprovados no banco de dados: " + e.getMessage(), e);
         }
-    }
+        
 
     public int calcularQuantidadeAlunosAtivosNoCurso(int idCurso) {
         String sql = "SELECT COUNT(*) AS total_alunos FROM aluno_curso " +
