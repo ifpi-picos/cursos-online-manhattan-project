@@ -65,6 +65,9 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
     private TableColumn<AlunoCurso, String> colProfessor;
 
     @FXML
+    private MenuItem btnDefault;
+
+    @FXML
     private MenuItem itemConcluidos;
 
     @FXML
