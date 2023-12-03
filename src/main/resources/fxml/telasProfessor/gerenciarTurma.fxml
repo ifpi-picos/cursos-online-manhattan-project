@@ -88,13 +88,13 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="btnNota1" layoutX="357.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="60.0" style="-fx-font-size: 14px; -fx-padding: auto; -fx-background-radius: 100;" text="Nota 1" />
-            <Button fx:id="btnNota3" layoutX="607.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="60.0" style="-fx-font-size: 14px; -fx-padding: auto; -fx-background-radius: 100;" text="Nota 3" />
-            <Button fx:id="btnNota2" layoutX="481.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="60.0" style="-fx-font-size: 14px; -fx-padding: auto; -fx-background-radius: 100;" text="Nota 2" />
-            <TextField fx:id="inputNota1" disable="true" layoutX="339.0" layoutY="537.0" prefHeight="48.0" prefWidth="94.0" visible="false" />
-            <TextField fx:id="inputNota2" disable="true" layoutX="463.0" layoutY="537.0" prefHeight="48.0" prefWidth="94.0" visible="false" />
-            <TextField fx:id="inputNota3" disable="true" layoutX="589.0" layoutY="537.0" prefHeight="48.0" prefWidth="94.0" visible="false" />
-            <Button fx:id="btnCadastrar" disable="true" layoutX="456.0" layoutY="598.0" mnemonicParsing="false" text="cadastrar" visible="false" />
+            <Button fx:id="btnNota1" layoutX="357.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="94.0" text="Nota 1" />
+            <Button fx:id="btnNota3" layoutX="607.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="94.0" text="Nota 3" />
+            <Button fx:id="btnNota2" layoutX="481.0" layoutY="486.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="94.0" text="Nota 2" />
+            <TextField fx:id="inputNota1" disable="true" editable="false" layoutX="356.0" layoutY="536.0" prefHeight="48.0" prefWidth="94.0" visible="false" />
+            <TextField fx:id="inputNota2" disable="true" editable="false" layoutX="480.0" layoutY="536.0" prefHeight="48.0" prefWidth="94.0" visible="false" />
+            <TextField fx:id="inputNota3" disable="true" editable="false" layoutX="606.0" layoutY="536.0" prefHeight="48.0" prefWidth="94.0" visible="false" />
+            <Button fx:id="btnCadastrar" disable="true" layoutX="472.0" layoutY="597.0" mnemonicParsing="false" text="cadastrar" visible="false" />
             <Button fx:id="btnVoltar" layoutX="742.0" layoutY="617.0" mnemonicParsing="false" text="Voltar" />
          </children>
       </AnchorPane>

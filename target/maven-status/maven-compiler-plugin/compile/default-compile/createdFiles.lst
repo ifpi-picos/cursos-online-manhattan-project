@@ -14,6 +14,7 @@ br\edu\ifpi\dao\CursoDao.class
 br\edu\ifpi\controllers\ControladorPerfilProfessor.class
 br\edu\ifpi\models\Cursoinfo.class
 br\edu\ifpi\Sistema.class
+br\edu\ifpi\controllers\ControladorGerenciarTurma.class
 br\edu\ifpi\entities\Curso.class
 br\edu\ifpi\controllers\ControladorMeusCursosProf.class
 br\edu\ifpi\controllers\ControladorLogIn.class

@@ -71,22 +71,25 @@ public class ControladorMeusCursosProf implements Initializable {
         
         carregarCursos();
 
-        // Configure as colunas da tabela para exibir os dados corretos.
+        tabelaCursosProfessor.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                Cursoinfo cursoSelecionado = tabelaCursosProfessor.getSelectionModel().getSelectedItem();
+                Curso curso = cursoSelecionado.getCurso();
+                btnGerenciarTurma.setOnAction(event -> trocarCena("/fxml/telasProfessor/gerenciarTurma.fxml", btnGerenciarTurma,curso));
+            }
+        });
+
         colNome.setCellValueFactory(new PropertyValueFactory<>("nomeCurso"));
         colMediaGeral.setCellValueFactory(new PropertyValueFactory<>("mediaGeralCurso"));
         colQuantAlunos.setCellValueFactory(new PropertyValueFactory<>("quantAlunosCursando"));
         colStatusCurso.setCellValueFactory(new PropertyValueFactory<>("statusCurso"));
         
-        // Defina os manipuladores de eventos para os botões.
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));
         btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/gerenciarCursos.fxml", btnCursos));
         btnMeusCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/MeusCursosProf.fxml", btnMeusCursos));
         btnPerfil.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/perfilProfessor.fxml", btnPerfil));
         btnFecharCurso.setOnAction(event -> fecharCurso());
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair));
-        
-        Cursoinfo cursoSelecionado = tabelaCursosProfessor.getSelectionModel().getSelectedItem();
-        btnGerenciarTurma.setOnAction(event -> trocarCena("/fxml/telasProfessor/gerenciarTurma.fxml", btnGerenciarTurma, cursoSelecionado.getCurso()));
     }
 
     public static void trocarCena(String caminhoFXML, Button botao, Curso curso) {

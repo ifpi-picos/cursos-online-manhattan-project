@@ -23,6 +23,7 @@ C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorGerenciarCursos.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\entities\Aluno.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorTelaInicialAluno.java
+C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorGerenciarTurma.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorTelaInicialProfessor.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\dao\AlunoDao.java
 C:\Users\Marcos Paulo\OneDrive\Documentos\Repositórios\cursos-online-manhattan-project\src\main\java\br\edu\ifpi\controllers\ControladorCursosAluno.java
