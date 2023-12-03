@@ -19,7 +19,7 @@
                </font>
             </Text>
             <FontIcon iconLiteral="fas-book-reader" iconSize="75" layoutX="383.0" layoutY="80.0" />
-            <TableView fx:id="tabelaCursos" layoutX="66.0" layoutY="148.0" prefHeight="400.0" prefWidth="706.0">
+            <TableView fx:id="tabelaCursos" layoutX="60.0" layoutY="147.0" prefHeight="400.0" prefWidth="725.0">
                <columns>
                   <TableColumn fx:id="colunaNome" maxWidth="200.0" prefWidth="150.0" text="Nome do Curso" />
                   <TableColumn fx:id="colunaProfessor" maxWidth="200.0" prefWidth="150.0" text="Professor" />
@@ -29,7 +29,7 @@
                         <TableColumn fx:id="cursando" prefWidth="75.0" text="Cursando" />
                         <TableColumn fx:id="concluido" prefWidth="75.0" text="Concluido" />
                      </columns></TableColumn>
-                  <TableColumn fx:id="colunaAproveitamento" maxWidth="150.0" prefWidth="125.0" text="Aproveitamento" />
+                  <TableColumn fx:id="colunaAproveitamento" maxWidth="150.0" prefWidth="143.20001220703125" text="Aproveitamento &#10;&#9;    (%)" />
                </columns>
             </TableView>
             <Button fx:id="btnAdicionar" layoutX="337.0" layoutY="586.0" mnemonicParsing="false" text="Cadastrar Curso">

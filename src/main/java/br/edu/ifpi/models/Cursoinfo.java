@@ -8,7 +8,6 @@ import java.util.List;
 import br.edu.ifpi.dao.AlunoCursoDao;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.entities.Curso;
-import br.edu.ifpi.enums.StatusAlunoCurso;
 
 public class Cursoinfo {
     private Integer quantAlunosCursando;
@@ -35,9 +34,10 @@ public class Cursoinfo {
     }
 
     public void setAproveitamento() {
-        double aproveitamentoRaw = alunoCursoDao.calcularPorcentagemAprovadosReprovados(this.curso.getId());
-        DecimalFormat df = new DecimalFormat("#,##");
-        this.aproveitamento = Double.parseDouble(df.format(aproveitamentoRaw));
+        // double aproveitamentoRaw = alunoCursoDao.calcularPorcentagemAprovadosReprovados(this.curso.getId());
+        // // DecimalFormat df = new DecimalFormat("#,##");
+        // this.aproveitamento = Double.parseDouble(df.format(aproveitamentoRaw));
+        this.aproveitamento = alunoCursoDao.calcularPorcentagemAprovadosReprovados(this.curso.getId());
     }
     
     public void setQuantAlunosCursando() {
