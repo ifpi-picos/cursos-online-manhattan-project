@@ -1,11 +1,15 @@
 package br.edu.ifpi.entities;
 
+import br.edu.ifpi.enums.StatusAlunoCurso;
+
 public class AlunoCurso {
     private Aluno aluno;
     private Curso curso;
     private Double nota1;
     private Double nota2;
     private Double nota3;
+    private Double media;
+    private StatusAlunoCurso statusAlunoCurso;
 
     //construtor
     public AlunoCurso(Aluno aluno, Curso curso) {
@@ -45,10 +49,6 @@ public class AlunoCurso {
         this.nota3 = nota3;
     }
 
-    // public Double[] getNota() {
-    //     return nota;
-    // }
-
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
@@ -57,11 +57,6 @@ public class AlunoCurso {
         this.curso = curso;
     }
 
-    // public void setNota(Double[] nota) {
-    //     this.nota = nota;
-    // }
-
-    // método para exibir o conteúdo do array de notas no terminal
     public void exibirNotas() {
         System.out.print("Notas do aluno " + aluno.getNome() + " no curso de " + curso.getNome() + ": ");
         System.out.println("Nota 1: " + getNota1());
@@ -80,15 +75,5 @@ public class AlunoCurso {
             return null;
         }
     }
-
-    // public void exibirMedia() {
-    //     Double media = calcularMedia();
-
-    //     if (media != null) {
-    //         System.out.println("Média do aluno " + aluno.getNome() + " no curso de " + curso.getNome() + ": " + media);
-    //     } else {
-    //         System.out.println("Alguma nota não foi atribuída. Não é possível calcular a média.");
-    //     }
-    // }
 
 }
