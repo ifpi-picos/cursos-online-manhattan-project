@@ -38,9 +38,33 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
 
     @Override
     public List<AlunoCurso> consultarTodos() {
-        // String sql = "SELECT * FROM aluno_curso";
         List<AlunoCurso> alunosCursos = new ArrayList<AlunoCurso>();
-        return alunosCursos;
+        String sql = "SELECT ac.*, a.aluno_id, a.aluno_nome, a.aluno_email, " +
+             "c.curso_id, c.curso_nome, c.carga_horaria, " +
+             "p.professor_id, p.professor_nome, p.professor_email " +
+             "FROM aluno_curso ac " +
+             "JOIN alunos a ON ac.aluno_id = a.aluno_id " +
+             "JOIN cursos c ON ac.curso_id = c.curso_id " +
+             "JOIN professores p ON c.professor_id = p.professor_id";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Aluno aluno = new Aluno(rs.getInt("aluno_id"), rs.getString("aluno_nome"), rs.getString("aluno_email"));
+                Professor professor = new Professor(rs.getInt("professor_id"), rs.getString("professor_nome"), rs.getString("professor_email"));
+                Curso curso = new Curso(rs.getInt("curso_id"), rs.getString("curso_nome"), rs.getInt("carga_horaria"), professor, StatusCurso.ABERTO);
+                StatusAlunoCurso statusAlunoCurso = StatusAlunoCurso.valueOf(rs.getString("status_matricula"));
+                
+                AlunoCurso alunoCurso = new AlunoCurso(aluno, curso, statusAlunoCurso);
+                alunosCursos.add(alunoCurso);
+            }
+            return alunosCursos;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
