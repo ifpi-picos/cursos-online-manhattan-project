@@ -71,6 +71,12 @@ public class ControladorGerenciarTurma implements Initializable {
     @FXML
     private TableView<Curso> tabelaTurma;
 
+    Curso curso;
+
+    public void receberCurso (Curso curso){
+        this.curso = curso;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));

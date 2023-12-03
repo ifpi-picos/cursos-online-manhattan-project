@@ -1,5 +1,9 @@
 package br.edu.ifpi;
 
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -7,9 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Sistema {
 
@@ -24,27 +25,22 @@ public class Sistema {
                 exibirPopupErro("Erro está aqui");
                 return;
             }
-            // Carrega o arquivo FXML
             FXMLLoader loader = new FXMLLoader(Sistema.class.getResource(caminhoFXML));
             Parent novaCena = loader.load();
 
-            // Obtém o controlador associado à nova cena
             Object controller = loader.getController();
 
-            // Se o controlador implementar a interface SessaoController, chama getSessao
             if (controller instanceof SessaoController) {
                 ((SessaoController) controller).getSessao(sessaoDao);
             }
 
-            // Obtém o palco principal a partir do botão clicado
             Stage palco = (Stage) botao.getScene().getWindow();
 
-            // Configura a nova cena
             Scene novaScene = new Scene(novaCena);
             palco.setScene(novaScene);
             palco.show();
         } catch (IOException e) {
-            e.printStackTrace(); // Lida com exceções ao carregar o FXML
+            e.printStackTrace();
         }
     }
 

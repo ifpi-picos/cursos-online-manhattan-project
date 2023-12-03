@@ -1,5 +1,6 @@
 package br.edu.ifpi.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,11 +18,15 @@ import br.edu.ifpi.enums.StatusCurso;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class ControladorMeusCursosProf implements Initializable {
     @FXML
@@ -79,6 +84,30 @@ public class ControladorMeusCursosProf implements Initializable {
         btnPerfil.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/perfilProfessor.fxml", btnPerfil));
         btnFecharCurso.setOnAction(event -> fecharCurso());
         btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair));
+        
+        Cursoinfo cursoSelecionado = tabelaCursosProfessor.getSelectionModel().getSelectedItem();
+        btnGerenciarTurma.setOnAction(event -> trocarCena("/fxml/telasProfessor/gerenciarTurma.fxml", btnGerenciarTurma, cursoSelecionado.getCurso()));
+    }
+
+    public static void trocarCena(String caminhoFXML, Button botao, Curso curso) {
+        try {
+            if (caminhoFXML == null || botao == null || curso == null) {
+                Sistema.exibirPopupErro("Parametro inválido");
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(Sistema.class.getResource(caminhoFXML));
+            Parent novaCena = loader.load();
+            ControladorGerenciarTurma controller = loader.getController();
+            controller.receberCurso(curso);
+        
+            Stage palco = (Stage) botao.getScene().getWindow();
+            Scene novaScene = new Scene(novaCena);
+            palco.setScene(novaScene);
+            palco.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void carregarCursos(){
