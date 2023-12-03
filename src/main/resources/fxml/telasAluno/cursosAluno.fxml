@@ -24,7 +24,7 @@
                 <TableColumn fx:id="colunaNome" maxWidth="200.0" prefWidth="200.0" text="Nome" />
                   <TableColumn fx:id="colunaProfessor" maxWidth="200.0" prefWidth="200.0" text="Professor" />
                 <TableColumn fx:id="colunaCargaHoraria" maxWidth="125.0" prefWidth="125.0" text="Carga Horaria" />
-                  <TableColumn prefWidth="125.0" text="Matrícula" />
+                  <TableColumn fx:id="ColMatricula" prefWidth="125.0" text="Matrícula" />
               </columns>
             </TableView>
             <Button fx:id="btnInscrever" layoutX="354.0" layoutY="595.0" mnemonicParsing="false" text="Inscrever-se">

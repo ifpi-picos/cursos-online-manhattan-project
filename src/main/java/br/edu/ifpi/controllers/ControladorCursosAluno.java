@@ -7,6 +7,7 @@ import br.edu.ifpi.SessaoController;
 import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.Sistema;
 import br.edu.ifpi.entities.Curso;
+import br.edu.ifpi.enums.StatusAlunoCurso;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -33,7 +34,7 @@ public class ControladorCursosAluno implements Initializable, SessaoController{
     private Button btnSair;
 
     @FXML
-    private TableColumn<Curso,> ColMatricula;
+    private TableColumn<Curso, StatusAlunoCurso> ColMatricula;
 
     @FXML
     private TableColumn<Curso, Integer> colunaCargaHoraria;
