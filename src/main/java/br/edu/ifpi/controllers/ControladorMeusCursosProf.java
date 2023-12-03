@@ -71,13 +71,24 @@ public class ControladorMeusCursosProf implements Initializable {
         
         carregarCursos();
 
-        tabelaCursosProfessor.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                Cursoinfo cursoSelecionado = tabelaCursosProfessor.getSelectionModel().getSelectedItem();
+        // Move a configuração do evento btnGerenciarTurma para fora do ouvinte
+        btnGerenciarTurma.setOnAction(event -> {
+            Cursoinfo cursoSelecionado = tabelaCursosProfessor.getSelectionModel().getSelectedItem();
+            if (cursoSelecionado != null) {
                 Curso curso = cursoSelecionado.getCurso();
-                btnGerenciarTurma.setOnAction(event -> trocarCena("/fxml/telasProfessor/gerenciarTurma.fxml", btnGerenciarTurma,curso));
+                trocarCena("/fxml/telasProfessor/gerenciarTurma.fxml", btnGerenciarTurma, curso);
+            }else {
+                Sistema.exibirPopupErro("Selecione um curso.");
             }
         });
+
+        // tabelaCursosProfessor.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        //     if (newValue != null) {
+        //         Cursoinfo cursoSelecionado = tabelaCursosProfessor.getSelectionModel().getSelectedItem();
+        //         Curso curso = cursoSelecionado.getCurso();
+        //         btnGerenciarTurma.setOnAction(event -> trocarCena("/fxml/telasProfessor/gerenciarTurma.fxml", btnGerenciarTurma,curso));
+        //     }
+        // });
 
         colNome.setCellValueFactory(new PropertyValueFactory<>("nomeCurso"));
         colMediaGeral.setCellValueFactory(new PropertyValueFactory<>("mediaGeralCurso"));
@@ -102,7 +113,7 @@ public class ControladorMeusCursosProf implements Initializable {
             FXMLLoader loader = new FXMLLoader(Sistema.class.getResource(caminhoFXML));
             Parent novaCena = loader.load();
             ControladorGerenciarTurma controller = loader.getController();
-            controller.receberCurso(curso);
+            controller.inicializar(curso);
         
             Stage palco = (Stage) botao.getScene().getWindow();
             Scene novaScene = new Scene(novaCena);

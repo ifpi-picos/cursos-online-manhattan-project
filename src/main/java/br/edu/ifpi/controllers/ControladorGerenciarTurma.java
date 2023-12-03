@@ -83,8 +83,9 @@ public class ControladorGerenciarTurma implements Initializable {
 
     Curso curso;
 
-    public void receberCurso (Curso curso){
+    public void inicializar (Curso curso){
         this.curso = curso;
+        carregarDadosTabela();
     }
 
     @Override
@@ -94,7 +95,7 @@ public class ControladorGerenciarTurma implements Initializable {
         colNota1.setCellValueFactory(new PropertyValueFactory<>("nota1"));
         colNota2.setCellValueFactory(new PropertyValueFactory<>("nota2"));
         colNota3.setCellValueFactory(new PropertyValueFactory<>("nota3"));
-        carregarDadosTabela();
+        
         tabelaTurma.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 AlunoCurso alunoCursoSelecionado = tabelaTurma.getSelectionModel().getSelectedItem();
