@@ -35,7 +35,7 @@ public class Cursoinfo {
     }
 
     public void setAproveitamento() {
-        double aproveitamentoRaw = alunoCursoDao.calcularPorcentagemAprovadosReprovados(this.curso.getId(), StatusAlunoCurso.APROVADO);
+        double aproveitamentoRaw = alunoCursoDao.calcularPorcentagemAprovadosReprovados(this.curso.getId());
         DecimalFormat df = new DecimalFormat("#,##");
         this.aproveitamento = Double.parseDouble(df.format(aproveitamentoRaw));
     }
