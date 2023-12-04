@@ -1,29 +1,25 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.SimpleStringProperty;
+import br.edu.ifpi.Sistema;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.CursoDao;
+import br.edu.ifpi.entities.Curso;
+import br.edu.ifpi.models.Cursoinfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import br.edu.ifpi.sistema;
-import br.edu.ifpi.dao.Conexao;
-import br.edu.ifpi.dao.CursoDao;
-import br.edu.ifpi.entities.Curso;
 
-
-public class controladorGerenciarCursos implements Initializable {
-
+public class ControladorGerenciarCursos implements Initializable{
     @FXML
     private Button btnAdicionar;
 
@@ -34,112 +30,72 @@ public class controladorGerenciarCursos implements Initializable {
     private Button btnHome;
 
     @FXML
-    private Button btnPerfil;
+    private Button btnMeusCursos;
 
     @FXML
-    private Button btnRemover;
+    private Button btnPerfil;
 
     @FXML
     private Button btnSair;
 
     @FXML
-    private TableColumn<Curso, Integer> colunaCargaHoraria;
+    private TableColumn<Cursoinfo, String> colunaNome;
 
     @FXML
-    private TableColumn<Curso, String> colunaNome;
+    private TableColumn<Cursoinfo, String> colunaProfessor;
+
+    // @FXML
+    // private TableColumn<Cursoinfo, Integer> colunaQuantAlunos;
 
     @FXML
-    private TableColumn<Curso, String> colunaProfessor;
+    private TableColumn<Cursoinfo, Double> colunaAproveitamento;
 
     @FXML
-    private TableView<Curso> tabelaCursos;
+    private TableColumn<Cursoinfo, Integer> colunaCargaHoraria;
+
+    @FXML
+    private TableColumn<Cursoinfo, Integer> concluido;
+
+    @FXML
+    private TableColumn<Cursoinfo, Integer> cursando;
+
+    @FXML
+    private TableView<Cursoinfo> tabelaCursos;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        btnCursos.setOnAction(event -> sistema.trocarCena("/fxml/gerenciarCursos.fxml",btnCursos));
-        btnHome.setOnAction(event -> sistema.trocarCena("/fxml/telaInicialProf.fxml", btnHome));
-        btnPerfil.setOnAction(event -> sistema.trocarCena("/fxml/perfilProfessor.fxml", btnPerfil));
-        btnSair.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnSair));
 
-        btnAdicionar.setOnAction(event -> sistema.trocarCena("/fxml/cadastroCurso.fxml", btnAdicionar));
-        btnRemover.setOnAction(event -> removerCurso());
+        carregarTabela();
 
-        Connection conexao = null;
-        try {
-            conexao = Conexao.getConnection();
-
-            // Chama o construtor de CursoDao passando a conexão como argumento
-            CursoDao BDCurso = new CursoDao(conexao);
-            // Obter a lista de cursos do banco de dados
-            List<Curso> cursosDoBanco = BDCurso.consultarTodos();
-            // Criar uma ObservableList a partir da lista de cursos
-            ObservableList<Curso> observableCursos = FXCollections.observableArrayList(cursosDoBanco);
-
-            // Configurar o TableView e as colunas
-            colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            colunaCargaHoraria.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
-            colunaProfessor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfessor().getNome()));
-            
-
-            // Configurar a TableView para exibir a lista de cursos
-            tabelaCursos.setItems(observableCursos);
-
-            // Configurar seleção única
-            tabelaCursos.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Certifique-se de fechar a conexão no bloco finally
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nomeCurso"));
+        colunaProfessor.setCellValueFactory(new PropertyValueFactory<>("professor"));
+        colunaAproveitamento.setCellValueFactory(new PropertyValueFactory<>("aproveitamento"));
+        colunaCargaHoraria.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
+        concluido.setCellValueFactory(new PropertyValueFactory<>("quantAlunosConcluido"));
+        cursando.setCellValueFactory(new PropertyValueFactory<>("quantAlunosCursando"));
+        
+        btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));
+        btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/gerenciarCursos.fxml", btnCursos));
+        btnMeusCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/MeusCursosProf.fxml", btnMeusCursos));
+        btnPerfil.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/perfilProfessor.fxml", btnPerfil));
+        btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair));
+        btnAdicionar.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/cadastroCurso.fxml", btnAdicionar));
     }
+    
 
-    // Função para remover um curso
-    public void removerCurso() {
-        sistema sistema = new sistema();
-
-        // Obter o curso selecionado
-        Curso cursoSelecionado = tabelaCursos.getSelectionModel().getSelectedItem();
-
-        // Se nenhum curso foi selecionado, exibir mensagem de erro
-        if (cursoSelecionado == null) {
-            sistema.exibirPopupErro("Nenhum curso selecionado!");
-            return;
-        }
-
-        // Obter a conexão com o banco de dados
-        Connection conexao = null;
+    public void carregarTabela() {
         try {
-            conexao = Conexao.getConnection();
+            CursoDao cursoDao = new CursoDao(Conexao.getConnection());
+            Cursoinfo cursoinfo = new Cursoinfo();
 
-            // Chamar o método de remoção do curso
-            CursoDao BDCurso = new CursoDao(conexao);
-            BDCurso.remover(cursoSelecionado);
+            List<Curso> cursos = cursoDao.consultarTodos();
+            List<Cursoinfo> cursosinfo = cursoinfo.gerarListaCursoinfo(cursos);
 
-            // Remover o curso da tabela
-            tabelaCursos.getItems().remove(cursoSelecionado);
+            ObservableList<Cursoinfo> cursosObservable = FXCollections.observableArrayList(cursosinfo);
+            tabelaCursos.setItems(cursosObservable);
 
-            // Exibir mensagem de sucesso
-            sistema.exibirPopupSucesso("Curso removido com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
-            sistema.exibirPopupErro("Erro ao remover curso!");
-        } finally {
-            // Certifique-se de fechar a conexão no bloco finally
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }

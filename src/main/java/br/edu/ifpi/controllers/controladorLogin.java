@@ -1,29 +1,21 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.SessaoUsuario;
-import br.edu.ifpi.sistema;
+import br.edu.ifpi.Sistema;
 import br.edu.ifpi.dao.AlunoDao;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.dao.ProfessorDao;
-import br.edu.ifpi.entities.Aluno;
-import br.edu.ifpi.entities.Professor;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-public class controladorLogin implements Initializable {
+public class ControladorLogIn implements Initializable{
 
     @FXML
     private Button btnCadastrar;
@@ -40,114 +32,48 @@ public class controladorLogin implements Initializable {
     @FXML
     private TextField inputNome;
 
-
+    
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        
-        btnCadastrar.setOnAction(event -> sistema.trocarCena("/fxml/cadastro.fxml", btnCadastrar));
-        btnEntrar.setOnAction(event -> autenticar());
-
+    public void initialize(URL location, ResourceBundle resources) {
+        btnCadastrar.setOnAction(event -> Sistema.trocarCena("/fxml/cadastro.fxml", btnCadastrar));
+        btnEntrar.setOnAction(event -> Autenticar());
     }
 
-    // Função para carregar uma lista de professores
-
-
-    public void autenticar(){
+    private void Autenticar(){
         String nome = inputNome.getText();
         String email = inputEmail.getText();
-
-        if (verificarProfessor(nome, email)) {
-        SessaoUsuario.setNomeUsuario(nome);
-        SessaoUsuario.setEmailUsuario(email);
-        SessaoUsuario.setTipoUsuario("Professor");
-        // Restante do código...
-        } else if (verificarAluno(nome, email)) {
-            SessaoUsuario.setNomeUsuario(nome);
-            SessaoUsuario.setTipoUsuario("Aluno");
-            SessaoUsuario.setEmailUsuario(email);
-            // Restante do código...
-        }
-        // System.out.println("Nome" + nome);
-        // System.out.println("Email" + email);
         
-        if(verificarProfessor(nome, email) == true){
-            // Carregar o FXML da nova cena
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/telaInicialProf.fxml"));
-            try {
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
+        if (!Sistema.verificarCampos(nome, email)) {
+            return;
+        }
 
-                // Obter a referência do palco (Stage)
-                Stage stage = (Stage) formsLogIn.getScene().getWindow();
+        if (!Sistema.validarEmail(email)) {
+            Sistema.exibirPopupErro("Formato de e-mail inválido.");
+            return;
+        }
 
-                // Mudar para a nova cena
-                stage.setScene(scene);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }else if(verificarAluno(nome, email) == true ) {
-             // Carregar o FXML da outra cena
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/telaInicialAluno.fxml"));
-            try {
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-
-                // Obter a referência do palco (Stage)
-                Stage stage = (Stage) formsLogIn.getScene().getWindow();
-
-                // Mudar para a nova cena
-                stage.setScene(scene);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } 
-
-    }
-    
-    //verificar professor
-    public boolean verificarProfessor (String nome , String email){
-        Connection conexao = null;
         try {
-            conexao = Conexao.getConnection();
+            AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
+            ProfessorDao professorDao = new ProfessorDao(Conexao.getConnection());
+
+            if(alunoDao.verificarEmailExistente(email)){
+            SessaoUsuario.setEmailUsuario(email);
+            SessaoUsuario.setNomeUsuario(nome);
+            SessaoUsuario.setTipoUsuario("ALUNO");
+            Sistema.trocarCena("/fxml/telasAluno/telaInicialAluno.fxml", btnEntrar);
+
+        }else if (professorDao.verificarEmailExistente(email)) {
+            SessaoUsuario.setEmailUsuario(email);
+            SessaoUsuario.setNomeUsuario(nome);
+            SessaoUsuario.setTipoUsuario("PROFESSOR");
+            Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml", btnEntrar);
+
+        } else {
+           Sistema.exibirPopupErro("Usuário Inexistente!"); 
+        }
         } catch (SQLException e) {
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
-
-        ProfessorDao professorDao = new ProfessorDao(conexao);
-        List<Professor> professores = professorDao.consultarTodos();
-
-        for (Professor professor : professores) {
-            if (professor.getNome().equals(nome) && professor.getEmail().equals(email)) {
-                // Match found
-                return true;
-            }
-        }
-
-        // No match found
-        return false;
     }
-    
-    //verificar aluno
-    public boolean verificarAluno (String nome, String email){
-        Connection conexao = null;
-        try {
-            conexao = Conexao.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace(); 
-        }
-
-        AlunoDao alunoDao = new AlunoDao(conexao);
-        List<Aluno> alunos = alunoDao.consultarAutenticar();
-
-        for (Aluno aluno : alunos) {
-            if (aluno.getNome().equals(nome) && aluno.getEmail().equals(email)) {
-                // Match found
-                return true;
-            }
-        }
-    
-        // No match found
-        return false;
-
-    }
+      
 }

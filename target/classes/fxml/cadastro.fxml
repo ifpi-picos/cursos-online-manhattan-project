@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorCadastro">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorCadastro">
    <children>
       <AnchorPane prefHeight="675.0" prefWidth="900.0" styleClass="background-primario">
          <children>
@@ -63,7 +63,7 @@
                </font>
             </Text>
             <FontIcon iconLiteral="far-edit" iconSize="50" layoutX="521.0" layoutY="154.0" />
-            <Button fx:id="btnCadastrar" layoutX="400.0" layoutY="557.0" mnemonicParsing="false" text="Cadastrar">
+            <Button fx:id="btnCadastrar" layoutX="321.0" layoutY="557.0" mnemonicParsing="false" text="Cadastrar">
                <font>
                   <Font size="18.0" />
                </font>
@@ -73,7 +73,7 @@
                   <Image url="@../images/GC__1_-removebg-preview.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnVoltar" layoutX="426.0" layoutY="635.0" mnemonicParsing="false" text="Voltar" />
+            <Button fx:id="btnVoltar" layoutX="493.0" layoutY="557.0" mnemonicParsing="false" styleClass="primary-button" text="Voltar" />
          </children>
       </AnchorPane>
    </children>

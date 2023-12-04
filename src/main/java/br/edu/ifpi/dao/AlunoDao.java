@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifpi.entities.Aluno;
-import br.edu.ifpi.enums.StatusAluno;
 
 
 public class AlunoDao implements Dao<Aluno>{
@@ -20,13 +19,12 @@ public class AlunoDao implements Dao<Aluno>{
 
     @Override
     public int cadastrar(Aluno aluno) {
-        String sql = "INSERT INTO alunos (nome, email, status) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO alunos (nome, email) VALUES (?, ?)";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
             stmt.setString(2, aluno.getEmail());
-            stmt.setString(3, aluno.getStatus().toString()); // Converte o Enum para String
             return stmt.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao inserir aluno no banco de dados: " + e.getMessage());
@@ -41,36 +39,6 @@ public class AlunoDao implements Dao<Aluno>{
 
     @Override
     public List<Aluno> consultarTodos() {
-        List<Aluno> alunos = new ArrayList<>();
-
-        String sql = "SELECT * FROM alunos";
-
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()) {
-                String nome = rs.getString("nome");
-                String email = rs.getString("email");
-                StatusAluno status = StatusAluno.valueOf(rs.getString("status")); // Converte a String para o Enum
-
-                Aluno aluno = new Aluno(nome, email, status);
-                alunos.add(aluno);
-            }
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar alunos no banco de dados: " + e.getMessage());
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                throw new RuntimeException("Erro ao fechar conexão com o banco de dados: " + e.getMessage());
-            }
-        }
-        return alunos;
-    }
-
-    public List<Aluno> consultarAutenticar() {
         List<Aluno> alunos = new ArrayList<>();
 
         String sql = "SELECT * FROM alunos";
@@ -101,13 +69,12 @@ public class AlunoDao implements Dao<Aluno>{
 
     @Override
     public int alterar(Aluno aluno){
-        String sql = "UPDATE alunos SET nome = ?, email = ?, status = ? WHERE id = ?";
+        String sql = "UPDATE alunos SET nome = ?, email = ?WHERE id = ?";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
             stmt.setString(2, aluno.getEmail());
-            stmt.setString(3,aluno.getStatus().toString()); // Converte o Enum para String
 
             return stmt.executeUpdate();
         } catch (Exception e) {
@@ -141,92 +108,42 @@ public class AlunoDao implements Dao<Aluno>{
         }
     }
 
-    // Buscar aluno por nome e email
-    public Aluno consultarPorNomeEmail(String nome, String email) {
-        String sql = "SELECT * FROM alunos WHERE nome = ? AND email = ?";
-
+    public boolean verificarEmailExistente(String email) {
+        String sql = "SELECT COUNT(*) FROM alunos WHERE email = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, nome);
-            stmt.setString(2, email);
+            stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
 
-            if(rs.next()) {
-                int id = rs.getInt("id");
-                StatusAluno status = StatusAluno.valueOf(rs.getString("status")); // Converte a String para o Enum
-
-                Aluno aluno = new Aluno(id, nome, email, status);
-                return aluno;
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar aluno no banco de dados: " + e.getMessage());
-        } 
-        return null;
-    }
-
-    // Cursos que o aluno está matriculado
-    public List<String> consultarCursosMatriculados(int id) {
-        List<String> cursos = new ArrayList<>();
-
-        String sql = "SELECT id_curso FROM aluno_curso WHERE id_aluno = ? ORDER BY";
-
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()) {
-                String nome = rs.getString("nome");
-                cursos.add(nome);
-            }
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar cursos matriculados no banco de dados: " + e.getMessage());
-        } 
-        return cursos;
-    }
-
-    // Cursos que o aluno não está matriculado
-    public List<String> consultarCursosNaoMatriculados(int id) {
-        List<String> cursos = new ArrayList<>();
-
-        String sql = "SELECT id_curso FROM aluno_curso WHERE id_aluno != ? ORDER BY";
-
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()) {
-                String nome = rs.getString("nome");
-                cursos.add(nome);
-            }
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar cursos não matriculados no banco de dados: " + e.getMessage());
-        } 
-        return cursos;
-    }
-
-    public Aluno consultarPorId(int id) {
-        String sql = "SELECT * FROM alunos WHERE id = ?";
-    
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-    
             if (rs.next()) {
-                String nome = rs.getString("nome");
-                String email = rs.getString("email");
-                StatusAluno status = StatusAluno.valueOf(rs.getString("status")); // Converte a String para o Enum
-    
-                Aluno aluno = new Aluno(id, nome, email, status);
-                return aluno;
+                int count = rs.getInt(1);
+                return count > 0;
             }
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar aluno por ID no banco de dados: " + e.getMessage());
+            return false;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao verificar email no banco de dados: " + e.getMessage());
+        }
+    }
+    
+    public Aluno buscarPorNomeEEmail(String nome, String email) {
+    String sql = "SELECT * FROM alunos WHERE nome = ? AND email = ?";
+    try {
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, nome);
+        stmt.setString(2, email);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            int id = rs.getInt("id");
+            String nomeDoBanco = rs.getString("nome");
+            String emailDoBanco = rs.getString("email");
+
+            Aluno aluno = new Aluno(id, nomeDoBanco, emailDoBanco);
+            return aluno;
         }
         return null;
+    } catch (SQLException e) {
+        throw new RuntimeException("Erro ao buscar aluno por nome e email no banco de dados: " + e.getMessage());
     }
+}
 }

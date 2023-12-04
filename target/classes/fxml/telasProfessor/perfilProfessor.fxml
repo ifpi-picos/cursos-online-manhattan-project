@@ -1,68 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.controladorPerfilAluno">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="900.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifpi.controllers.ControladorPerfilProfessor">
    <children>
-      <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0" styleClass="background-primario">
+      <AnchorPane layoutX="60.0" prefHeight="675.0" prefWidth="840.0">
          <children>
-            <FontIcon iconLiteral="fas-user-circle" iconSize="75" layoutX="383.0" layoutY="92.0" />
-            <Text layoutX="379.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfil">
+            <FontIcon iconLiteral="fas-user-circle" iconSize="75" layoutX="384.0" layoutY="96.0" />
+            <Text layoutX="380.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfil">
                <font>
                   <Font size="36.0" />
                </font>
             </Text>
-            <AnchorPane layoutX="144.0" layoutY="196.0" prefHeight="382.0" prefWidth="555.0">
+            <AnchorPane layoutX="181.0" layoutY="238.0" prefHeight="200.0" prefWidth="478.0">
                <children>
-                  <Text layoutX="56.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:">
+                  <Text layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="textNome" layoutX="138.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                  <Text fx:id="carregarNome" layoutX="94.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text layoutX="56.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+                  <Text layoutX="14.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="textEmail" layoutX="122.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                  <Text fx:id="carregarEmail" layoutX="89.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text layoutX="56.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos cadastrados:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <TableView fx:id="cursosCadastrado" layoutX="102.0" layoutY="200.0" prefHeight="178.0" prefWidth="350.0">
-                    <columns>
-                      <TableColumn fx:id="colunaNomeCursos" prefWidth="349.0" text="Nome" />
-                    </columns>
-                  </TableView>
                </children>
             </AnchorPane>
-            <Button fx:id="btnVoltar" layoutX="392.0" layoutY="631.0" mnemonicParsing="false" text="Voltar">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnVerNotas" layoutX="382.0" layoutY="591.0" mnemonicParsing="false" text="Ver notas">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
+            <Button fx:id="btnVoltar" layoutX="378.0" layoutY="548.0" mnemonicParsing="false" text="Voltar" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="675.0" prefWidth="250.0">
@@ -77,12 +56,12 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="CURSOS">
+                  <Button fx:id="btnMeusCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="MEUS CURSOS">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                      <graphic>
-                        <FontIcon iconLiteral="fas-book" iconSize="35" />
+                        <FontIcon iconLiteral="fas-chalkboard-teacher" iconSize="35" />
                      </graphic>
                   </Button>
                   <Button fx:id="btnPerfil" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="btn-lateral" text="PERFIL">
@@ -91,6 +70,14 @@
                      </font>
                      <graphic>
                         <FontIcon iconLiteral="fas-user-alt" iconSize="35" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnCursos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="CURSOS">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-book" iconSize="35" />
                      </graphic>
                   </Button>
                   <Button fx:id="btnSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-lateral" text="SAIR">

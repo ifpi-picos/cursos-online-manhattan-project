@@ -1,0 +1,13 @@
+package br.edu.ifpi.enums;
+
+public enum StatusAlunoCurso {
+    ATIVO, INATIVO, APROVADO, REPROVADO
+}
+
+// ATIVO = CURSANDO
+
+// INATIVO = DESISTIU DO CURSO
+
+// APROVADO = CONCLUIU O CURSO
+
+// REPROVADO = CONCLUIU O CURSO

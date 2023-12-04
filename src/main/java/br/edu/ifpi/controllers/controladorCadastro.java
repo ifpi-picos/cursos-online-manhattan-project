@@ -1,28 +1,23 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.sistema;
+import br.edu.ifpi.Sistema;
 import br.edu.ifpi.dao.AlunoDao;
 import br.edu.ifpi.dao.Conexao;
 import br.edu.ifpi.dao.ProfessorDao;
 import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.entities.Professor;
-import br.edu.ifpi.enums.StatusAluno;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
-public class controladorCadastro implements Initializable {
+public class ControladorCadastro implements Initializable{
 
     @FXML
     private Button btnCadastrar;
@@ -45,71 +40,69 @@ public class controladorCadastro implements Initializable {
     @FXML
     private RadioButton radioProfessor;
 
-    AlunoDao BDAluno;
-    ProfessorDao BDProfessor;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        btnVoltar.setOnAction(event -> sistema.trocarCena("/fxml/login.fxml", btnCadastrar));
-
-        btnCadastrar.setOnAction(event -> gerarCadastro());
+        btnVoltar.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnVoltar));
+        btnCadastrar.setOnAction(event-> gerarCadastro());
     }
 
-
-    public void gerarCadastro(){
-        Connection connection = null;
+    public boolean verificarEmailExistente(String email) {
         try {
-            connection = Conexao.getConnection();
+            AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
+            ProfessorDao professorDao = new ProfessorDao(Conexao.getConnection());
+            boolean alunoEmailExistente = alunoDao.verificarEmailExistente(email);
+            boolean professorEmailExistente = professorDao.verificarEmailExistente(email);
+            if (alunoEmailExistente || professorEmailExistente) {
+                Sistema.exibirPopupErro("E-mail já cadastrado. Por favor, escolha outro e-mail.");
+                return true; 
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        BDAluno = new AlunoDao(connection);
-        BDProfessor = new ProfessorDao(connection);
-
-        String nome = inputNome.getText();
-        String email = inputEmail.getText();
-
-        if (sistema.validarEmail(email) != true){
-            exibirPopupErro("Email inválido");
-            return;
-        }
-
-        if(email == null || email.isEmpty() || nome == null || nome.isEmpty()){
-            exibirPopupErro("Campos vazios");
-            return;
-        }
-
-        // Verificar se o usuário já está cadastrado
-        if (verificarProfessor(nome, email) == true || verificarAluno(nome, email) == true) {
-            exibirPopupErro("Usuário já cadastrado");
-            return;
-        }
-
-        if (radioAluno.isSelected()) {
-            limparCampos();
-            Aluno aluno = new Aluno(nome, email, StatusAluno.ATIVO);
-            BDAluno.cadastrar(aluno);
-        }else if(radioProfessor.isSelected()){
-            limparCampos();
-            Professor professor = new Professor(nome, email);
-            BDProfessor.cadastrar(professor);
-        }else{
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Erro");
-            alert.setHeaderText(null);
-            alert.setContentText("Seleção de cadastro inválida!");
-            alert.showAndWait();
-        }
-
+        
+        return false; 
     }
 
-    private void exibirPopupErro(String mensagem) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Erro");
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
+    public void gerarCadastro() {
+        String nome = inputNome.getText();
+        String email = inputEmail.getText();
+        
+        if (!Sistema.verificarCampos(nome, email)) {
+            return;
+        }
+
+        if (!Sistema.validarEmail(email)) {
+            Sistema.exibirPopupErro("Formato de e-mail inválido.");
+            return;
+        }
+
+        if (verificarEmailExistente(email)) {
+            return;
+        }
+
+        if (!(radioAluno.isSelected() || radioProfessor.isSelected())) {
+            Sistema.exibirPopupErro("Por favor, selecione Aluno ou Professor.");
+            return;
+        }
+
+        try {
+            AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
+            ProfessorDao professorDao = new ProfessorDao(Conexao.getConnection());
+
+            if (radioAluno.isSelected()) {
+                Aluno aluno = new Aluno(nome, email);
+                alunoDao.cadastrar(aluno);
+                limparCampos();
+                Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
+            }else{
+                Professor professor = new Professor(nome, email);
+                professorDao.cadastrar(professor);
+                limparCampos();
+                Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void limparCampos() {
@@ -117,52 +110,5 @@ public class controladorCadastro implements Initializable {
         inputEmail.clear();
         radioAluno.setSelected(false);
         radioProfessor.setSelected(false);
-    }
-
-    // Método para verificar professor
-    public boolean verificarProfessor (String nome , String email){
-        Connection conexao = null;
-        try {
-            conexao = Conexao.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace(); 
-        }
-
-        ProfessorDao professorDao = new ProfessorDao(conexao);
-        List<Professor> professores = professorDao.consultarTodos();
-
-        for (Professor professor : professores) {
-            if (professor.getNome().equals(nome) && professor.getEmail().equals(email)) {
-                // Match found
-                return true;
-            }
-        }
-
-        // No match found
-        return false;
-    }
-
-    // Método para verificar aluno
-    public boolean verificarAluno (String nome, String email){
-        Connection conexao = null;
-        try {
-            conexao = Conexao.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace(); 
-        }
-
-        AlunoDao alunoDao = new AlunoDao(conexao);
-        List<Aluno> alunos = alunoDao.consultarAutenticar();
-
-        for (Aluno aluno : alunos) {
-            if (aluno.getNome().equals(nome) && aluno.getEmail().equals(email)) {
-                // Match found
-                return true;
-            }
-        }
-    
-        // No match found
-        return false;
-
     }
 }

@@ -1,7 +1,5 @@
 package br.edu.ifpi.entities;
 
-import br.edu.ifpi.enums.StatusAluno;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,26 +7,17 @@ public class Aluno {
     private int id;
     private String nome;
     private String email;
-    private List<Curso> cursos; // Cursos que o aluno está matriculado
-    private StatusAluno status;
+    private List<Curso> cursos;
 
     // Construtores
-    public Aluno(String nome, String email, StatusAluno status) {
-        this.nome = nome;
-        this.email = email;
-        this.cursos = new ArrayList<>();
-        this.status = status;
-    }
-
-    public Aluno(int id, String nome, String email, StatusAluno status) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.cursos = new ArrayList<>();
-        this.status = status;
-    }
-
     public Aluno(String nome, String email) {
+        this.nome = nome;
+        this.email = email;
+        this.cursos = new ArrayList<>();
+    }
+
+    public Aluno(int id, String nome, String email) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.cursos = new ArrayList<>();
@@ -67,11 +56,4 @@ public class Aluno {
         this.cursos = cursos;
     }
 
-    public StatusAluno getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusAluno status) {
-        this.status = status;
-    }
 }

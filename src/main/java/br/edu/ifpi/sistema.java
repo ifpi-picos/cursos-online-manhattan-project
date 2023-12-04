@@ -1,5 +1,9 @@
 package br.edu.ifpi;
 
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -7,21 +11,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class sistema {
+public class Sistema {
 
     private static final String EMAIL_REGEX =
             "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
     private static final Pattern pattern = Pattern.compile(EMAIL_REGEX);
 
+
     public static void trocarCena(String caminhoFXML, Button botao) {
         try {
             // Carrega o arquivo FXML
-            FXMLLoader loader = new FXMLLoader(sistema.class.getResource(caminhoFXML));
+            FXMLLoader loader = new FXMLLoader(Sistema.class.getResource(caminhoFXML));
             Parent novaCena = loader.load();
 
             // Obtém o palco principal a partir do botão clicado
@@ -36,12 +38,20 @@ public class sistema {
         }
     }
 
+    public static boolean verificarCampos(String nome, String email) {
+        if (nome.isEmpty() || email.isEmpty()) {
+            Sistema.exibirPopupErro("Por favor, preencha todos os campos.");
+            return false;
+        }
+        return true;
+    }
+
     public static boolean validarEmail(String email) {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
 
-    public void exibirPopupErro(String mensagemErro) {
+    public static void exibirPopupErro(String mensagemErro) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erro");
         alert.setHeaderText(null);
@@ -49,7 +59,7 @@ public class sistema {
         alert.showAndWait();
     }
 
-    public void exibirPopupSucesso(String mensagemSucesso) {
+    public static void exibirPopupSucesso(String mensagemSucesso) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Sucesso");
         alert.setHeaderText(null);

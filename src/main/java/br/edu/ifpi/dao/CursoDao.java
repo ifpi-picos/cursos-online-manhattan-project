@@ -35,26 +35,29 @@ public class CursoDao implements Dao<Curso>{
     @Override
     public List<Curso> consultarTodos() {
         List<Curso> cursos = new ArrayList<>();
-
-        String sql = "SELECT * FROM cursos";
-
+    
+        String sql = "SELECT c.id, c.nome, c.carga_horaria, c.id_professor, c.status, p.nome as nome_professor, p.email "
+                + "FROM cursos c "
+                + "JOIN professores p ON c.id_professor = p.id";
+    
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()) {
+    
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 String nome = rs.getString("nome");
                 int cargaHoraria = rs.getInt("carga_horaria");
                 int idProfessor = rs.getInt("id_professor");
                 StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
-
-                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
-
+                String nomeProfessor = rs.getString("nome_professor");
+                String emailProfessor = rs.getString("email");
+    
+                Professor professor = new Professor(idProfessor, nomeProfessor, emailProfessor);
                 Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
                 cursos.add(curso);
             }
-            
+    
         } catch (Exception e) {
             throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
         }
@@ -92,118 +95,117 @@ public class CursoDao implements Dao<Curso>{
         }
     }
 
-    // Selecionar curso pela id do professor
-    public List<Curso> buscarPorId(int idProfessor) {
+    // Método que retorna uma lista de todos os cursos com status ABERTO
+    public List<Curso> consultarCursosAbertos() {
         List<Curso> cursos = new ArrayList<>();
+    
+        String sql = "SELECT c.id, c.nome, c.carga_horaria, c.id_professor, c.status, p.nome as nome_professor, p.email "
+                + "FROM cursos c "
+                + "JOIN professores p ON c.id_professor = p.id "
+                + "WHERE c.status = 'ABERTO'";
+    
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+    
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                int idProfessor = rs.getInt("id_professor");
+                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
+                String nomeProfessor = rs.getString("nome_professor");
+                String emailProfessor = rs.getString("email");
+    
+                Professor professor = new Professor(idProfessor, nomeProfessor, emailProfessor);
+                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
+                cursos.add(curso);
+            }
+    
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
+        }
+        return cursos;
+    }
 
-        String sql = "SELECT * FROM cursos WHERE id_professor = ?";
+    // Método que retorna uma lista dos cursos que o aluno está matriculado
+    public List<Curso> consultarCursosMatriculados(int idAluno) {
+        List<Curso> cursos = new ArrayList<>();
+    
+        String sql = "SELECT c.id, c.nome, c.carga_horaria, c.id_professor, c.status, p.nome as nome_professor, p.email "
+                + "FROM cursos c "
+                + "JOIN professores p ON c.id_professor = p.id "
+                + "JOIN aluno_curso ac ON c.id = ac.id_curso "
+                + "WHERE ac.id_aluno = ?";
+    
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idAluno);
+            ResultSet rs = stmt.executeQuery();
+    
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                int idProfessor = rs.getInt("id_professor");
+                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
+                String nomeProfessor = rs.getString("nome_professor");
+                String emailProfessor = rs.getString("email");
+    
+                Professor professor = new Professor(idProfessor, nomeProfessor, emailProfessor);
+                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
+                cursos.add(curso);
+            }
+    
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
+        }
+        return cursos;
+    }
 
+    public List<Curso> consultarCursosPorProfessor(int idProfessor) {
+        List<Curso> cursos = new ArrayList<>();
+    
+        String sql = "SELECT c.id, c.nome, c.carga_horaria, c.id_professor, c.status, p.nome as nome_professor, p.email "
+                + "FROM cursos c "
+                + "JOIN professores p ON c.id_professor = p.id "
+                + "WHERE c.id_professor = ?";
+    
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, idProfessor);
             ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()) {
-                int id = rs.getInt("id");
-                String nome = rs.getString("nome");
-                int cargaHoraria = rs.getInt("carga_horaria");
-                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
-
-                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
-
-                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
-                cursos.add(curso);
-            }
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
-        }
-        return cursos;
-    }
-
-    // Selecionar curso pelo nome e email do professor
-    public List<Curso> buscarPorNomeEmail(String nome, String email) {
-        List<Curso> cursos = new ArrayList<>();
-
-        String sql = "SELECT * FROM cursos WHERE nome = ? AND email = ?";
-
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, nome);
-            stmt.setString(2, email);
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()) {
-                int id = rs.getInt("id");
-                String nomeCurso = rs.getString("nome");
-                int cargaHoraria = rs.getInt("carga_horaria");
-                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
-
-                Professor professor = new ProfessorDao(connection).buscarPorNomeEmail(nome, email);
-
-                Curso curso = new Curso(id, nomeCurso, cargaHoraria, professor, status);
-                cursos.add(curso);
-            }
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
-        }
-        return cursos;
-    }
-
-    // Consultar cursoos com status aberto
-    public List<Curso> consultarAbertos() {
-        List<Curso> cursos = new ArrayList<>();
-
-        String sql = "SELECT * FROM cursos WHERE status = ?";
-
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, StatusCurso.ABERTO.toString());
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()) {
-                int id = rs.getInt("id");
-                String nome = rs.getString("nome");
-                int cargaHoraria = rs.getInt("carga_horaria");
-                int idProfessor = rs.getInt("id_professor");
-                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
-
-                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
-
-                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
-                cursos.add(curso);
-            }
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
-        }
-        return cursos;
-    }
-
-    public Curso consultarPorId(int idCurso) {
-        String sql = "SELECT * FROM cursos WHERE id = ?";
     
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                int cargaHoraria = rs.getInt("carga_horaria");
+                int idProfessorCurso = rs.getInt("id_professor");
+                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
+                String nomeProfessor = rs.getString("nome_professor");
+                String emailProfessor = rs.getString("email");
+    
+                Professor professor = new Professor(idProfessorCurso, nomeProfessor, emailProfessor);
+                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
+                cursos.add(curso);
+            }
+    
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar cursos no banco de dados: " + e.getMessage());
+        }
+        return cursos;
+    }
+
+    // Método para mudar status do curso para FECHADO
+    public int fecharCurso(int idCurso) {
+        String sql = "UPDATE cursos SET status = 'FECHADO' WHERE id = ?";
+
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, idCurso);
-            ResultSet rs = stmt.executeQuery();
-    
-            if (rs.next()) {
-                int id = rs.getInt("id");
-                String nome = rs.getString("nome");
-                int cargaHoraria = rs.getInt("carga_horaria");
-                int idProfessor = rs.getInt("id_professor");
-                StatusCurso status = StatusCurso.valueOf(rs.getString("status"));
-    
-                Professor professor = new ProfessorDao(connection).buscarPorId(idProfessor);
-    
-                Curso curso = new Curso(id, nome, cargaHoraria, professor, status);
-                return curso;
-            }
+            return stmt.executeUpdate();
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar curso por ID no banco de dados: " + e.getMessage());
+            throw new RuntimeException("Erro ao fechar curso no banco de dados: " + e.getMessage());
         }
-        return null;
     }
 }

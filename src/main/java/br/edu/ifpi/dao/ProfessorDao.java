@@ -99,49 +99,44 @@ public class ProfessorDao implements Dao<Professor> {
         }
     }
 
-    // Buscar professor por id
-    public Professor buscarPorId(int id) {
-        String sql = "SELECT * FROM professores WHERE id = ?";
-
+    public boolean verificarEmailExistente(String email) {
+        String sql = "SELECT COUNT(*) FROM professores WHERE email = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
 
-            if(rs.next()) {
-                String nome = rs.getString("nome");
-                String email = rs.getString("email");
-
-                Professor professor = new Professor(nome, email);
-                return professor;
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
             }
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar professor no banco de dados: " + e.getMessage());
-        } 
-        return null;
+            return false;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao verificar email no banco de dados: " + e.getMessage());
+        }
     }
 
-    // Buscar professor por nome e email
-    public Professor buscarPorNomeEmail(String nome, String email) {
+    // Função para buscar professor por nome e email
+    public Professor buscarPorNomeEEmail(String nome, String email) {
         String sql = "SELECT * FROM professores WHERE nome = ? AND email = ?";
-
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setString(2, email);
             ResultSet rs = stmt.executeQuery();
 
-            if(rs.next()) {
+            if (rs.next()) {
                 int id = rs.getInt("id");
+                String nomeProfessor = rs.getString("nome");
+                String emailProfessor = rs.getString("email");
 
-                Professor professor = new Professor(id, nome, email);
+                Professor professor = new Professor(id, nomeProfessor, emailProfessor);
                 return professor;
             }
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar professor no banco de dados: " + e.getMessage());
-        } 
-        return null;
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar professor no banco de dados: " + e.getMessage());
+        }
     }
+    
 }
