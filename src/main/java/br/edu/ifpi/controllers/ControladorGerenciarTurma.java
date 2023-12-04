@@ -126,20 +126,6 @@ public class ControladorGerenciarTurma implements Initializable {
             Double nota2 = inputNota2.getText().isEmpty() ? null : Double.parseDouble(inputNota2.getText());
             Double nota3 = inputNota3.getText().isEmpty() ? null : Double.parseDouble(inputNota3.getText());
 
-
-            // Antes de cadastrar as notas, verifique se os dados estão corretos
-            if (nota1 != null && (nota1 < 0 || nota1 > 10)) {
-                Sistema.exibirPopupErro("Espaço vazio ou nota inválida");
-                return;
-            } else if (nota2 != null && (nota2 < 0 || nota2 > 10)) {
-                Sistema.exibirPopupErro("A nota 2 deve estar entre 0 e 10.");
-                return;
-            } else if (nota3 != null && (nota3 < 0 || nota3 > 10)) {
-                Sistema.exibirPopupErro("A nota 3 deve estar entre 0 e 10.");
-                return;
-            }
-
-            // Se tá tudo certo, cadastre as notas individualmente
             // Cadastrar a nota 1
             if (nota1 != null) {
                 try {
