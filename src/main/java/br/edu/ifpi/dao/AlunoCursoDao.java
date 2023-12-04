@@ -497,10 +497,45 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         return alunosCursos;
     } 
 
+    // Métodos para cadastrar cada nota individualmente
     public void inserirPrimeiraNota(int alunoId, int cursoId, double nota) {
-        String query = "INSERT INTO notas (aluno_id, curso_id, nota1) VALUES (?, ?, ?)";
+        String sql = "UPDATE aluno_curso SET nota1 = ? WHERE aluno_id = ? AND curso_id = ?";
 
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, alunoId);
+            ps.setInt(2, cursoId);
+            ps.setDouble(3, nota);
+
+            // Executa a atualização no banco de dados
+            ps.executeUpdate();
+
+            System.out.println("Nota inserida com sucesso!");
+        } catch (SQLException e) {
+            System.err.println("Erro ao inserir nota: " + e.getMessage());
+        }
+    }
+
+    public void inserirSegundaNota(int alunoId, int cursoId, double nota) {
+        String sql = "UPDATE aluno_curso SET nota2 = ? WHERE aluno_id = ? AND curso_id = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, alunoId);
+            ps.setInt(2, cursoId);
+            ps.setDouble(3, nota);
+
+            // Executa a atualização no banco de dados
+            ps.executeUpdate();
+
+            System.out.println("Nota inserida com sucesso!");
+        } catch (SQLException e) {
+            System.err.println("Erro ao inserir nota: " + e.getMessage());
+        }
+    }
+
+    public void inserirTerceiraNota(int alunoId, int cursoId, double nota) {
+        String sql = "UPDATE aluno_curso SET nota3 = ? WHERE aluno_id = ? AND curso_id = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, alunoId);
             ps.setInt(2, cursoId);
             ps.setDouble(3, nota);
