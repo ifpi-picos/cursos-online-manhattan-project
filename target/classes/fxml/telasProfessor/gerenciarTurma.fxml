@@ -88,9 +88,9 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="inputNota1" editable="false" layoutX="355.0" layoutY="510.0" prefHeight="48.0" prefWidth="94.0" />
-            <TextField fx:id="inputNota2" editable="false" layoutX="479.0" layoutY="510.0" prefHeight="48.0" prefWidth="94.0" />
-            <TextField fx:id="inputNota3" editable="false" layoutX="605.0" layoutY="510.0" prefHeight="48.0" prefWidth="94.0" />
+            <TextField fx:id="inputNota1" layoutX="355.0" layoutY="510.0" prefHeight="48.0" prefWidth="94.0" />
+            <TextField fx:id="inputNota2" layoutX="479.0" layoutY="510.0" prefHeight="48.0" prefWidth="94.0" />
+            <TextField fx:id="inputNota3" layoutX="605.0" layoutY="510.0" prefHeight="48.0" prefWidth="94.0" />
             <Button fx:id="btnCadastrar" layoutX="470.0" layoutY="595.0" mnemonicParsing="false" text="cadastrar" />
             <Button fx:id="btnVoltar" layoutX="293.0" layoutY="595.0" mnemonicParsing="false" text="Voltar" />
             <Text layoutX="375.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nota 1">
