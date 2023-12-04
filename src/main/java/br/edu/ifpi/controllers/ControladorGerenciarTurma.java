@@ -101,6 +101,9 @@ public class ControladorGerenciarTurma implements Initializable {
                 AlunoCurso alunoCursoSelecionado = tabelaTurma.getSelectionModel().getSelectedItem();
             }
         });
+
+        
+        btnCadastrar.setOnAction(event -> cadastrarNotas());
         
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));
         btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/gerenciarCursos.fxml", btnCursos));
@@ -119,5 +122,44 @@ public class ControladorGerenciarTurma implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void cadastrarNotas(){
+        // Obtenha o aluno selecionado na tabela
+        AlunoCurso alunoCursoSelecionado = tabelaTurma.getSelectionModel().getSelectedItem();
+
+        // Verificação sobre qual campo tem dados
+
+        if (alunoCursoSelecionado != null) {
+            // Obtenha as notas digitadas nos campos de texto
+            double nota1 = Double.parseDouble(inputNota1.getText());
+            double nota2 = Double.parseDouble(inputNota2.getText());
+            double nota3 = Double.parseDouble(inputNota3.getText());
+            
+
+            AlunoCursoDao alunoCursoDao;
+            try {
+                alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
+                alunoCursoDao.cadastrarNotas(alunoCursoSelecionado.getAluno().getId(), curso.getId(), nota1, nota2, nota3);
+            } catch (SQLException e) {
+                
+                e.printStackTrace();
+            }
+
+            // Atualize a tabela após a inserção da nota
+            carregarDadosTabela();
+
+            // Limpe os campos de entrada após a inserção
+            inputNota3.clear();
+
+            Sistema.exibirPopupSucesso("Notas cadastradas com sucesso!");
+        } else {
+            Sistema.exibirPopupErro("Nenhum aluno selecionado na tabela.");
+        }
+    }
+
+    // Função para tornar o campo de texto visível ou invisível
+    public void tornarVisivelInputNota1(TextField campoTexto, boolean visivel) {
+        campoTexto.setVisible(visivel);
     }
 }
