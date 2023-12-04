@@ -36,15 +36,6 @@ public class ControladorGerenciarTurma implements Initializable {
     private Button btnMeusCursos;
 
     @FXML
-    private Button btnNota1;
-
-    @FXML
-    private Button btnNota2;
-
-    @FXML
-    private Button btnNota3;
-
-    @FXML
     private Button btnPerfil;
 
     @FXML
@@ -102,9 +93,6 @@ public class ControladorGerenciarTurma implements Initializable {
             }
         });
 
-        btnNota1.setOnAction(event -> tornarVisivelInputNota1());
-        btnNota2.setOnAction(event -> tornarVisivelInputNota2());
-        btnNota3.setOnAction(event -> tornarVisivelInputNota3());
         btnCadastrar.setOnAction(event -> cadastrarNotas());
         
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));
@@ -204,57 +192,5 @@ public class ControladorGerenciarTurma implements Initializable {
         }
     }
 
-    public void tornarVisivelInputNota1() {
-        if (inputNota1.isVisible() && !inputNota1.isDisabled()) {
-            // Se o campo está visível e habilitado, torne-o invisível e desabilitado
-            inputNota1.setVisible(false);
-            inputNota1.setDisable(true);
-        } else {
-            // Senão, torne-o visível e habilitado
-            inputNota1.setVisible(true);
-            inputNota1.setDisable(false);
-        }
-        
-        // Verifica se o botão cadastrar está desabilitado e o torna visível e habilitado
-        if (btnCadastrar.isDisabled()) {
-            btnCadastrar.setVisible(true);
-            btnCadastrar.setDisable(false);
-        }
-    }
-
-    public void tornarVisivelInputNota2() {
-        if (inputNota2.isVisible() && !inputNota2.isDisabled()) {
-            // Se o campo está visível e habilitado, torne-o invisível e desabilitado
-            inputNota2.setVisible(false);
-            inputNota2.setDisable(true);
-        } else {
-            // Senão, torne-o visível e habilitado
-            inputNota2.setVisible(true);
-            inputNota2.setDisable(false);
-        }
-        
-        // Verifica se o botão cadastrar está desabilitado e o torna visível e habilitado
-        if (btnCadastrar.isDisabled()) {
-            btnCadastrar.setVisible(true);
-            btnCadastrar.setDisable(false);
-        }
-    }
-
-    public void tornarVisivelInputNota3() {
-        if (inputNota3.isVisible() && !inputNota3.isDisabled()) {
-            // Se o campo está visível e habilitado, torne-o invisível e desabilitado
-            inputNota3.setVisible(false);
-            inputNota3.setDisable(true);
-        } else {
-            // Senão, torne-o visível e habilitado
-            inputNota3.setVisible(true);
-            inputNota3.setDisable(false);
-        }
-        
-        // Verifica se o botão cadastrar está desabilitado e o torna visível e habilitado
-        if (btnCadastrar.isDisabled()) {
-            btnCadastrar.setVisible(true);
-            btnCadastrar.setDisable(false);
-        }
-    }
+    
 }
