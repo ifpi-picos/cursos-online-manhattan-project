@@ -102,7 +102,7 @@ public class ControladorGerenciarTurma implements Initializable {
             }
         });
 
-        
+        btnNota1.setOnAction(event -> tornarVisivelInputNota1());
         btnCadastrar.setOnAction(event -> cadastrarNotas());
         
         btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml",btnHome));
@@ -158,8 +158,21 @@ public class ControladorGerenciarTurma implements Initializable {
         }
     }
 
-    // Função para tornar o campo de texto visível ou invisível
-    public void tornarVisivelInputNota1(TextField campoTexto, boolean visivel) {
-        campoTexto.setVisible(visivel);
+    public void tornarVisivelInputNota1() {
+        if (inputNota1.isVisible() && !inputNota1.isDisabled()) {
+            // Se o campo está visível e habilitado, torne-o invisível e desabilitado
+            inputNota1.setVisible(false);
+            inputNota1.setDisable(true);
+        } else {
+            // Senão, torne-o visível e habilitado
+            inputNota1.setVisible(true);
+            inputNota1.setDisable(false);
+        }
+        
+        // Verifica se o botão cadastrar está desabilitado e o torna visível e habilitado
+        if (btnCadastrar.isDisabled()) {
+            btnCadastrar.setVisible(true);
+            btnCadastrar.setDisable(false);
+        }
     }
 }
