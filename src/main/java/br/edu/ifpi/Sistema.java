@@ -19,30 +19,6 @@ public class Sistema {
 
     private static final Pattern pattern = Pattern.compile(EMAIL_REGEX);
 
-    public static void trocarCena(String caminhoFXML, Button botao, SessaoDao sessaoDao) {
-        try {
-            if (caminhoFXML == null || botao == null || sessaoDao == null) {
-                exibirPopupErro("Erro está aqui");
-                return;
-            }
-            FXMLLoader loader = new FXMLLoader(Sistema.class.getResource(caminhoFXML));
-            Parent novaCena = loader.load();
-
-            Object controller = loader.getController();
-
-            if (controller instanceof SessaoController) {
-                ((SessaoController) controller).getSessao(sessaoDao);
-            }
-
-            Stage palco = (Stage) botao.getScene().getWindow();
-
-            Scene novaScene = new Scene(novaCena);
-            palco.setScene(novaScene);
-            palco.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void trocarCena(String caminhoFXML, Button botao) {
         try {

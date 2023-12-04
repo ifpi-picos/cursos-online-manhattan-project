@@ -1,11 +1,13 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.SessaoController;
-import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.Sistema;
+import br.edu.ifpi.dao.AlunoDao;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.ProfessorDao;
 import br.edu.ifpi.entities.Aluno;
 import br.edu.ifpi.entities.Professor;
 import javafx.fxml.FXML;
@@ -15,7 +17,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
-public class ControladorCadastro implements Initializable, SessaoController{
+public class ControladorCadastro implements Initializable{
 
     @FXML
     private Button btnCadastrar;
@@ -38,26 +40,26 @@ public class ControladorCadastro implements Initializable, SessaoController{
     @FXML
     private RadioButton radioProfessor;
 
-    private SessaoDao sessaoDao;
-
-    public void getSessao (SessaoDao sessaoDao){
-        this.sessaoDao = sessaoDao;
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        btnVoltar.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnVoltar,sessaoDao));
+        btnVoltar.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnVoltar));
         btnCadastrar.setOnAction(event-> gerarCadastro());
     }
 
     public boolean verificarEmailExistente(String email) {
-        boolean alunoEmailExistente = sessaoDao.alunoDao.verificarEmailExistente(email);
-        boolean professorEmailExistente = sessaoDao.professorDao.verificarEmailExistente(email);
-        
-        if (alunoEmailExistente || professorEmailExistente) {
-            Sistema.exibirPopupErro("E-mail já cadastrado. Por favor, escolha outro e-mail.");
-            return true; 
+        try {
+            AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
+            ProfessorDao professorDao = new ProfessorDao(Conexao.getConnection());
+            boolean alunoEmailExistente = alunoDao.verificarEmailExistente(email);
+            boolean professorEmailExistente = professorDao.verificarEmailExistente(email);
+            if (alunoEmailExistente || professorEmailExistente) {
+                Sistema.exibirPopupErro("E-mail já cadastrado. Por favor, escolha outro e-mail.");
+                return true; 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        
         return false; 
     }
 
@@ -83,16 +85,23 @@ public class ControladorCadastro implements Initializable, SessaoController{
             return;
         }
 
-        if (radioAluno.isSelected()) {
-            Aluno aluno = new Aluno(nome, email);
-            sessaoDao.alunoDao.cadastrar(aluno);
-            limparCampos();
-            Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
-        }else{
-            Professor professor = new Professor(nome, email);
-            sessaoDao.professorDao.cadastrar(professor);
-            limparCampos();
-            Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
+        try {
+            AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
+            ProfessorDao professorDao = new ProfessorDao(Conexao.getConnection());
+
+            if (radioAluno.isSelected()) {
+                Aluno aluno = new Aluno(nome, email);
+                alunoDao.cadastrar(aluno);
+                limparCampos();
+                Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
+            }else{
+                Professor professor = new Professor(nome, email);
+                professorDao.cadastrar(professor);
+                limparCampos();
+                Sistema.exibirPopupSucesso("Cadastro realizado com sucesso!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

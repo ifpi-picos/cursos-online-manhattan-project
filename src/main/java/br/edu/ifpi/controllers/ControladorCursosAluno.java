@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.SessaoController;
-import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.SessaoUsuario;
 import br.edu.ifpi.Sistema;
 import br.edu.ifpi.dao.AlunoCursoDao;
@@ -26,7 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ControladorCursosAluno implements Initializable, SessaoController{
+public class ControladorCursosAluno implements Initializable{
     @FXML
     private Button btnCursos;
 
@@ -60,12 +58,6 @@ public class ControladorCursosAluno implements Initializable, SessaoController{
     @FXML
     private TableView<AlunoCurso> tabelaCursos;
 
-    private SessaoDao sessaoDao;
-    
-    public void getSessao (SessaoDao sessaoDao){
-        this.sessaoDao = sessaoDao;
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
@@ -85,11 +77,11 @@ public class ControladorCursosAluno implements Initializable, SessaoController{
         colunaNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurso().getNome()));
         colunaProfessor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurso().getProfessor().getNome()));
     
-        btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasAluno/cursosAluno.fxml", btnCursos, sessaoDao));
-        btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasAluno/telaInicialAluno.fxml", btnCursos, sessaoDao));
-        btnPerfil.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/perfilAluno.fxml", btnPerfil, sessaoDao));
-        btnMeusCursos.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/meusCursos.fxml", btnMeusCursos, sessaoDao));
-        btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair, sessaoDao));
+        btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasAluno/cursosAluno.fxml", btnCursos));
+        btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasAluno/telaInicialAluno.fxml", btnCursos));
+        btnPerfil.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/perfilAluno.fxml", btnPerfil));
+        btnMeusCursos.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/meusCursos.fxml", btnMeusCursos));
+        btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair));
     }
 
     public void carregarTabela(){

@@ -119,60 +119,41 @@ public class ControladorGerenciarTurma implements Initializable {
         AlunoCurso alunoCursoSelecionado = tabelaTurma.getSelectionModel().getSelectedItem();
 
         // Verificação sobre qual campo tem dados
-            if (alunoCursoSelecionado != null) {
+        if (alunoCursoSelecionado != null) {
             AlunoCursoDao alunoCursoDao;
-
+    
             Double nota1 = inputNota1.getText().isEmpty() ? null : Double.parseDouble(inputNota1.getText());
             Double nota2 = inputNota2.getText().isEmpty() ? null : Double.parseDouble(inputNota2.getText());
             Double nota3 = inputNota3.getText().isEmpty() ? null : Double.parseDouble(inputNota3.getText());
-
-            // Cadastrar a nota 1
-            if (nota1 != null) {
-                try {
-                    alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
+    
+            try {
+                alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
+    
+                if (nota1 != null) {
                     alunoCursoDao.inserirPrimeiraNota(alunoCursoSelecionado.getAluno().getId(), curso.getId(), nota1);
-                    inputNota1.clear();
-                } catch (SQLException e) {
-                    
-                    e.printStackTrace();
                 }
-            } else if (nota2 != null) {
-                try {
-                    alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
+    
+                if (nota2 != null) {
                     alunoCursoDao.inserirSegundaNota(alunoCursoSelecionado.getAluno().getId(), curso.getId(), nota2);
-                    inputNota2.clear();
-                } catch (SQLException e) {
-                    
-                    e.printStackTrace();
                 }
-            } else if (nota3 != null) {
-                try {
-                    alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
+    
+                if (nota3 != null) {
                     alunoCursoDao.inserirTerceiraNota(alunoCursoSelecionado.getAluno().getId(), curso.getId(), nota3);
-                    inputNota3.clear();
-                } catch (SQLException e) {
-                    
-                    e.printStackTrace();
                 }
+    
+                // Atualize a tabela após a inserção da nota
+                carregarDadosTabela();
+    
+                // Limpe os campos de entrada após a inserção
+                inputNota1.clear();
+                inputNota2.clear();
+                inputNota3.clear();
+    
+                Sistema.exibirPopupSucesso("Notas cadastradas com sucesso!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                Sistema.exibirPopupErro("Erro ao cadastrar notas.");
             }
-
-            // try {
-            //     alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
-            //     alunoCursoDao.cadastrarNotas(alunoCursoSelecionado.getAluno().getId(), curso.getId(), nota1, nota2, nota3);
-            // } catch (SQLException e) {
-                
-            //     e.printStackTrace();
-            // }
-
-            // Atualize a tabela após a inserção da nota
-            carregarDadosTabela();
-
-            // Limpe os campos de entrada após a inserção
-            // inputNota1.clear();
-            // inputNota2.clear();
-            // inputNota3.clear();
-
-            Sistema.exibirPopupSucesso("Notas cadastradas com sucesso!");
         } else {
             Sistema.exibirPopupErro("Nenhum aluno selecionado na tabela.");
         }

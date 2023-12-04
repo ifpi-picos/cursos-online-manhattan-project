@@ -1,19 +1,21 @@
 package br.edu.ifpi.controllers;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.SessaoController;
-import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.SessaoUsuario;
 import br.edu.ifpi.Sistema;
+import br.edu.ifpi.dao.AlunoDao;
+import br.edu.ifpi.dao.Conexao;
+import br.edu.ifpi.dao.ProfessorDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class ControladorLogIn implements Initializable, SessaoController{
+public class ControladorLogIn implements Initializable{
 
     @FXML
     private Button btnCadastrar;
@@ -30,16 +32,10 @@ public class ControladorLogIn implements Initializable, SessaoController{
     @FXML
     private TextField inputNome;
 
-    private SessaoDao sessaoDao;
-
-    public void getSessao (SessaoDao sessaoDao){
-        this.sessaoDao = sessaoDao;
-    }
-
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        btnCadastrar.setOnAction(event -> Sistema.trocarCena("/fxml/cadastro.fxml", btnCadastrar, sessaoDao));
+        btnCadastrar.setOnAction(event -> Sistema.trocarCena("/fxml/cadastro.fxml", btnCadastrar));
         btnEntrar.setOnAction(event -> Autenticar());
     }
 
@@ -56,20 +52,27 @@ public class ControladorLogIn implements Initializable, SessaoController{
             return;
         }
 
-        if(sessaoDao.alunoDao.verificarEmailExistente(email)){
+        try {
+            AlunoDao alunoDao = new AlunoDao(Conexao.getConnection());
+            ProfessorDao professorDao = new ProfessorDao(Conexao.getConnection());
+
+            if(alunoDao.verificarEmailExistente(email)){
             SessaoUsuario.setEmailUsuario(email);
             SessaoUsuario.setNomeUsuario(nome);
             SessaoUsuario.setTipoUsuario("ALUNO");
-            Sistema.trocarCena("/fxml/telasAluno/telaInicialAluno.fxml", btnEntrar, sessaoDao);
+            Sistema.trocarCena("/fxml/telasAluno/telaInicialAluno.fxml", btnEntrar);
 
-        }else if (sessaoDao.professorDao.verificarEmailExistente(email)) {
+        }else if (professorDao.verificarEmailExistente(email)) {
             SessaoUsuario.setEmailUsuario(email);
             SessaoUsuario.setNomeUsuario(nome);
             SessaoUsuario.setTipoUsuario("PROFESSOR");
-            Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml", btnEntrar, sessaoDao);
+            Sistema.trocarCena("/fxml/telasProfessor/telaInicialProf.fxml", btnEntrar);
 
         } else {
            Sistema.exibirPopupErro("Usuário Inexistente!"); 
+        }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
       

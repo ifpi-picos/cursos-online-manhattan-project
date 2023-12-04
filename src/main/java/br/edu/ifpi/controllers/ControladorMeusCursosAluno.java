@@ -4,8 +4,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.SessaoController;
-import br.edu.ifpi.SessaoDao;
 import br.edu.ifpi.SessaoUsuario;
 import br.edu.ifpi.Sistema;
 import br.edu.ifpi.dao.AlunoCursoDao;
@@ -26,7 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ControladorMeusCursosAluno implements Initializable,SessaoController {
+public class ControladorMeusCursosAluno implements Initializable {
 
     @FXML
     private TableColumn<AlunoCurso, Double> ColMedia;
@@ -88,12 +86,6 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
     @FXML
     private TableView<AlunoCurso> tabelaCursos;
 
-    private SessaoDao sessaoDao;
-    
-    public void getSessao (SessaoDao sessaoDao){
-        this.sessaoDao = sessaoDao;
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         carregarTabela();
@@ -113,11 +105,11 @@ public class ControladorMeusCursosAluno implements Initializable,SessaoControlle
         colProfessor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurso().getProfessor().getNome()));
         statusMatricula.setCellValueFactory(new PropertyValueFactory<>("statusAlunoCurso"));
 
-        btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasAluno/cursosAluno.fxml", btnCursos, sessaoDao));
-        btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasAluno/telaInicialAluno.fxml", btnCursos, sessaoDao));
-        btnPerfil.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/perfilAluno.fxml", btnPerfil, sessaoDao));
-        btnMeusCursos.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/meusCursos.fxml", btnMeusCursos, sessaoDao));
-        btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair, sessaoDao));
+        btnCursos.setOnAction(event -> Sistema.trocarCena("/fxml/telasAluno/cursosAluno.fxml", btnCursos));
+        btnHome.setOnAction(event -> Sistema.trocarCena("/fxml/telasAluno/telaInicialAluno.fxml", btnCursos));
+        btnPerfil.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/perfilAluno.fxml", btnPerfil));
+        btnMeusCursos.setOnAction(event-> Sistema.trocarCena("/fxml/telasAluno/meusCursos.fxml", btnMeusCursos));
+        btnSair.setOnAction(event -> Sistema.trocarCena("/fxml/login.fxml", btnSair));
     }
 
     // Função p/ carregar a tabela de cursos do aluno
