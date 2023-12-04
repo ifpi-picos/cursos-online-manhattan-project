@@ -117,29 +117,47 @@ public class ControladorGerenciarTurma implements Initializable {
     public void cadastrarNotas(){
         // Obtenha o aluno selecionado na tabela
         AlunoCurso alunoCursoSelecionado = tabelaTurma.getSelectionModel().getSelectedItem();
-
+    
         // Verificação sobre qual campo tem dados
         if (alunoCursoSelecionado != null) {
             AlunoCursoDao alunoCursoDao;
     
-            Double nota1 = inputNota1.getText().isEmpty() ? null : Double.parseDouble(inputNota1.getText());
-            Double nota2 = inputNota2.getText().isEmpty() ? null : Double.parseDouble(inputNota2.getText());
-            Double nota3 = inputNota3.getText().isEmpty() ? null : Double.parseDouble(inputNota3.getText());
+            String textoNota1 = inputNota1.getText();
+            String textoNota2 = inputNota2.getText();
+            String textoNota3 = inputNota3.getText();
+    
+            Double nota1 = null;
+            Double nota2 = null;
+            Double nota3 = null;
+    
+            if (!textoNota1.isEmpty()) {
+                nota1 = Double.parseDouble(textoNota1);
+            }
+    
+            if (!textoNota2.isEmpty()) {
+                nota2 = Double.parseDouble(textoNota2);
+            }
+    
+            if (!textoNota3.isEmpty()) {
+                nota3 = Double.parseDouble(textoNota3);
+            }
     
             try {
                 alunoCursoDao = new AlunoCursoDao(Conexao.getConnection());
     
                 if (nota1 != null) {
-                    alunoCursoDao.inserirPrimeiraNota(alunoCursoSelecionado.getAluno().getId(), curso.getId(), nota1);
+                    alunoCursoSelecionado.setNota1(nota1);
                 }
     
                 if (nota2 != null) {
-                    alunoCursoDao.inserirSegundaNota(alunoCursoSelecionado.getAluno().getId(), curso.getId(), nota2);
+                    alunoCursoSelecionado.setNota2(nota2);
                 }
     
                 if (nota3 != null) {
-                    alunoCursoDao.inserirTerceiraNota(alunoCursoSelecionado.getAluno().getId(), curso.getId(), nota3);
+                    alunoCursoSelecionado.setNota3(nota3);
                 }
+
+                alunoCursoDao.atualizarNotas(alunoCursoSelecionado);
     
                 // Atualize a tabela após a inserção da nota
                 carregarDadosTabela();

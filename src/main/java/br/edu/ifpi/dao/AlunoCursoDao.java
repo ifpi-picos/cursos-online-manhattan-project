@@ -497,55 +497,49 @@ public class AlunoCursoDao implements Dao<AlunoCurso>{
         return alunosCursos;
     } 
 
-    // Métodos para cadastrar cada nota individualmente
-    public void inserirPrimeiraNota(int alunoId, int cursoId, double nota) {
-        String sql = "UPDATE aluno_curso SET nota1 = ? WHERE aluno_id = ? AND curso_id = ?";
 
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, alunoId);
-            ps.setInt(2, cursoId);
-            ps.setDouble(3, nota);
-
-            // Executa a atualização no banco de dados
-            ps.executeUpdate();
-
-            System.out.println("Nota inserida com sucesso!");
-        } catch (SQLException e) {
-            System.err.println("Erro ao inserir nota: " + e.getMessage());
+    public void atualizarNotas(AlunoCurso alunoCurso) {
+        String sql = "UPDATE aluno_curso SET ";
+        boolean hasNota1 = alunoCurso.getNota1() != null;
+        boolean hasNota2 = alunoCurso.getNota2() != null;
+        boolean hasNota3 = alunoCurso.getNota3() != null;
+    
+        if (hasNota1) {
+            sql += "nota1 = ?";
         }
-    }
-
-    public void inserirSegundaNota(int alunoId, int cursoId, double nota) {
-        String sql = "UPDATE aluno_curso SET nota2 = ? WHERE aluno_id = ? AND curso_id = ?";
-
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, alunoId);
-            ps.setInt(2, cursoId);
-            ps.setDouble(3, nota);
-
-            // Executa a atualização no banco de dados
-            ps.executeUpdate();
-
-            System.out.println("Nota inserida com sucesso!");
-        } catch (SQLException e) {
-            System.err.println("Erro ao inserir nota: " + e.getMessage());
+        if (hasNota2) {
+            if (hasNota1) {
+                sql += ", ";
+            }
+            sql += "nota2 = ?";
         }
-    }
-
-    public void inserirTerceiraNota(int alunoId, int cursoId, double nota) {
-        String sql = "UPDATE aluno_curso SET nota3 = ? WHERE aluno_id = ? AND curso_id = ?";
-
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, alunoId);
-            ps.setInt(2, cursoId);
-            ps.setDouble(3, nota);
-
-            // Executa a atualização no banco de dados
-            ps.executeUpdate();
-
-            System.out.println("Nota inserida com sucesso!");
+        if (hasNota3) {
+            if (hasNota1 || hasNota2) {
+                sql += ", ";
+            }
+            sql += "nota3 = ?";
+        }
+    
+        sql += " WHERE aluno_id = ? AND curso_id = ?";
+    
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            int index = 1;
+            if (hasNota1) {
+                stmt.setDouble(index++, alunoCurso.getNota1());
+            }
+            if (hasNota2) {
+                stmt.setDouble(index++, alunoCurso.getNota2());
+            }
+            if (hasNota3) {
+                stmt.setDouble(index++, alunoCurso.getNota3());
+            }
+            stmt.setInt(index++, alunoCurso.getAluno().getId());
+            stmt.setInt(index++, alunoCurso.getCurso().getId());
+    
+            stmt.executeUpdate();
+    
         } catch (SQLException e) {
-            System.err.println("Erro ao inserir nota: " + e.getMessage());
+            throw new RuntimeException("Erro ao atualizar notas no banco de dados: " + e.getMessage(), e);
         }
     }
 }
